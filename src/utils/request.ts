@@ -1,5 +1,8 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig, type Canceler, type Method } from 'axios'
+import type { ToastWrapperInstance } from 'vant'
+import { showDialog, showLoadingToast, showToast } from 'vant'
 import { ResultEnum as REQUEST } from '~/enums/ResultEnum'
+import { router } from '~/modules/router'
 
 interface RequestState {
   baseUrl: string
@@ -14,43 +17,54 @@ class Request {
   public queueUrl: number
   public cancelTokenList: { url?: string, cancel: Canceler }[] = []
   private baseUrl: string
-
-  private loadingInstance: null = null
+  private loadingInstance: null | ToastWrapperInstance = null
   constructor(props: RequestState) {
     this.queueUrl = 0
     this.cancelTokenList = []
     this.baseUrl = props.baseUrl
   }
 
-  public cancelRequest(url: string) {
-    const item = this.cancelTokenList.find(item => item.url === url)
-    if (item)
-      item.cancel()
-  }
-
-  public cancelAllRequest() {
-    this.cancelTokenList.forEach(item => item.cancel())
-  }
-
   private errorToast(msg: string) {
     // eslint-disable-next-line no-console
     console.log('errorToast', msg)
+    showToast(msg)
   }
 
   /** 登录过期, 重新登录 */
   private errorAuthToast(msg: string) {
     // eslint-disable-next-line no-console
     console.log('errorAuthToast', msg)
+    showDialog({
+      title: '提示',
+      message: msg,
+      theme: 'round-button',
+    }).then(() => {
+      router.replace(`/user/login?redirectPath=${encodeURIComponent(router.currentRoute.value.fullPath)}`)
+    })
   }
 
   private hideLoading() {
     // eslint-disable-next-line no-console
     console.log('hideLoading')
+    this.loadingInstance?.close()
   }
 
   private showLoading() {
     // eslint-disable-next-line no-console
     console.log('showLoading')
+    this.loadingInstance = showLoadingToast({
+      message: '加载中...',
+    })
+  }
+
+  public cancelAllRequest() {
+    this.cancelTokenList.forEach(item => item.cancel())
+  }
+
+  public cancelRequest(url: string) {
+    const item = this.cancelTokenList.find(item => item.url === url)
+    if (item)
+      item.cancel()
   }
 
   private destroy(url: string, loading: boolean) {

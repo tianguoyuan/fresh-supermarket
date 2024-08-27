@@ -10,6 +10,7 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
+import { VantResolver } from '@vant/auto-import-resolver'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -72,12 +73,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           './src/stores',
         ],
         vueTemplate: true,
+        resolvers: [VantResolver()],
       }),
 
       // https://github.com/antfu/vite-plugin-components
       Components({
         dts: './src/types/components.d.ts',
-
+        resolvers: [VantResolver()],
       }),
 
       // https://github.com/antfu/unocss

@@ -8,6 +8,10 @@ import 'uno.css'
 
 import { setupRouter, setupStore } from '~/modules'
 
+// 函数调用没有样式
+import 'vant/lib/toast/style'
+import 'vant/lib/dialog/style'
+
 async function bootstrap() {
   const app = createApp(App)
 

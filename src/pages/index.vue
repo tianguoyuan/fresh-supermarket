@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { login } from '~/api'
+
 const userStore = useUserStore()
 </script>
 
@@ -7,9 +9,12 @@ const userStore = useUserStore()
     index
     <div>{{ userStore.token }}</div>
 
-    <div class="btn" @click="userStore.changeToken(`${userStore.token}.....`)">
+    <button class="btn" @click="userStore.changeToken(`${userStore.token}.....`)">
       change
-    </div>
+    </button>
+    <VanButton type="success" size="small" @click="login({ username: '11', password: '22' })">
+      主要按钮
+    </VanButton>
   </div>
 </template>
 

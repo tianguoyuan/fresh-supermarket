@@ -13,7 +13,7 @@ NProgress.configure({
   minimum: 0.3, // 初始化时的最小百分比
 })
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   extendRoutes: routes => setupLayouts(routes),
 })
