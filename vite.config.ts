@@ -62,6 +62,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         imports: [
           'vue',
           '@vueuse/core',
+          'vue-i18n',
           VueRouterAutoImports,
           {
             // add any other imports you were relying on
