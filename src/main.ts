@@ -6,7 +6,7 @@ import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 
-import { setupRouter, setupStore } from '~/modules'
+import { setupI18n, setupRouter, setupStore } from '~/modules'
 
 // 函数调用没有样式
 import 'vant/lib/toast/style'
@@ -17,6 +17,9 @@ async function bootstrap() {
 
   // pinia
   setupStore(app)
+
+  // i18n
+  setupI18n(app)
 
   // router
   setupRouter(app)

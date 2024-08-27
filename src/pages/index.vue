@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { login } from '~/api'
 
 const userStore = useUserStore()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -15,6 +17,8 @@ const userStore = useUserStore()
     <VanButton type="success" size="small" @click="login({ username: '11', password: '22' })">
       主要按钮
     </VanButton>
+
+    {{ t("name") }}
   </div>
 </template>
 

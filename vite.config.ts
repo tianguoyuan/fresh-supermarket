@@ -11,6 +11,7 @@ import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import { VantResolver } from '@vant/auto-import-resolver'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -87,6 +88,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       UnoCSS(),
       // MOCK 服务
       VITE_MOCK_DEV_SERVER ? mockDevServerPlugin() : null,
+
+      // i18n
+      VueI18nPlugin({
+        include: [path.resolve(__dirname, 'src/locales/**')],
+      }),
     ],
 
     // https://github.com/vitest-dev/vitest
