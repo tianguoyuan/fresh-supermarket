@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import path from 'node:path'
 import process from 'node:process'
 import { type ConfigEnv, type UserConfig, defineConfig, loadEnv } from 'vite'
@@ -15,9 +13,21 @@ import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
-  const { VITE_MOCK_DEV_SERVER } = loadEnv(mode, root)
+  const { VITE_OPEN, VITE_MOCK_DEV_SERVER, VITE_PORT, VITE_PUBLIC_PATH } = loadEnv(mode, root)
 
   return {
+    base: VITE_PUBLIC_PATH,
+    server: {
+      port: +VITE_PORT,
+      open: VITE_OPEN,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:9993',
+          changeOrigin: true,
+          // rewrite: path => path.replace(/^\/api/, "")
+        },
+      },
+    },
     resolve: {
       alias: {
         '~/': `${path.resolve(__dirname, 'src')}/`,
