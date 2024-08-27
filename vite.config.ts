@@ -38,7 +38,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
 
       // https://github.com/posva/unplugin-vue-router
-      VueRouter(),
+      VueRouter({
+        dts: './src/types/types-router.d.ts',
+      }),
 
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
@@ -57,6 +59,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         dts: './src/types/auto-imports.d.ts',
         dirs: [
           './src/composables',
+          './src/stores',
         ],
         vueTemplate: true,
       }),

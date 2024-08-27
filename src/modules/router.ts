@@ -17,12 +17,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   extendRoutes: routes => setupLayouts(routes),
 })
+
 export function setupRouter(app: App) {
   app.use(router)
 }
 
-router.beforeEach(() => {
+router.beforeEach((to, from, next) => {
   NProgress.start()
+  next()
 })
 
 router.afterEach(() => {
