@@ -20,6 +20,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   return {
     base: VITE_PUBLIC_PATH,
     server: {
+      host: '0.0.0.0',
       port: +VITE_PORT,
       open: VITE_OPEN,
       proxy: {
@@ -52,6 +53,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
         dts: './src/types/types-router.d.ts',
+        exclude: 'src/pages/**/components/**',
       }),
 
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts

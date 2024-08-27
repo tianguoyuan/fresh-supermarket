@@ -1,6 +1,12 @@
+<script lang="ts" setup>
+const dark = computed(() => isDark)
+</script>
+
 <template>
-  <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
-    <VanConfigProvider :theme="isDark ? 'dark' : 'light'">
+  <main
+    class="gray-700 dark:gray-200 font-sans"
+  >
+    <VanConfigProvider :theme="dark ? 'dark' : 'light'">
       <RouterView />
     </VanConfigProvider>
   </main>
