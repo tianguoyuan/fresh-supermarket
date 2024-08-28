@@ -1,3 +1,9 @@
+html {
+  background-color: #f2f2f2;
+}
+#app {
+  background-color: #fff;
+}
 html,
 body,
 #app {
@@ -5,7 +11,6 @@ body,
   margin: 0;
   padding: 0;
 }
-
 html.dark {
   background: #121212;
 }

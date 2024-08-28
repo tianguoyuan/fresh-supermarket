@@ -4,6 +4,7 @@ import type { App } from 'vue'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { getScreenBannerStorage } from '~/utils/storage'
 
 NProgress.configure({
   easing: 'ease', // 动画方式
@@ -24,6 +25,11 @@ export function setupRouter(app: App) {
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  const screenBanner = getScreenBannerStorage()
+  if (to.path === '/' && screenBanner) {
+    next('/home')
+  }
+
   next()
 })
 

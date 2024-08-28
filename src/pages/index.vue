@@ -2,6 +2,7 @@
 import dashboard1 from '~/assets/images/dashboard/1.png'
 import dashboard2 from '~/assets/images/dashboard/2.png'
 import dashboard3 from '~/assets/images/dashboard/3.png'
+import { setScreenBannerStorage } from '~/utils/storage'
 
 const bannerList = ref([
   {
@@ -20,12 +21,17 @@ const bannerList = ref([
     desc: '遇见众生众象',
   },
 ])
+const router = useRouter()
+function goHome() {
+  router.replace('/home')
+  setScreenBannerStorage(true)
+}
 </script>
 
 <template>
   <van-swipe class="h-screen" indicator-color="#5F2AFF" :loop="false">
     <van-swipe-item v-for="(item, index) in bannerList" :key="item.title" class="relative">
-      <div v-if="index === bannerList.length - 1" class="absolute right-10 top-10 border rounded-2xl px-2 text-xs text-dark color-gray">
+      <div v-if="index === bannerList.length - 1" class="skip-btn absolute right-10 top-10 rounded-2xl px-2 text-xs" @click="goHome">
         跳过
       </div>
       <div class="pl-12 pt-18">
@@ -39,15 +45,18 @@ const bannerList = ref([
         </div>
       </div>
 
-      <div class="mt-12 h-100 overflow-hidden px-6">
-        <img :src="item.img" alt="">
+      <div class="mt-12 h-139 overflow-hidden px-6">
+        <img class="m-auto" :src="item.img" alt="">
       </div>
     </van-swipe-item>
   </van-swipe>
 </template>
 
 <style scoped>
-
+.skip-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+}
 </style>
 
 <route lang="yaml">
