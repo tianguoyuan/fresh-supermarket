@@ -11,6 +11,7 @@ import { setupI18n, setupRouter, setupStore } from '~/modules'
 // 函数调用没有样式
 import 'vant/lib/toast/style'
 import 'vant/lib/dialog/style'
+import '@vant/touch-emulator'
 
 async function bootstrap() {
   const app = createApp(App)

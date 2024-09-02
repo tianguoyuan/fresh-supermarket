@@ -1,3 +1,6 @@
+<script lang="ts" setup name="/[...all]">
+</script>
+
 <template>
   <div>
     Not Found

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import type { App } from 'vue'
 
@@ -15,7 +15,7 @@ NProgress.configure({
 })
 
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   extendRoutes: routes => setupLayouts(routes),
 })
 
@@ -25,11 +25,13 @@ export function setupRouter(app: App) {
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  const screenBanner = getScreenBannerStorage()
-  if (to.path === '/' && screenBanner) {
+  // 配置标题
+  useTitle(`${to.meta.title}-${import.meta.env.VITE_GLOB_APP_TITLE}`)
+  const hasScreenBanner = getScreenBannerStorage()
+  if (to.path === '/' && hasScreenBanner) {
     next('/home')
+    return
   }
-
   next()
 })
 

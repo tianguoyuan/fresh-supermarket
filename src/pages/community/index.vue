@@ -1,10 +1,9 @@
-<script setup lang="ts" name="userRegister">
-
+<script setup lang="ts" name="/community/">
 </script>
 
 <template>
   <div>
-    register
+    社区
   </div>
 </template>
 
@@ -14,5 +13,6 @@
 
 <route lang="yaml">
   meta:
-    title: 用户注册
+    title: 社区
+    showTabBar: true
 </route>

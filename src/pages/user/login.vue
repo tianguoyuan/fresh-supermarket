@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="/user/login">
 import { parseRedirectPath } from '~/utils'
 
 const { query } = useRoute('/redirect')
@@ -23,3 +23,8 @@ function handleClick() {
 <style scoped>
 
 </style>
+
+<route lang="yaml">
+  meta:
+    title: 用户登录
+</route>

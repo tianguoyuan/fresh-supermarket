@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="/user/[id]">
 const { params } = useRoute('/user/[id]')
 </script>
 
@@ -11,3 +11,8 @@ const { params } = useRoute('/user/[id]')
 <style scoped>
 
 </style>
+
+<route lang="yaml">
+  meta:
+    title: 用户信息
+</route>

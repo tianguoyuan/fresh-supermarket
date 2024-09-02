@@ -1,10 +1,9 @@
-<script setup lang="ts" name="userRegister">
-
+<script setup lang="ts" name="/add/">
 </script>
 
 <template>
   <div>
-    register
+    add
   </div>
 </template>
 
@@ -14,5 +13,5 @@
 
 <route lang="yaml">
   meta:
-    title: 用户注册
+    layout: home
 </route>

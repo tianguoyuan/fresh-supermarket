@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const dark = computed(() => isDark)
+const dark = computed(() => isDark.value)
 </script>
 
 <template>

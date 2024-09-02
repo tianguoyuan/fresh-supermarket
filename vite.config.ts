@@ -8,10 +8,13 @@ import Layouts from 'vite-plugin-vue-layouts'
 import UnoCSS from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import VueRouter from 'unplugin-vue-router/vite'
+
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import { VantResolver } from '@vant/auto-import-resolver'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+// import VueDevTools from 'vite-plugin-vue-devtools'
+import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -53,7 +56,12 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
         dts: './src/types/types-router.d.ts',
-        exclude: 'src/pages/**/components/**',
+        exclude: [
+          'src/pages/**/components/**',
+          'src/pages/home/Follow.vue', // 首页-关注
+          'src/pages/home/Recommended.vue', // 首页-推荐
+          'src/pages/home/Nearby.vue', // 首页-附近
+        ],
       }),
 
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -96,6 +104,12 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       VueI18nPlugin({
         include: [path.resolve(__dirname, 'src/locales/**')],
       }),
+
+      // https://github.com/webfansplz/vite-plugin-vue-devtools
+      // VueDevTools(),
+
+      // name 可以写在 script 标签上
+      vueSetupExtend({}),
     ],
 
     // https://github.com/vitest-dev/vitest

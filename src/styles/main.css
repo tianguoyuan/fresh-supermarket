@@ -1,8 +1,9 @@
 html {
   background-color: #f2f2f2;
+  font-size: 14px;
 }
 #app {
-  background-color: #fff;
+  position: relative;
 }
 html,
 body,
@@ -13,4 +14,9 @@ body,
 }
 html.dark {
   background: #121212;
+}
+
+.van-tabbar--fixed {
+  left: 0 !important;
+  right: 0 !important;
 }

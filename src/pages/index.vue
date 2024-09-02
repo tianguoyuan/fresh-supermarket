@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="/">
 import dashboard1 from '~/assets/images/dashboard/1.png'
 import dashboard2 from '~/assets/images/dashboard/2.png'
 import dashboard3 from '~/assets/images/dashboard/3.png'
@@ -30,7 +30,7 @@ function goHome() {
 
 <template>
   <van-swipe class="h-screen" indicator-color="#5F2AFF" :loop="false">
-    <van-swipe-item v-for="(item, index) in bannerList" :key="item.title" class="relative">
+    <van-swipe-item v-for="(item, index) in bannerList" :key="item.title" class="relative flex flex-col">
       <div v-if="index === bannerList.length - 1" class="skip-btn absolute right-10 top-10 rounded-2xl px-2 text-xs" @click="goHome">
         跳过
       </div>
@@ -45,8 +45,8 @@ function goHome() {
         </div>
       </div>
 
-      <div class="mt-12 h-139 overflow-hidden px-6">
-        <img class="m-auto" :src="item.img" alt="">
+      <div class="mb-6 mt-12 flex-1 overflow-hidden px-6">
+        <img class="m-auto" :src="item.img" alt="" draggable="false">
       </div>
     </van-swipe-item>
   </van-swipe>
@@ -61,5 +61,6 @@ function goHome() {
 
 <route lang="yaml">
   meta:
-    layout: dashboard
+    layout: false
+    title: 开屏广告
 </route>

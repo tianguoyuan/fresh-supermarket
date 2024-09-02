@@ -1,10 +1,10 @@
-<script setup lang="ts" name="userRegister">
+<script setup lang="ts" name="/message/">
 
 </script>
 
 <template>
   <div>
-    register
+    message
   </div>
 </template>
 
@@ -14,5 +14,6 @@
 
 <route lang="yaml">
   meta:
-    title: 用户注册
+    title: 消息
+    showTabBar: true
 </route>
