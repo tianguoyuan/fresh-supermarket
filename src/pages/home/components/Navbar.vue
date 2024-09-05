@@ -32,7 +32,7 @@ function changeActiveTagIndex(index: number) {
         <AddressSelect />
       </template>
       <template #title>
-        <span v-for="(item, index) in tagList" :key="item.title" class="px-3 text-sm text-[#8D93A6] transition-all" :class="{ activeTag: index === activeTagIndex }" @click="changeActiveTagIndex(index)">
+        <span v-for="(item, index) in tagList" :key="item.title" class="px-3 text-sm transition-all color-gray" :class="{ activeTag: index === activeTagIndex }" @click="changeActiveTagIndex(index)">
           <span>{{ item.title }}</span>
           <span v-if="activeTagIndex === index" class="line" />
         </span>

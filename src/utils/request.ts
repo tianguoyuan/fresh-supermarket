@@ -54,6 +54,7 @@ class Request {
     console.log('showLoading')
     this.loadingInstance = showLoadingToast({
       message: '加载中...',
+      duration: 1000 * 10,
     })
   }
 

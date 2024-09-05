@@ -4,7 +4,7 @@ const dark = computed(() => isDark.value)
 
 <template>
   <main
-    class="gray-700 dark:gray-200 font-sans"
+    class="bg-gray-150 font-sans dark:bg-gray-200"
   >
     <VanConfigProvider :theme="dark ? 'dark' : 'light'">
       <RouterView />

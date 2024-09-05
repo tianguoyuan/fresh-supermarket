@@ -17,6 +17,9 @@ importers:
       axios:
         specifier: ^1.7.5
         version: 1.7.5
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -29,6 +32,9 @@ importers:
       vant:
         specifier: ^4.9.4
         version: 4.9.4(vue@3.4.38(typescript@5.5.4))
+      vconsole:
+        specifier: ^3.15.1
+        version: 3.15.1
       vue:
         specifier: ^3.4.27
         version: 3.4.38(typescript@5.5.4)
@@ -141,6 +147,9 @@ importers:
       vite-plugin-pwa:
         specifier: ^0.20.1
         version: 0.20.1(@vite-pwa/assets-generator@0.2.4)(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8)(terser@5.31.6))(workbox-build@7.1.1)(workbox-window@7.1.0)
+      vite-plugin-vconsole:
+        specifier: ^2.1.1
+        version: 2.1.1
       vite-plugin-vue-devtools:
         specifier: ^7.3.9
         version: 7.3.9(rollup@2.79.1)(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
@@ -2674,8 +2683,15 @@ packages:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
 
+  copy-text-to-clipboard@3.2.0:
+    resolution: {integrity: sha512-RnJFp1XR/LOBDckxTib5Qjr/PMfkatD0MUCQgdpqS8MdKiNUzBjAQBEN6oUy+jW7LI93BBG3DtMB2KOOKpGs2Q==}
+    engines: {node: '>=12'}
+
   core-js-compat@3.38.1:
     resolution: {integrity: sha512-JRH6gfXxGmrzF3tZ57lFx97YARxCXPaMzPo6jELZhv88pBH5VXpQ+y0znKGlFnzuaihqhLbefxSJxWJMPtfDzw==}
+
+  core-js@3.38.1:
+    resolution: {integrity: sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==}
 
   cors@2.8.5:
     resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
@@ -3958,6 +3974,9 @@ packages:
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
 
+  mutation-observer@1.0.3:
+    resolution: {integrity: sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA==}
+
   nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -5017,6 +5036,9 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
+  vconsole@3.15.1:
+    resolution: {integrity: sha512-KH8XLdrq9T5YHJO/ixrjivHfmF2PC2CdVoK6RWZB4yftMykYIaXY1mxZYAic70vADM54kpMQF+dYmvl5NRNy1g==}
+
   vite-hot-client@0.2.3:
     resolution: {integrity: sha512-rOGAV7rUlUHX89fP2p2v0A2WWvV3QMX2UYq0fRqsWSvFvev4atHWqjwGoKaZT1VTKyLGk533ecu3eyd0o59CAg==}
     peerDependencies:
@@ -5058,6 +5080,9 @@ packages:
     peerDependenciesMeta:
       '@vite-pwa/assets-generator':
         optional: true
+
+  vite-plugin-vconsole@2.1.1:
+    resolution: {integrity: sha512-369FlBnQhzR5pF2+nsmbMeF5qNO6MzUIk3l+DHa8In15cscyk4eXT5pWfExoSLn41dgeI1FPP+kgAKViePYPdQ==}
 
   vite-plugin-vue-devtools@7.3.9:
     resolution: {integrity: sha512-ybDV2kepW0NpusvtfbRKHs0pvyrReNcFtL572gyZ6Alox6u5uebYefd2eAG/7mJSU3NPI5UxUH1e/Mof5exdlw==}
@@ -8197,9 +8222,13 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
+  copy-text-to-clipboard@3.2.0: {}
+
   core-js-compat@3.38.1:
     dependencies:
       browserslist: 4.23.3
+
+  core-js@3.38.1: {}
 
   cors@2.8.5:
     dependencies:
@@ -9655,6 +9684,8 @@ snapshots:
 
   muggle-string@0.4.1: {}
 
+  mutation-observer@1.0.3: {}
+
   nanoid@3.3.7: {}
 
   napi-build-utils@1.0.2:
@@ -10898,6 +10929,13 @@ snapshots:
 
   vary@1.1.2: {}
 
+  vconsole@3.15.1:
+    dependencies:
+      '@babel/runtime': 7.25.4
+      copy-text-to-clipboard: 3.2.0
+      core-js: 3.38.1
+      mutation-observer: 1.0.3
+
   vite-hot-client@0.2.3(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8)(terser@5.31.6)):
     dependencies:
       vite: 5.4.2(@types/node@22.5.0)(sass@1.77.8)(terser@5.31.6)
@@ -10975,6 +11013,8 @@ snapshots:
       '@vite-pwa/assets-generator': 0.2.4
     transitivePeerDependencies:
       - supports-color
+
+  vite-plugin-vconsole@2.1.1: {}
 
   vite-plugin-vue-devtools@7.3.9(rollup@2.79.1)(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4)):
     dependencies:

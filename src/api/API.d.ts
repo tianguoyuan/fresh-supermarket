@@ -1,3 +1,8 @@
+interface DefaultPage {
+  pageNum: number
+  pageSize: number
+}
+
 declare namespace API {
   /** 注册 */
   interface IRegister {
@@ -26,5 +31,44 @@ declare namespace API {
   }
   interface IUserInfoRes {
 
+  }
+
+  interface RecommendedTagsFind {
+
+  }
+  interface RecommendedTagsFindRes {
+    tagList: {
+      id: string
+      title: string
+    }[]
+    orderList: {
+      id: string
+      title: string
+    }[]
+    kindList: {
+      id: string
+      title: string
+    }[]
+  }
+
+  interface RecommendedListFind extends DefaultPage {
+    /** 标签 */
+    tagId: string
+    /** 排序 */
+    orderId: string
+    /** 分类 */
+    kindId: string
+  }
+  interface RecommendedListFindRes {
+    pageNum: number
+    total: number
+    list: {
+      id: string
+      cover: string
+      title: string
+      likeNum: number
+      isLike: boolean
+      images: string[] | []
+    }[]
   }
 }

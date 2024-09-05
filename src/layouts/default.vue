@@ -42,6 +42,10 @@ console.log('routeName', cacheViews.value)
 </script>
 
 <template>
+  <!-- 回到顶部 -->
+  <van-back-top bottom="15vh" />
+
+  <!-- 内容展示 -->
   <RouterView v-slot="{ Component, route: currentRoute }">
     <Transition
       name="fade-transform"

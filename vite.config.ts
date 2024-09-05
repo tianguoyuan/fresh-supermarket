@@ -15,6 +15,7 @@ import { VantResolver } from '@vant/auto-import-resolver'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 // import VueDevTools from 'vite-plugin-vue-devtools'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
+import { viteVConsole } from 'vite-plugin-vconsole'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -40,6 +41,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       },
     },
     plugins: [
+      viteVConsole({
+        entry: path.resolve('src/main.ts'),
+        localEnabled: true,
+        enabled: true,
+        config: {
+          maxLogNumber: 1000,
+          theme: 'dark',
+        },
+      }),
       VueMacros({
         defineOptions: false,
         defineModels: false,

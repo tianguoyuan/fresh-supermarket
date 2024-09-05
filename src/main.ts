@@ -9,9 +9,10 @@ import 'uno.css'
 import { setupI18n, setupRouter, setupStore } from '~/modules'
 
 // 函数调用没有样式
-import 'vant/lib/toast/style'
-import 'vant/lib/dialog/style'
+import 'swiper/css'
 import '@vant/touch-emulator'
+import 'vant/lib/dialog/style'
+import 'vant/lib/toast/style'
 
 async function bootstrap() {
   const app = createApp(App)
