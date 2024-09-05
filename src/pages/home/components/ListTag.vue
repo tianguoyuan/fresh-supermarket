@@ -22,8 +22,10 @@ const tagIndex = ref<number>(0)
 const orderIndex = ref<number>(0)
 const kindIndex = ref<number>(0)
 function setTagIndex(index: number) {
-  tagIndex.value = index
-  findList(true)
+  if (tagIndex.value !== index) {
+    tagIndex.value = index
+    findList(true)
+  }
 }
 
 // 查询tagList
