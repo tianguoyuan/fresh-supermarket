@@ -10,7 +10,7 @@ const list = ref<API.RecommendedListFindRes['list']>([])
 const pageNum = ref(1)
 const pageSize = ref(10)
 const total = ref(0)
-const listLoading = ref(false) // 列表是否加载中-上拉刷新
+const listLoading = ref(true) // 列表是否加载中-上拉刷新
 const refreshing = ref(false) // 下拉刷新loading
 
 const finished = computed(() => {
