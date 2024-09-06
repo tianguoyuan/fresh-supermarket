@@ -1,6 +1,5 @@
 <script setup lang="ts">
 function init() {
-
 }
 
 defineExpose({

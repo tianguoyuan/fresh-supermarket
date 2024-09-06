@@ -1,26 +1,29 @@
 <script setup lang="ts" name="/home/">
-import { Swiper, SwiperSlide } from 'swiper/vue'
 import Navbar from './components/Navbar.vue'
 import Recommended from './Recommended.vue'
 import Follow from './Follow.vue'
 import Nearby from './Nearby.vue'
 
+const followRef = ref<null | InstanceType<typeof Follow>>(null)
+const recommendedRef = ref<null | InstanceType<typeof Recommended>>(null)
+const nearbyRef = ref<null | InstanceType<typeof Nearby>>(null)
+
 const tagIndex = ref(1)
-const swiperInstance = ref<null | InstanceType<typeof Swiper>>(null)
 const isPageArr = ref<number[]>([tagIndex.value])
 
-function setTagIndex(index: number, setSwiper = false) {
+function setTagIndex(index: number) {
   if (!isPageArr.value.includes(index)) {
     isPageArr.value.push(index)
   }
   tagIndex.value = index
-  if (setSwiper) {
-    (swiperInstance.value as any)?.slideTo(index)
-  }
 }
 
-function onSwiper(v: any) {
-  swiperInstance.value = v
+function firstRendered(index: number) {
+  // 默认1 不会再次触发
+  if (index === 1)
+    return
+  const currentRef = [followRef, recommendedRef, nearbyRef][index]
+  currentRef.value?.init()
 }
 </script>
 
@@ -28,16 +31,20 @@ function onSwiper(v: any) {
   <div>
     <Navbar :tag-index="tagIndex" @set-tag-index="setTagIndex" />
 
-    <Swiper
-      :slides-per-view="1"
-      :initial-slide="tagIndex"
-      :allow-touch-move="false"
-      @swiper="onSwiper"
+    <van-tabs
+      v-model:active="tagIndex" :show-header="false" animated lazy-render
+      @rendered="firstRendered"
     >
-      <SwiperSlide><Follow v-if="isPageArr.includes(0)" class="h-full" /></SwiperSlide>
-      <SwiperSlide><Recommended class="h-full" /></SwiperSlide>
-      <SwiperSlide><Nearby v-if="isPageArr.includes(2)" class="h-full" /></SwiperSlide>
-    </Swiper>
+      <van-tab>
+        <Follow ref="followRef" class="mh-container" />
+      </van-tab>
+      <van-tab>
+        <Recommended ref="recommendedRef" class="mh-container" />
+      </van-tab>
+      <van-tab>
+        <Nearby ref="nearbyRef" class="mh-container" />
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 

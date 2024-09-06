@@ -42,27 +42,29 @@ console.log('routeName', cacheViews.value)
 </script>
 
 <template>
-  <!-- 回到顶部 -->
-  <van-back-top bottom="15vh" />
+  <div id="layoutDefault" class="h-screen flex flex-col">
+    <!-- 回到顶部 -->
+    <van-back-top bottom="15vh" target="#layoutDefaultContainer" />
 
-  <!-- 内容展示 -->
-  <RouterView v-slot="{ Component, route: currentRoute }">
-    <Transition
-      name="fade-transform"
-      mode="out-in"
-    >
-      <KeepAlive :include="cacheViews">
-        <component
-          :is="Component"
-          :key="currentRoute.fullPath"
-        />
-      </KeepAlive>
-    </Transition>
-  </RouterView>
+    <!-- 内容展示 -->
+    <div id="layoutDefaultContainer" class="flex-1 overflow-auto">
+      <RouterView v-slot="{ Component, route: currentRoute }">
+        <Transition
+          name="fade-transform"
+          mode="out-in"
+        >
+          <KeepAlive :include="cacheViews">
+            <component
+              :is="Component"
+              :key="currentRoute.fullPath"
+            />
+          </KeepAlive>
+        </Transition>
+      </RouterView>
+    </div>
 
-  <!-- 首页 底部选项卡 -->
-  <div>
-    <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder fixed>
+    <!-- 首页 底部选项卡 -->
+    <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false">
       <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" :icon="item.icon" class="transition-all" @click="toPath(item.url)">
         <template v-if="item.title">
           {{ item.title }}

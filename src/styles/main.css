@@ -3,9 +3,6 @@ html {
   font-size: 14px;
   line-height: 1;
 }
-#app {
-  position: relative;
-}
 html,
 body,
 #app {
@@ -15,11 +12,6 @@ body,
 }
 html.dark {
   background: #121212;
-}
-
-.van-tabbar--fixed {
-  left: 0 !important;
-  right: 0 !important;
 }
 
 /* vant4的 Toast 和 Popup 样式冲突,会导致 Toast 变成白底 */

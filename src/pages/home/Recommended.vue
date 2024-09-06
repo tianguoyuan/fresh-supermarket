@@ -15,7 +15,6 @@ const bannerList = [
 ]
 
 function init() {
-
 }
 
 defineExpose({

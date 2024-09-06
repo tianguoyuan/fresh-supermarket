@@ -15,6 +15,7 @@ export default defineConfig({
   rules: [
     /** 去掉banner tabbar 内容高度 */
     ['h-container', { height: 'calc(100vh - 46px - 50px)' }],
+    ['mh-container', { 'min-height': 'calc(100vh - 46px - 50px)' }],
 
     ['color-gray', { color: ' #8D93A6' }],
   ],
