@@ -19,7 +19,7 @@ import { viteVConsole } from 'vite-plugin-vconsole'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
-  const { VITE_OPEN, VITE_MOCK_DEV_SERVER, VITE_PORT, VITE_PUBLIC_PATH } = loadEnv(mode, root)
+  const { VITE_OPEN, VITE_MOCK_DEV_SERVER, VITE_PORT, VITE_PUBLIC_PATH, VITE_MOCK_PORT } = loadEnv(mode, root)
 
   return {
     base: VITE_PUBLIC_PATH,
@@ -108,7 +108,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // see uno.config.ts for config
       UnoCSS(),
       // MOCK 服务
-      VITE_MOCK_DEV_SERVER ? mockDevServerPlugin() : null,
+      VITE_MOCK_DEV_SERVER
+        ? mockDevServerPlugin({
+          build: {
+            serverPort: +VITE_MOCK_PORT,
+          },
+        })
+        : null,
 
       // i18n
       VueI18nPlugin({

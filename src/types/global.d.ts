@@ -24,4 +24,6 @@ declare interface ViteEnv {
   VITE_API_URL: string
   /** 开启mock */
   VITE_MOCK_DEV_SERVER: boolean
+  /** 线上mock端口 */
+  VITE_MOCK_PORT: number
 }
