@@ -3,6 +3,11 @@ html {
   font-size: 14px;
   line-height: 1;
 }
+
+img {
+  -webkit-user-drag: none;
+}
+
 html,
 body,
 #app {

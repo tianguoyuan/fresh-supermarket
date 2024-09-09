@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { DropdownMenuInstance } from 'vant'
 import List from './List.vue'
 import { recommendedListFind, recommendedTagsFind } from '~/api/recommended'
 
 const kindList = ref<API.RecommendedTagsFindRes['kindList']>([])
 const tagList = ref<API.RecommendedTagsFindRes['tagList']>([])
 const orderList = ref<API.RecommendedTagsFindRes['orderList']>([])
-
 const list = ref<API.RecommendedListFindRes['list']>([])
 const pageNum = ref(1)
 const pageSize = ref(10)
@@ -19,8 +19,9 @@ const finished = computed(() => {
   return (pageNum.value * pageSize.value) >= total.value
 })
 const tagIndex = ref<number>(0)
-const orderIndex = ref<number>(0)
-const kindIndex = ref<number>(0)
+const orderIndex = ref<string>('0')
+const kindIndex = ref<string>('0')
+// 列表标签切换
 function setTagIndex(index: number) {
   if (tagIndex.value !== index) {
     tagIndex.value = index
@@ -46,9 +47,12 @@ function findList(initPage?: boolean) {
     pageNum.value += 1
   }
 
+  const orderIds = orderIndex.value ? orderIndex.value.split(',').map(v => orderList.value[+v].id).join(',') : ''
+  const kindIds = kindIndex.value ? kindIndex.value.split(',').map(v => kindList.value[+v].id).join(',') : ''
+
   recommendedListFind({
-    kindId: kindList.value[kindIndex.value]?.id || '',
-    orderId: orderList.value[orderIndex.value]?.id || '',
+    kindId: kindIds || '',
+    orderId: orderIds || '',
     tagId: tagList.value[tagIndex.value]?.id || '',
     pageNum: pageNum.value,
     pageSize: pageSize.value,
@@ -66,6 +70,31 @@ function findList(initPage?: boolean) {
     })
   })
 }
+
+// 记录筛选项， 取消还原
+const dropdownMenuRef = ref<DropdownMenuInstance | null>(null)
+const dialogOrderIndex = ref<string>(orderIndex.value)
+const dialogKindIndex = ref<string>(kindIndex.value)
+async function closeDropMenu() {
+  dialogOrderIndex.value = orderIndex.value
+  dialogKindIndex.value = kindIndex.value
+
+  orderIndex.value = ''
+  kindIndex.value = ''
+
+  await nextTick()
+  orderIndex.value = dialogOrderIndex.value
+  kindIndex.value = dialogKindIndex.value
+
+  dropdownMenuRef.value?.close()
+}
+function saveDropMenu() {
+  orderIndex.value = dialogOrderIndex.value
+  kindIndex.value = dialogKindIndex.value
+
+  findList(true)
+  dropdownMenuRef.value?.close()
+}
 </script>
 
 <template>
@@ -75,14 +104,31 @@ function findList(initPage?: boolean) {
         {{ item.title }}
       </span>
       <div class="control-btn absolute bottom-0 right-0">
-        <van-dropdown-menu auto-locate>
-          <van-dropdown-item>
+        <van-dropdown-menu ref="dropdownMenuRef" :close-on-click-overlay="false" :close-on-click-outside="false">
+          <van-dropdown-item teleport="body">
             <template #title>
-              <van-icon name="list-switch" />
+              <van-icon name="list-switch" class="translate-y-[2px]" />
             </template>
             <template #default>
               <div class="p-3">
-                筛选
+                <div>
+                  <p class="color-[#0B1526]">
+                    排序
+                  </p>
+                  <CheckBox :list-data="orderList" class="pt-3" :default-actives="orderIndex" @change="v => dialogOrderIndex = v" />
+                </div>
+
+                <div class="pt-3">
+                  <p class="color-[#0B1526]">
+                    分类
+                  </p>
+                  <CheckBox :list-data="kindList" class="pt-3" multiple :max="3" :default-actives="kindIndex" @change="v => dialogKindIndex = v" />
+                </div>
+
+                <div class="mt-8 flex text-center line-height-11">
+                  <span class="mr-2 h-11 flex-1 border-rounded-md bg-[#F6F8FA]" @click="closeDropMenu">取消</span>
+                  <span class="h-11 flex-1 border-rounded-md bg-[#5F2AFF] color-white" @click="saveDropMenu">确定</span>
+                </div>
               </div>
             </template>
           </van-dropdown-item>
@@ -103,6 +149,7 @@ function findList(initPage?: boolean) {
   }
 
   ::v-deep(.van-dropdown-menu__bar) {
+    box-shadow: none;
     background-color: transparent;
   }
 }
