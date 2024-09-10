@@ -2,6 +2,9 @@ html {
   background-color: #f2f2f2;
   font-size: 14px;
   line-height: 1;
+
+  /* 禁止双击放大 */
+  touch-action: manipulation;
 }
 
 img {

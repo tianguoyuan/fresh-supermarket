@@ -64,15 +64,25 @@ console.log('routeName', cacheViews.value)
     </div>
 
     <!-- 首页 底部选项卡 -->
-    <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false">
-      <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" :icon="item.icon" class="transition-all" @click="toPath(item.url)">
-        <template v-if="item.title">
-          {{ item.title }}
-        </template>
-        <template v-if="!item.title" #icon="props">
-          <VanIcon :name="item.icon" size="50" :color="props.active ? '#1989fa' : '#7d7e80'" />
-        </template>
-      </VanTabbarItem>
-    </VanTabbar>
+    <div class="tabbar">
+      <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false">
+        <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" :icon="item.icon" class="transition-all" @click="toPath(item.url)">
+          <template v-if="item.title">
+            {{ item.title }}
+          </template>
+          <template v-if="!item.title" #icon="props">
+            <VanIcon :name="item.icon" size="50" :color="props.active ? '#1989fa' : '#7d7e80'" />
+          </template>
+        </VanTabbarItem>
+      </VanTabbar>
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+#layoutDefault {
+  .tabbar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+</style>

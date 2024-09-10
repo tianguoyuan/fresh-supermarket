@@ -3,11 +3,8 @@ import mitt from 'mitt'
 
 // eslint-disable-next-line ts/consistent-type-definitions
 type Events = {
-  /** 0否 1是 */
-
-  /** 首页-推荐 下拉刷新 */
-  homeRecommendedPullDownRefresh: '0' | '1'
-  homeRecommendedPullDownRefreshSuccess: () => void
+  /** emitType */
+  onFunction: void
 }
 
 const emitter: Emitter<Events> = mitt<Events>()

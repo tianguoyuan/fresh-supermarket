@@ -76,15 +76,18 @@ const dropdownMenuRef = ref<DropdownMenuInstance | null>(null)
 const dialogOrderIndex = ref<string>(orderIndex.value)
 const dialogKindIndex = ref<string>(kindIndex.value)
 async function closeDropMenu() {
-  dialogOrderIndex.value = orderIndex.value
-  dialogKindIndex.value = kindIndex.value
+  const copyOrderIndex = orderIndex.value
+  const copyKindIndex = kindIndex.value
+
+  dialogOrderIndex.value = copyOrderIndex
+  dialogKindIndex.value = copyKindIndex
 
   orderIndex.value = ''
   kindIndex.value = ''
 
   await nextTick()
-  orderIndex.value = dialogOrderIndex.value
-  kindIndex.value = dialogKindIndex.value
+  orderIndex.value = copyOrderIndex
+  kindIndex.value = copyKindIndex
 
   dropdownMenuRef.value?.close()
 }
@@ -104,8 +107,8 @@ function saveDropMenu() {
         {{ item.title }}
       </span>
       <div class="control-btn absolute bottom-0 right-0">
-        <van-dropdown-menu ref="dropdownMenuRef" :close-on-click-overlay="false" :close-on-click-outside="false">
-          <van-dropdown-item teleport="body">
+        <van-dropdown-menu ref="dropdownMenuRef">
+          <van-dropdown-item teleport="body" @close="closeDropMenu">
             <template #title>
               <van-icon name="list-switch" class="translate-y-[2px]" />
             </template>
