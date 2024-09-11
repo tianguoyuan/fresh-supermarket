@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-
+import { Lazyload } from 'vant'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -12,6 +12,8 @@ import { setupI18n, setupRouter, setupStore } from '~/modules'
 
 async function bootstrap() {
   const app = createApp(App)
+
+  app.use(Lazyload)
 
   // pinia
   setupStore(app)

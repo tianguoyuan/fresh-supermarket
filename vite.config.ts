@@ -10,7 +10,6 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import { VantResolver } from '@vant/auto-import-resolver'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 // import VueDevTools from 'vite-plugin-vue-devtools'
@@ -19,19 +18,19 @@ import { viteVConsole } from 'vite-plugin-vconsole'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
-  const { VITE_OPEN, VITE_MOCK_DEV_SERVER, VITE_PORT, VITE_PUBLIC_PATH, VITE_MOCK_PORT } = loadEnv(mode, root)
+  const viteEnv = loadEnv(mode, root)
 
   return {
-    base: VITE_PUBLIC_PATH,
+    base: viteEnv.VITE_PUBLIC_PATH,
     server: {
       host: '0.0.0.0',
-      port: +VITE_PORT,
-      open: VITE_OPEN,
+      port: +viteEnv.VITE_PORT,
+      open: viteEnv.VITE_OPEN,
       proxy: {
-        '/api': {
-          target: 'http://localhost:9993',
+        [viteEnv.VITE_API_URL]: {
+          target: 'http://127.0.0.1:4523/m1/5142882-4806818-default',
           changeOrigin: true,
-          // rewrite: path => path.replace(/^\/api/, "")
+          rewrite: path => path.replace(new RegExp(`${viteEnv.VITE_API_URL}`), ''),
         },
       },
     },
@@ -107,15 +106,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // https://github.com/antfu/unocss
       // see uno.config.ts for config
       UnoCSS(),
-      // MOCK 服务
-      VITE_MOCK_DEV_SERVER
-        ? mockDevServerPlugin({
-          build: {
-            serverPort: +VITE_MOCK_PORT,
-          },
-        })
-        : null,
-
       // i18n
       VueI18nPlugin({
         include: [path.resolve(__dirname, 'src/locales/**')],

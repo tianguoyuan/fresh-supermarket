@@ -28,6 +28,7 @@ const error = ref(false)
           <van-image
             class="h-[200px] w-full"
             :src="item.cover"
+            lazy-load
           />
           <p>{{ `${index + 1}: ${item.title}` }}</p>
         </div>

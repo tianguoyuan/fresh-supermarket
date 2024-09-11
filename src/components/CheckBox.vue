@@ -53,7 +53,7 @@ function changeActives(index: number) {
 <template>
   <div>
     <div class="grid grid-cols-4 justify-around gap-2">
-      <span v-for="(item, index) in props.listData" :key="item.id" class="h-9 w-20 border-rounded-md bg-[#F6F8FA] text-center line-height-9" :class="{ active: actives.includes(index), isMax: greaterThenMax }" @click="changeActives(index)">
+      <span v-for="(item, index) in props.listData" :key="item.id" class="line-clamp-1 h-9 w-20 text-ellipsis border-rounded-md bg-[#F6F8FA] text-center line-height-9" :class="{ active: actives.includes(index), isMax: greaterThenMax }" @click="changeActives(index)">
         {{ item.title }}
       </span>
     </div>

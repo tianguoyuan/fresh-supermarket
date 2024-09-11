@@ -63,7 +63,6 @@
     "unplugin-vue-router": "^0.8.6",
     "unplugin-vue-setup-extend-plus": "^1.0.1",
     "vite": "^5.2.11",
-    "vite-plugin-mock-dev-server": "^1.7.1",
     "vite-plugin-pwa": "^0.20.1",
     "vite-plugin-vconsole": "^2.1.1",
     "vite-plugin-vue-devtools": "^7.3.9",

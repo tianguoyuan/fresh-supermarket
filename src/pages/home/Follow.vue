@@ -27,7 +27,7 @@ defineExpose({
 
     <div v-else>
       <NoLogin />
-      <FollowUserLike class="mt-25" :list-data="followUserLikeList" />
+      <FollowUserLike class="mt-7" :list-data="followUserLikeList" />
     </div>
   </div>
 </template>

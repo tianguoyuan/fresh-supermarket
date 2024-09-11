@@ -102,11 +102,13 @@ function saveDropMenu() {
 
 <template>
   <div class="listTag">
-    <div class="relative min-h-[42px] flex items-end py-3">
-      <span v-for="(item, index) in tagList" :key="item.id" class="mr-3 transition-all color-gray" :class="{ active: index === tagIndex }" @click="setTagIndex(index)">
-        {{ item.title }}
-      </span>
-      <div class="control-btn absolute bottom-0 right-0">
+    <div class="relative min-h-[42px] flex items-center py-3">
+      <div class="flex-1 overflow-auto whitespace-nowrap">
+        <span v-for="(item, index) in tagList" :key="item.id" class="mr-3 flex-shrink-0 transition-all color-gray" :class="{ active: index === tagIndex }" @click="setTagIndex(index)">
+          {{ item.title }}
+        </span>
+      </div>
+      <div class="w-10 flex-shrink-0">
         <van-dropdown-menu ref="dropdownMenuRef">
           <van-dropdown-item teleport="body" @close="closeDropMenu">
             <template #title>
@@ -154,6 +156,9 @@ function saveDropMenu() {
   ::v-deep(.van-dropdown-menu__bar) {
     box-shadow: none;
     background-color: transparent;
+  }
+  ::v-deep(.van-dropdown-menu__bar) {
+    height: auto;
   }
 }
 </style>

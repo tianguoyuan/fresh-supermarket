@@ -1,11 +1,21 @@
 <script setup lang="ts" name="/search/">
+import HistorySearch from './components/HistorySearch.vue'
+import HotSearch from './components/HotSearch.vue'
+
 const router = useRouter()
 function back() {
   router.back()
 }
 const searchMsg = ref('')
+const placeholderSearch = ref('9月上新季1元抢月饼')
+function search() {
+  if (!searchMsg.value) {
+    searchMsg.value = placeholderSearch.value
+  }
 
-const historySearch = useLocalStorage(('historySearch'), ['读书', '求职日记'])
+  // 搜索接口
+  router.push(`/search/result?msg=${encodeURIComponent(searchMsg.value)}`)
+}
 </script>
 
 <template>
@@ -18,27 +28,20 @@ const historySearch = useLocalStorage(('historySearch'), ['读书', '求职日�
         <van-search
           v-model="searchMsg"
           class="search-box h-[46px]"
-          placeholder="搜索想要搜索的内容"
+          :placeholder="placeholderSearch"
         />
       </template>
 
       <template #right>
-        <span class="color-[#8D93A6]">搜索</span>
+        <span class="color-[#8D93A6]" @click="search">搜索</span>
       </template>
     </van-nav-bar>
 
-    <div class="mx-4 mt-4">
-      <div class="flex justify-between">
-        <span class="color-[#0B1526]">历史搜索</span>
-        <img src="../../assets/images/rubbish.png" alt="" class="w-3">
-      </div>
+    <!-- 历史搜索 -->
+    <HistorySearch />
 
-      <div class="mt-3 flex">
-        <span v-for="item in historySearch" :key="item" class="mr-2 rounded-2 bg-[#F6F8FA] px-4 py-2 text-3 color-[#0B1526]">
-          {{ item }}
-        </span>
-      </div>
-    </div>
+    <!-- 热门搜索 -->
+    <HotSearch />
   </div>
 </template>
 
