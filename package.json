@@ -15,9 +15,12 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@vant/area-data": "^1.5.2",
     "@vant/touch-emulator": "^1.4.0",
     "@vueuse/core": "^10.9.0",
+    "await-to-js": "^3.0.0",
     "axios": "^1.7.5",
+    "fuse.js": "^7.0.0",
     "mitt": "^3.0.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.2",

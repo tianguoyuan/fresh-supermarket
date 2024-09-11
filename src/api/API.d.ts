@@ -71,4 +71,18 @@ declare namespace API {
       images: string[] | []
     }[]
   }
+
+  /** 关注-推荐用户 */
+  interface FollowUserLike extends DefaultPage {
+
+  }
+  interface FollowUserLikeRes {
+    total: number
+    list: {
+      id: string
+      name: string
+      desc: string
+      img: string
+    }[]
+  }
 }

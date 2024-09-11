@@ -23,7 +23,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="m-3">
+  <div class="p-3">
     <Banner :banner-list="bannerList" />
 
     <ListTag />

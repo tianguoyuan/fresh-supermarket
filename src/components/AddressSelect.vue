@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useUserStore } from '~/stores/user'
 
+const userStore = useUserStore()
 </script>
 
 <template>
   <RouterLink to="/locationCity">
-    <span class="text-xs">北京</span>
+    <span class="text-xs">{{ userStore.address }}</span>
     <VanIcon name="play" class="rotate-90" color="black" size="12" />
   </RouterLink>
 </template>

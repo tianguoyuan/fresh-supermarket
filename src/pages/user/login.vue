@@ -1,7 +1,7 @@
 <script setup lang="ts" name="/user/login">
 import { parseRedirectPath } from '~/utils'
 
-const { query } = useRoute('/redirect')
+const { query } = useRoute()
 const router = useRouter()
 
 function handleClick() {
