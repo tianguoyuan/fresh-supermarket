@@ -6,8 +6,10 @@ import sortCity from '~/utils/sortCity.json'
 import { getPosition } from '~/utils'
 
 const router = useRouter()
+const appStore = useAppStore()
+
 function back() {
-  router.back()
+  router.replace(appStore.prePath || '/home')
 }
 
 const searchMsg = ref('')
@@ -15,7 +17,7 @@ const searchMsg = ref('')
 const userStore = useUserStore()
 function handleClickCell(v: string) {
   userStore.changeAddress(v)
-  router.back()
+  back()
 }
 
 const currentPosition = ref(userStore.address)

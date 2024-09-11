@@ -103,8 +103,8 @@ function saveDropMenu() {
 <template>
   <div class="listTag">
     <div class="relative min-h-[42px] flex items-center py-3">
-      <div class="flex-1 overflow-auto whitespace-nowrap">
-        <span v-for="(item, index) in tagList" :key="item.id" class="mr-3 flex-shrink-0 transition-all color-gray" :class="{ active: index === tagIndex }" @click="setTagIndex(index)">
+      <div class="flex-1 overflow-x-auto overflow-y-hidden whitespace-nowrap">
+        <span v-for="(item, index) in tagList" :key="item.id" class="mr-3 flex-shrink-0 line-height-[18px] transition-all color-gray" :class="{ active: index === tagIndex }" @click="setTagIndex(index)">
           {{ item.title }}
         </span>
       </div>

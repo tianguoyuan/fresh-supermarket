@@ -7,7 +7,7 @@ const fullPath = encodeURIComponent(route.fullPath)
   <div class="flex flex-col items-center pt-[5%]">
     <img src="../assets/images/noLogin.png" alt="" class="h-33 w-33">
     <div class="mt-2 text-4">
-      暂未登陆
+      暂未登录
     </div>
     <div class="mt-2 text-3 color-[#B1B4C3]">
       无法查看关注的用户动态，请登录后操作

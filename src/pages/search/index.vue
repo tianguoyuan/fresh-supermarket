@@ -3,8 +3,9 @@ import HistorySearch from './components/HistorySearch.vue'
 import HotSearch from './components/HotSearch.vue'
 
 const router = useRouter()
+const appStore = useAppStore()
 function back() {
-  router.back()
+  router.replace(appStore.prePath || '/home')
 }
 const searchMsg = ref('')
 const placeholderSearch = ref('9月上新季1元抢月饼')

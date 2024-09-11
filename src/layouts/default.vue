@@ -42,10 +42,9 @@ console.log('routeName', cacheViews.value)
 </script>
 
 <template>
-  <div id="layoutDefault" class="h-screen flex flex-col">
-    <!-- 回到顶部 -->
-    <van-back-top bottom="15vh" target="#layoutDefaultContainer" />
-
+  <!-- 回到顶部 -->
+  <van-back-top bottom="15vh" target="#layoutDefaultContainer" />
+  <div id="layoutDefault" class="flex flex-col">
     <!-- 内容展示 -->
     <div id="layoutDefaultContainer" class="flex-1 overflow-auto">
       <RouterView v-slot="{ Component, route: currentRoute }">
@@ -81,8 +80,14 @@ console.log('routeName', cacheViews.value)
 
 <style lang="scss">
 #layoutDefault {
-  .tabbar {
-    padding-bottom: env(safe-area-inset-bottom);
+  height: 100vh;
+}
+
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+  #layoutDefault {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
   }
 }
 </style>
