@@ -46,7 +46,7 @@ console.log('routeName', cacheViews.value)
   <van-back-top bottom="15vh" target="#layoutDefaultContainer" />
   <div id="layoutDefault" class="flex flex-col">
     <!-- 内容展示 -->
-    <div id="layoutDefaultContainer" class="flex-1 overflow-auto">
+    <div id="layoutDefaultContainer" class="flex flex-1 flex-col overflow-auto">
       <RouterView v-slot="{ Component, route: currentRoute }">
         <Transition
           name="fade-transform"

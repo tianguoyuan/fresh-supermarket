@@ -26,6 +26,7 @@ declare module 'vue-router/auto-routes' {
     '/home/locationCity/': RouteRecordInfo<'/home/locationCity/', '/home/locationCity', Record<never, never>, Record<never, never>>,
     '/home/search/': RouteRecordInfo<'/home/search/', '/home/search', Record<never, never>, Record<never, never>>,
     '/home/search/[msg]': RouteRecordInfo<'/home/search/[msg]', '/home/search/:msg', { msg: ParamValue<true> }, { msg: ParamValue<false> }>,
+    '/home/userLike/': RouteRecordInfo<'/home/userLike/', '/home/userLike', Record<never, never>, Record<never, never>>,
     '/message/': RouteRecordInfo<'/message/', '/message', Record<never, never>, Record<never, never>>,
     '/personal/': RouteRecordInfo<'/personal/', '/personal', Record<never, never>, Record<never, never>>,
     '/redirect': RouteRecordInfo<'/redirect', '/redirect', Record<never, never>, Record<never, never>>,

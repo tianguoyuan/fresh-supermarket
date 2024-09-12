@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import FollowUserLike from './components/FollowUserLike.vue'
+import NoFollow from './components/NoFollow.vue'
 import { followUserLike } from '~/api/follow'
 
 const userStore = useUserStore()
@@ -7,8 +8,10 @@ const isLogin = computed(() => userStore.token)
 
 const followUserLikeList = ref<API.FollowUserLikeRes['list']>([])
 const followUserLikeTotal = ref<API.FollowUserLikeRes['total']>(0)
+
+watch(isLogin, init)
 async function init() {
-  if (!isLogin.value) {
+  if (isLogin.value) {
     const result = await followUserLike({ pageNum: 1, pageSize: 3 })
     followUserLikeList.value = result.list
     followUserLikeTotal.value = result.total
@@ -22,12 +25,12 @@ defineExpose({
 <template>
   <div>
     <div v-if="isLogin">
-      登录了
+      <NoFollow />
+      <FollowUserLike class="mt-7" :list-data="followUserLikeList" />
     </div>
 
     <div v-else>
       <NoLogin />
-      <FollowUserLike class="mt-7" :list-data="followUserLikeList" />
     </div>
   </div>
 </template>

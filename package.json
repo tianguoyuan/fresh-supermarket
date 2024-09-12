@@ -15,6 +15,7 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@vant/area-data": "^1.5.2",
     "@vant/touch-emulator": "^1.4.0",
     "@vueuse/core": "^10.9.0",

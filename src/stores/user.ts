@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore(('user'), () => {
   const address = useLocalStorage('address', '北京')
-  const token = ref('')
+  const token = useLocalStorage('token', '')
 
   function changeToken(val: string) {
     token.value = val

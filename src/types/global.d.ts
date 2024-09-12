@@ -23,3 +23,10 @@ declare interface ViteEnv {
   /** 接口前缀 */
   VITE_API_URL: string
 }
+
+declare interface Window {
+  /** 高德地图sdk */
+  _AMapSecurityConfig: {
+    securityJsCode: string
+  }
+}

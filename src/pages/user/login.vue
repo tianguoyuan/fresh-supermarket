@@ -3,8 +3,10 @@ import { parseRedirectPath } from '~/utils'
 
 const { query } = useRoute()
 const router = useRouter()
+const userStore = useUserStore()
 
 function handleClick() {
+  userStore.changeToken('ok-token')
   const redirectPath = query.redirectPath ? parseRedirectPath(query.redirectPath as string) : ''
   router.replace(redirectPath || '/')
 }

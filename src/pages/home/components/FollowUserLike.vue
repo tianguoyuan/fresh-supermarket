@@ -2,18 +2,23 @@
 const props = defineProps<{
   listData: API.FollowUserLikeRes['list']
 }>()
+
+const router = useRouter()
+function toAllUserLike() {
+  router.push('/home/userLike')
+}
 </script>
 
 <template>
   <div>
-    <div class="flex justify-between px-3">
+    <div v-if="props.listData.length" class="flex justify-between px-3">
       <span class="text-4">可能感兴趣的人</span>
-      <p class="color-[#B1B4C3]">
+      <div class="color-[#B1B4C3]" @click="toAllUserLike">
         <span>
           全部
         </span>
         <van-icon name="arrow" />
-      </p>
+      </div>
     </div>
 
     <div class="mt-7 flex flex-nowrap overflow-x-auto pl-3">
