@@ -27,7 +27,7 @@ function changeActiveTagIndex(index: number) {
 
 <template>
   <div class="navbarBox">
-    <VanNavBar title="标题" left-text="返回" placeholder safe-area-inset-top left-arrow fixed border :z-index="ZIndexEnum.HOME_NAVBAR">
+    <VanNavBar title="标题" left-text="返回" safe-area-inset-top left-arrow placeholder fixed border :z-index="ZIndexEnum.HOME_NAVBAR">
       <template #left>
         <AddressSelect />
       </template>
@@ -38,7 +38,7 @@ function changeActiveTagIndex(index: number) {
         </span>
       </template>
       <template #right>
-        <RouterLink to="search">
+        <RouterLink to="/home/search">
           <VanIcon name="search" size="18" color="black" />
         </RouterLink>
       </template>

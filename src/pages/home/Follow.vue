@@ -20,7 +20,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="p-3">
+  <div>
     <div v-if="isLogin">
       登录了
     </div>

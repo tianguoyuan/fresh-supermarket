@@ -46,7 +46,7 @@ function goHome() {
       </div>
 
       <div class="mb-6 mt-12 flex-1 overflow-hidden px-6">
-        <img class="m-auto" :src="item.img" alt="" draggable="false">
+        <img class="m-auto w-full" :src="item.img" alt="" draggable="false">
       </div>
     </van-swipe-item>
   </van-swipe>

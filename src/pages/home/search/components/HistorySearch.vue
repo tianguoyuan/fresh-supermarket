@@ -1,11 +1,20 @@
 <script setup lang="ts">
+const emits = defineEmits<{
+  setSearchMsg: [val: string]
+}>()
 const historySearch = useLocalStorage(('historySearch'), ['读书', '求职日记', '超NICE小组', '葡萄柚', '有氧运动', '大话职场生活'])
 const isRemoveFlag = ref(false)
+
 function removeAllHistory() {
   historySearch.value = []
 }
 function historyItemClick(index: number) {
-  historySearch.value.splice(index, 1)
+  if (!isRemoveFlag.value) {
+    emits('setSearchMsg', historySearch.value[index])
+  }
+  else {
+    historySearch.value.splice(index, 1)
+  }
 }
 </script>
 
@@ -14,7 +23,7 @@ function historyItemClick(index: number) {
     <div class="flex justify-between">
       <span class="color-[#0B1526]">历史搜索</span>
       <div>
-        <img v-show="!isRemoveFlag" src="../../assets/images/home/rubbish.png" alt="" class="w-3" @click="isRemoveFlag = true">
+        <img v-show="!isRemoveFlag" src="../../../assets/images/home/rubbish.png" alt="" class="w-3" @click="isRemoveFlag = true">
         <div v-show="isRemoveFlag" class="text-3">
           <span class="color-[#8D93A6]" @click="removeAllHistory">全部删除</span>
           <span class="px-2">|</span>

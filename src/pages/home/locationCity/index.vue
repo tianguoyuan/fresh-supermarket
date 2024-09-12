@@ -4,6 +4,7 @@ import to from 'await-to-js'
 import Fuse from 'fuse.js'
 import sortCity from '~/utils/sortCity.json'
 import { getPosition } from '~/utils'
+import { ZIndexEnum } from '~/enums/ZIndexEnum'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -59,7 +60,7 @@ watch(searchMsg, getDebounceCity)
 
 <template>
   <div class="bg-[#F6F8FA]">
-    <van-nav-bar title="选择城市">
+    <van-nav-bar title="选择城市" placeholder fixed :z-index="ZIndexEnum.HOME_NAVBAR">
       <template #left>
         <van-icon name="arrow-left" color="#0B1526" @click="back" />
       </template>
@@ -83,7 +84,7 @@ watch(searchMsg, getDebounceCity)
       </div>
     </div>
 
-    <van-index-bar :index-list="indexList">
+    <van-index-bar :index-list="indexList" :sticky-offset-top="46">
       <template v-for="item in city" :key="item.title">
         <van-index-anchor :index="item.title" />
         <van-cell v-for="v in item.lists" :key="v" :title="v" @click="handleClickCell(v)" />

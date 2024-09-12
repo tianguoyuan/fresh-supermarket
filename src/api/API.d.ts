@@ -4,6 +4,12 @@ interface DefaultPage {
 }
 
 declare namespace API {
+
+  /** 通用列表 */
+  interface CommonList extends DefaultPage {
+    order?: 'asc' | 'desc'
+  }
+
   /** 注册 */
   interface IRegister {
     /** 账号 */
@@ -53,11 +59,11 @@ declare namespace API {
 
   interface RecommendedListFind extends DefaultPage {
     /** 标签 */
-    tagId: string
+    tagId?: string
     /** 排序 */
-    orderId: string
+    orderId?: string
     /** 分类 */
-    kindId: string
+    kindId?: string
   }
   interface RecommendedListFindRes {
     pageNum: number
@@ -84,5 +90,31 @@ declare namespace API {
       desc: string
       img: string
     }[]
+  }
+
+  /** 搜索-热门-标签 */
+  interface SearchHotTagFindRes {
+    total: number
+    list: {
+      id: string
+      name: string
+    }[]
+  }
+
+  /** 搜索-热门 */
+  interface SearchHotFind extends CommonList {
+    hotTagId: string
+  }
+  interface SearchHotFindRes {
+    total: number
+    list: {
+      id: string
+      name: string
+    }[]
+  }
+
+  /** 搜索-默认关键词 */
+  interface SearchDefaultMsgFindRes {
+    searchDefault: string
   }
 }

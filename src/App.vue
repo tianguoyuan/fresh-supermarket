@@ -6,8 +6,10 @@ const dark = computed(() => isDark.value)
   <main
     class="bg-gray-150 font-sans dark:bg-gray-200"
   >
-    <VanConfigProvider :theme="dark ? 'dark' : 'light'">
-      <RouterView />
-    </VanConfigProvider>
+    <Suspense>
+      <VanConfigProvider :theme="dark ? 'dark' : 'light'">
+        <RouterView />
+      </VanConfigProvider>
+    </Suspense>
   </main>
 </template>

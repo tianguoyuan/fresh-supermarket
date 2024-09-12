@@ -5,7 +5,7 @@ const userStore = useUserStore()
 </script>
 
 <template>
-  <RouterLink to="/locationCity">
+  <RouterLink to="/home/locationCity">
     <span class="text-xs">{{ userStore.address }}</span>
     <VanIcon name="play" class="rotate-90" color="black" size="12" />
   </RouterLink>

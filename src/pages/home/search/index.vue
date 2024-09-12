@@ -1,27 +1,32 @@
 <script setup lang="ts" name="/search/">
 import HistorySearch from './components/HistorySearch.vue'
 import HotSearch from './components/HotSearch.vue'
+import { searchDefaultMsgFind } from '~/api/search'
 
 const router = useRouter()
-const appStore = useAppStore()
 function back() {
-  router.replace(appStore.prePath || '/home')
+  router.replace('/home')
 }
 const searchMsg = ref('')
-const placeholderSearch = ref('9月上新季1元抢月饼')
-function search() {
-  if (!searchMsg.value) {
+
+const result = (await searchDefaultMsgFind())
+const placeholderSearch = ref(result.searchDefault)
+function search(val: string = '') {
+  if (val) {
+    searchMsg.value = val
+  }
+  else if (!searchMsg.value) {
     searchMsg.value = placeholderSearch.value
   }
 
   // 搜索接口
-  router.push(`/search/result?msg=${encodeURIComponent(searchMsg.value)}`)
+  router.push(`/home/search/${encodeURIComponent(searchMsg.value)}`)
 }
 </script>
 
 <template>
   <div>
-    <van-nav-bar>
+    <van-nav-bar placeholder fixed>
       <template #left>
         <van-icon name="arrow-left" color="#0B1526" @click="back" />
       </template>
@@ -34,15 +39,15 @@ function search() {
       </template>
 
       <template #right>
-        <span class="color-[#8D93A6]" @click="search">搜索</span>
+        <span class="color-[#8D93A6]" @click="search()">搜索</span>
       </template>
     </van-nav-bar>
 
     <!-- 历史搜索 -->
-    <HistorySearch />
+    <HistorySearch @set-search-msg="search" />
 
     <!-- 热门搜索 -->
-    <HotSearch />
+    <HotSearch @set-search-msg="search" />
   </div>
 </template>
 

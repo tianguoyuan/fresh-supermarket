@@ -6,7 +6,7 @@ const props = defineProps<{
 
 <template>
   <div>
-    <div class="flex justify-between">
+    <div class="flex justify-between px-3">
       <span class="text-4">可能感兴趣的人</span>
       <p class="color-[#B1B4C3]">
         <span>
@@ -16,7 +16,7 @@ const props = defineProps<{
       </p>
     </div>
 
-    <div class="mt-7 flex flex-nowrap overflow-x-auto">
+    <div class="mt-7 flex flex-nowrap overflow-x-auto pl-3">
       <div v-for="item in props.listData" :key="item.id" class="mr-4 w-28 flex flex-shrink-0 flex-col items-center justify-center bg-white p-4">
         <img :src="item.img" alt="" class="h-12 w-12 rounded-full">
         <p class="line-clamp-1 mt-1 text-4 line-height-5">

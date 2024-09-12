@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DropdownMenuInstance } from 'vant'
-import List from './List.vue'
 import { recommendedListFind, recommendedTagsFind } from '~/api/recommended'
 
 const kindList = ref<API.RecommendedTagsFindRes['kindList']>([])
