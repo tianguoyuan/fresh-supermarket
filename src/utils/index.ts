@@ -34,3 +34,24 @@ export function getPosition(): Promise<{ latitude: string, longitude: string }> 
     })
   })
 }
+
+/** 随机字符串 */
+export function randomCoding(n = 4) {
+  // 创建26个字母数组
+  const arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  let str = ''
+  for (let i = 0; i < n; i++) {
+    str += arr[Math.floor(Math.random() * arr.length)]
+  }
+  return str
+}
+
+/** 随机数字 */
+export function randomNum(n = 11) {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+  let str = ''
+  for (let i = 0; i < n; i++) {
+    str += arr[Math.floor(Math.random() * arr.length)]
+  }
+  return str
+}

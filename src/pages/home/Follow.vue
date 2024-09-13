@@ -9,6 +9,7 @@ const isLogin = computed(() => userStore.token)
 const followUserLikeList = ref<API.FollowUserLikeRes['list']>([])
 const followUserLikeTotal = ref<API.FollowUserLikeRes['total']>(0)
 
+// 第一次从父组件调用 init
 watch(isLogin, init)
 async function init() {
   if (isLogin.value) {

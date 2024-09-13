@@ -117,4 +117,34 @@ declare namespace API {
   interface SearchDefaultMsgFindRes {
     searchDefault: string
   }
+
+  /** 消息-列表 */
+  interface MessageFindRes {
+    total: number
+    list: {
+      id: string
+      name: string
+      desc: string
+      img: string
+      lastTime: string
+      unReadNum: number
+    }[]
+  }
+
+  /** 用户-获取验证码 */
+  interface UserGetPhoneCode {
+    phone: string
+  }
+  interface UserGetPhoneCodeRes {
+    code: string
+  }
+
+  /** 用户-登录 */
+  interface UserLogin {
+    phone: string
+    code: string
+  }
+  interface UserLoginRes {
+    token: string
+  }
 }

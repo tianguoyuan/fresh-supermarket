@@ -5,6 +5,7 @@ html {
 
   /* 禁止双击放大 */
   touch-action: manipulation;
+  color: #0b1526;
 }
 
 img {
