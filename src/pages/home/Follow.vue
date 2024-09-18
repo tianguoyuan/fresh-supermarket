@@ -4,7 +4,7 @@ import NoFollow from './components/NoFollow.vue'
 import { followUserLike } from '~/api/follow'
 
 const userStore = useUserStore()
-const isLogin = computed(() => userStore.token)
+const isLogin = computed(() => userStore.isLogin)
 
 const followUserLikeList = ref<API.FollowUserLikeRes['list']>([])
 const followUserLikeTotal = ref<API.FollowUserLikeRes['total']>(0)

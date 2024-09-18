@@ -7,6 +7,9 @@ html {
   touch-action: manipulation;
   color: #0b1526;
 }
+.van-icon {
+  font-size: 18px;
+}
 
 img {
   -webkit-user-drag: none;

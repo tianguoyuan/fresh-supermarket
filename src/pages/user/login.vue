@@ -50,7 +50,8 @@ async function submit() {
     code: code.value,
   }
   const { token } = await userLogin(params)
-  userStore.changeToken(token)
+  await userStore.changeToken(token)
+
   const redirectPath = query.redirectPath ? parseRedirectPath(query.redirectPath as string) : ''
   router.replace(redirectPath || '/')
 }
@@ -120,4 +121,5 @@ async function submit() {
 <route lang="yaml">
   meta:
     title: 用户登录
+    noCache: true
 </route>

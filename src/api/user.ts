@@ -11,3 +11,8 @@ export function userGetPhoneCode(data: API.UserGetPhoneCode): Promise<API.UserGe
 export function userLogin(data: API.UserLogin): Promise<API.UserLoginRes> {
   return request({ url: '/user/login', method: 'POST', data })
 }
+
+/** 用户-获取信息 */
+export function userInfo(): Promise<API.UserInfoRes> {
+  return request({ url: '/user/info', method: 'POST' })
+}

@@ -12,7 +12,7 @@ const btnList = [
 ]
 
 const userStore = useUserStore()
-const isLogin = computed(() => userStore.token)
+const isLogin = computed(() => userStore.isLogin)
 
 const listData = ref<API.MessageFindRes['list']>([])
 async function init() {

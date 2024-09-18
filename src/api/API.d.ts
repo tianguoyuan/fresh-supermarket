@@ -147,4 +147,12 @@ declare namespace API {
   interface UserLoginRes {
     token: string
   }
+
+  /** 用户-获取信息 */
+  interface UserInfoRes {
+    id: string
+    name: string
+    phone: string
+    img: string
+  }
 }
