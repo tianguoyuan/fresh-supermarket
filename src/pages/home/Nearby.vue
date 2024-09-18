@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { emptyData } from '~/assets/images'
+
 function init() {
 }
 
@@ -10,7 +12,7 @@ defineExpose({
 <template>
   <div>
     <van-empty
-      image="https://fastly.jsdelivr.net/npm/@vant/assets/custom-empty-image.png"
+      :image="emptyData"
       image-size="80"
       description="正在开发中..."
     />

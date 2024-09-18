@@ -15,6 +15,7 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 // import VueDevTools from 'vite-plugin-vue-devtools'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
 import { viteVConsole } from 'vite-plugin-vconsole'
+import viteCompression from 'vite-plugin-compression'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -28,7 +29,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       open: viteEnv.VITE_OPEN,
       proxy: {
         [viteEnv.VITE_API_URL]: {
-          target: 'http://127.0.0.1:4523/m1/5142882-4806818-default',
+          // target: 'http://127.0.0.1:4523/m1/5142882-4806818-default',
+          target: 'https://apifoxmock.com/m1/5142882-0-default',
           changeOrigin: true,
           rewrite: path => path.replace(new RegExp(`${viteEnv.VITE_API_URL}`), ''),
         },
@@ -116,11 +118,65 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 
       // name 可以写在 script 标签上
       vueSetupExtend({}),
+
+      // gzip压缩
+      viteCompression({
+        ext: '.gz',
+        algorithm: 'gzip',
+        threshold: 0,
+        deleteOriginFile: false,
+      }),
     ],
 
     // https://github.com/vitest-dev/vitest
     test: {
       environment: 'jsdom',
+    },
+    // 构建配置
+    build: {
+      chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告
+      minify: 'terser', // Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效
+      terserOptions: {
+        compress: {
+          keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
+          drop_console: true, // 生产环境去除 console
+          drop_debugger: true, // 生产环境去除 debugger
+        },
+        format: {
+          comments: true, // 删除注释
+        },
+      },
+      rollupOptions: {
+        output: {
+          // manualChunks: {
+          //   "vue-i18n": ["vue-i18n"],
+          // },
+          // 用于从入口点创建的块的打包输出格式[name]表示文件名,[hash]表示该文件内容hash值
+          entryFileNames: 'assets/js/[name].[hash].js',
+          // 用于命名代码拆分时创建的共享块的输出命名
+          chunkFileNames: 'assets/js/[name].[hash].js',
+          // 用于输出静态资源的命名，[ext]表示文件扩展名
+          assetFileNames: (assetInfo: any) => {
+            const info = assetInfo.name.split('.')
+            let extType = info[info.length - 1]
+            if (
+              // eslint-disable-next-line regexp/no-unused-capturing-group
+              /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)
+            ) {
+              extType = 'media'
+            }
+            // eslint-disable-next-line regexp/no-unused-capturing-group
+            else if (/\.(png|jpe?g|gif|svg)(\?.*)?$/.test(assetInfo.name)) {
+              extType = 'img'
+            }
+            // eslint-disable-next-line regexp/no-unused-capturing-group
+            else if (/\.(woff2?|eot|ttf|otf)(\?.*)?$/i.test(assetInfo.name)) {
+              extType = 'fonts'
+            }
+            return `assets/${extType}/[name].[hash].[ext]`
+          },
+        },
+      },
     },
   }
 })

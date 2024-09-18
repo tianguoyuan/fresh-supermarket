@@ -1,5 +1,6 @@
 <script setup lang="ts" name="/user/login">
 import type { FormInstance } from 'vant'
+import { qq, weixin } from '~/assets/images'
 import { userGetPhoneCode, userLogin } from '~/api/user'
 import { parseRedirectPath, randomNum } from '~/utils'
 
@@ -103,8 +104,8 @@ async function submit() {
         其他登录方式
       </p>
       <div class="mt-5 flex justify-evenly px-5">
-        <img src="../../assets/images/weixin.png" alt="" class="w-13">
-        <img src="../../assets/images/qq.png" alt="" class="w-13">
+        <img :src="weixin" alt="" class="w-13">
+        <img :src="qq" alt="" class="w-13">
       </div>
     </div>
   </div>

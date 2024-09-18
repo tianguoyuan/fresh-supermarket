@@ -1,7 +1,7 @@
 <script setup lang="ts" name="/">
-import dashboard1 from '~/assets/images/dashboard/1.png'
-import dashboard2 from '~/assets/images/dashboard/2.png'
-import dashboard3 from '~/assets/images/dashboard/3.png'
+import dashboard1 from '~/assets/images/dashboard/adBanner1.png'
+import dashboard2 from '~/assets/images/dashboard/adBanner2.png'
+import dashboard3 from '~/assets/images/dashboard/adBanner3.png'
 import { setScreenBannerStorage } from '~/utils/storage'
 
 const bannerList = ref([

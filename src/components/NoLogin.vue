@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { noLogin } from '~/assets/images'
+
 const route = useRoute()
 const fullPath = encodeURIComponent(route.fullPath)
 </script>
 
 <template>
   <div class="flex flex-col items-center pt-[5%]">
-    <img src="../assets/images/noLogin.png" alt="" class="h-33 w-33">
+    <img :src="noLogin" alt="" class="h-33 w-33">
     <div class="mt-2 text-4">
       暂未登录
     </div>
