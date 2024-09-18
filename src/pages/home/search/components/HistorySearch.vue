@@ -23,7 +23,7 @@ function historyItemClick(index: number) {
     <div class="flex justify-between">
       <span class="color-[#0B1526]">历史搜索</span>
       <div>
-        <img v-show="!isRemoveFlag" src="../../../assets/images/home/rubbish.png" alt="" class="w-3" @click="isRemoveFlag = true">
+        <img v-show="!isRemoveFlag" src="../../../../assets/images/home/rubbish.png" alt="" class="w-3" @click="isRemoveFlag = true">
         <div v-show="isRemoveFlag" class="text-3">
           <span class="color-[#8D93A6]" @click="removeAllHistory">全部删除</span>
           <span class="px-2">|</span>
