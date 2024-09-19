@@ -18,6 +18,7 @@ import { viteVConsole } from 'vite-plugin-vconsole'
 import viteCompression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { visualizer } from 'rollup-plugin-visualizer'
+import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -137,6 +138,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
       // 是否生成包预览，分析依赖包大小做优化处理
       visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true }),
+      // js加密
+      obfuscatorPlugin({
+        apply: 'build',
+      }),
     ],
 
     // https://github.com/vitest-dev/vitest
