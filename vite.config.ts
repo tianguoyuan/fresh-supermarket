@@ -16,6 +16,8 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
 import { viteVConsole } from 'vite-plugin-vconsole'
 import viteCompression from 'vite-plugin-compression'
+import { createHtmlPlugin } from 'vite-plugin-html'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -126,6 +128,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         threshold: 0,
         deleteOriginFile: false,
       }),
+      // 注入变量到 html 文件
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: { title: viteEnv.VITE_GLOB_APP_TITLE },
+        },
+      }),
+      // 是否生成包预览，分析依赖包大小做优化处理
+      visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true }),
     ],
 
     // https://github.com/vitest-dev/vitest

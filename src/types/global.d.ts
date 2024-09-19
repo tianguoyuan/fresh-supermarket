@@ -22,6 +22,8 @@ declare interface ViteEnv {
   VITE_PUBLIC_PATH: string
   /** 接口前缀 */
   VITE_API_URL: string
+  /** 网站标题 */
+  VITE_GLOB_APP_TITLE: string
 }
 
 declare interface Window {
