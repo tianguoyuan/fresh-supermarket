@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { emptyData } from '~/assets/images'
-
 function init() {
 }
 
@@ -11,10 +9,10 @@ defineExpose({
 
 <template>
   <div>
-    <van-empty
-      :image="emptyData"
-      image-size="80"
-      description="正在开发中..."
-    />
+    <NotOnline />
   </div>
 </template>
+
+<style scoped>
+
+</style>

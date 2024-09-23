@@ -22,7 +22,7 @@ import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
-  const viteEnv = loadEnv(mode, root)
+  const viteEnv = loadEnv(mode, root) as unknown as ViteEnv
 
   return {
     base: viteEnv.VITE_PUBLIC_PATH,

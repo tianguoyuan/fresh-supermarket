@@ -30,7 +30,7 @@ watch(isLogin, init, { immediate: true })
       </template>
     </van-nav-bar>
 
-    <div v-if="isLogin">
+    <div v-if="isLogin" class="pb-10">
       <div class="flex justify-around bg-white py-5">
         <div v-for="(item) in btnList" :key="item.id" class="flex flex-col items-center">
           <img :src="item.img" alt="" class="h-15 w-15 rounded-full">

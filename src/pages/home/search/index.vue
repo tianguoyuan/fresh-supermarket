@@ -11,16 +11,17 @@ const searchMsg = ref('')
 
 const result = (await searchDefaultMsgFind())
 const placeholderSearch = ref(result.searchDefault)
-function search(val: string = '') {
+function search(val: string) {
+  let copySearchMsg = ''
   if (val) {
-    searchMsg.value = val
+    copySearchMsg = val
   }
   else if (!searchMsg.value) {
-    searchMsg.value = placeholderSearch.value
+    copySearchMsg = placeholderSearch.value
   }
 
   // 搜索接口
-  router.push(`/home/search/${encodeURIComponent(searchMsg.value)}`)
+  router.push(`/home/search/${encodeURIComponent(copySearchMsg)}`)
 }
 </script>
 

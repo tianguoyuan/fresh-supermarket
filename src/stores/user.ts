@@ -41,6 +41,14 @@ export const useUserStore = defineStore(('user'), () => {
   function changeAddress(val: string) {
     address.value = val
   }
+
+  function userLoginOut() {
+    token.value = ''
+    userId.value = ''
+    userImg.value = ''
+    userName.value = ''
+    userPhone.value = ''
+  }
   return {
     token,
     changeToken,
@@ -49,5 +57,7 @@ export const useUserStore = defineStore(('user'), () => {
 
     isLogin,
     userInfo,
+
+    userLoginOut,
   }
 })

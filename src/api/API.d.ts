@@ -57,6 +57,11 @@ declare namespace API {
     }[]
   }
 
+  /** 首页-推荐-banner */
+  interface RecommendedBannerListRes {
+    list: { id: string, img: string }[]
+  }
+
   interface RecommendedListFind extends DefaultPage {
     /** 标签 */
     tagId?: string

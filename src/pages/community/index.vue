@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    社区
+    <NotOnline />
   </div>
 </template>
 
