@@ -3,6 +3,7 @@ import { showDialog } from 'vant'
 import ListCard from './components/ListCard.vue'
 import { phoneMask } from '~/utils'
 import { myServer1, myServer2, myServer3, myServer4, myServer5, order1, order2, order3, order4, order5 } from '~/assets/images'
+import { clearAllStorage } from '~/utils/storage'
 
 const userStore = useUserStore()
 const isLogin = computed(() => userStore.isLogin)
@@ -41,6 +42,7 @@ function outLogin() {
     width: '100%',
   }).then(() => {
     userStore.userLoginOut()
+    clearAllStorage()
   })
 }
 </script>

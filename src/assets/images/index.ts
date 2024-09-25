@@ -14,11 +14,6 @@ export { default as noFollow } from './home/noFollow.png'
 export { default as rubbish } from './home/rubbish.png'
 export { default as searchNoData } from './home/searchNoData.png'
 
-// dashboard
-export { default as adBanner1 } from './dashboard/adBanner1.png'
-export { default as adBanner2 } from './dashboard/adBanner2.png'
-export { default as adBanner3 } from './dashboard/adBanner3.png'
-
 // personal
 export { default as order1 } from './personal/order1.png'
 export { default as order2 } from './personal/order2.png'

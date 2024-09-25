@@ -108,7 +108,7 @@ function saveDropMenu() {
         </span>
       </div>
       <div class="w-10 flex-shrink-0">
-        <van-dropdown-menu ref="dropdownMenuRef">
+        <van-dropdown-menu ref="dropdownMenuRef" auto-locate>
           <van-dropdown-item teleport="body" @close="closeDropMenu">
             <template #title>
               <van-icon name="list-switch" class="translate-y-[2px]" />

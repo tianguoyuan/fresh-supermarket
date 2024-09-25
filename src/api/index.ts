@@ -11,3 +11,8 @@ export function getUserInfo(data: API.IUserInfo): Promise<API.IUserInfoRes> {
 export function userLogout(): Promise<void> {
   return http.request({ url: '/auth/logout', method: 'POST' })
 }
+
+// App-应用首次全屏介绍
+export function appIntroduceBanner(): Promise<API.IAppIntroduceBannerRes> {
+  return http.request({ url: '/app/introduceBanner', method: 'POST' })
+}

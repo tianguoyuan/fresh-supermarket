@@ -4,6 +4,17 @@ interface DefaultPage {
 }
 
 declare namespace API {
+  /** App-应用首次全屏介绍 */
+  interface IAppIntroduceBannerRes {
+    /** 是否开启 */
+    switch: 'Y' | 'N'
+    list: {
+      id: string
+      name: string
+      img: string
+      desc: string
+    }[]
+  }
 
   /** 通用列表 */
   interface CommonList extends DefaultPage {
