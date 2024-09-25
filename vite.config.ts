@@ -32,8 +32,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       open: viteEnv.VITE_OPEN,
       proxy: {
         [viteEnv.VITE_API_URL]: {
-          // target: 'http://127.0.0.1:4523/m1/5142882-4806818-default',
-          target: 'https://apifoxmock.com/m1/5142882-0-default',
+          target: 'http://127.0.0.1:4523/m1/5142882-4806818-default',
+          // target: 'https://apifoxmock.com/m1/5142882-0-default',
           changeOrigin: true,
           rewrite: path => path.replace(new RegExp(`${viteEnv.VITE_API_URL}`), ''),
         },

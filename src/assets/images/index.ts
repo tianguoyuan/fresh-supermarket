@@ -30,3 +30,8 @@ export { default as myServer2 } from './personal/myServer2.png'
 export { default as myServer3 } from './personal/myServer3.png'
 export { default as myServer4 } from './personal/myServer4.png'
 export { default as myServer5 } from './personal/myServer5.png'
+
+// add
+export { default as addTag } from './add/tag.png'
+export { default as addLocation } from './add/location.png'
+export { default as addCommunity } from './add/community.png'
