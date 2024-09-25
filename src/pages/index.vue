@@ -20,33 +20,54 @@ function goHome() {
 </script>
 
 <template>
-  <van-swipe class="h-screen" indicator-color="#5F2AFF" :loop="false">
-    <van-swipe-item v-for="(item, index) in bannerList" :key="item.name" class="relative flex flex-col">
-      <div v-if="index === bannerList.length - 1" class="skip-btn absolute right-10 top-10 rounded-2xl px-2 text-xs" @click="goHome">
-        跳过
-      </div>
-      <div class="pl-12 pt-18">
-        <div class="relative text-4xl font-bold">
-          <span>{{ item.name }}</span>
-
-          <span class="absolute top-0 pl-3 text-18 color-[#5F2AFF]">”</span>
+  <div id="dashboard">
+    <van-swipe class="h-full" indicator-color="#5F2AFF" :loop="false">
+      <van-swipe-item v-for="(item, index) in bannerList" :key="item.name" class="relative flex flex-col">
+        <div v-if="index === bannerList.length - 1" class="skip-btn absolute right-10 top-10 rounded-2xl px-2 text-xs" @click="goHome">
+          跳过
         </div>
-        <div class="text-sm">
-          {{ item.desc }}
-        </div>
-      </div>
+        <div class="pl-12 pt-18">
+          <div class="relative text-4xl font-bold">
+            <span>{{ item.name }}</span>
 
-      <div class="p-b-ios mt-12 flex-1 overflow-hidden px-6">
-        <img class="m-auto h-full w-full object-cover" :src="item.img" alt="" draggable="false">
-      </div>
-    </van-swipe-item>
-  </van-swipe>
+            <span class="absolute top-0 pl-3 text-18 color-[#5F2AFF]">”</span>
+          </div>
+          <div class="text-sm">
+            {{ item.desc }}
+          </div>
+        </div>
+
+        <div class="p-b-ios mt-12 flex-1 overflow-hidden px-6">
+          <van-image
+            draggable="false"
+            class="m-auto h-full w-full"
+            fit="cover"
+            :src="item.img"
+            lazy-load
+          />
+          <!-- <img class="m-auto h-full w-full object-cover" :src="item.img" alt="" draggable="false"> -->
+        </div>
+      </van-swipe-item>
+    </van-swipe>
+  </div>
 </template>
 
 <style scoped>
 .skip-btn {
   background-color: rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 0.7);
+}
+
+#dashboard {
+  height: 100vh;
+}
+
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+  #dashboard {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
+  }
 }
 </style>
 
