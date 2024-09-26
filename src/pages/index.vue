@@ -7,7 +7,7 @@ const result = await appIntroduceBanner()
 const bannerList = ref<API.IAppIntroduceBannerRes['list']>([])
 
 if (result.switch === 'N') {
-  router.replace('/home')
+  goHome()
 }
 else if (result.switch === 'Y') {
   bannerList.value = result.list
