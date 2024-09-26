@@ -20,8 +20,8 @@ function goHome() {
 </script>
 
 <template>
-  <div id="dashboard">
-    <van-swipe class="h-full" indicator-color="#5F2AFF" :loop="false">
+  <div id="dashboard" class="flex">
+    <van-swipe class="flex-1" indicator-color="#5F2AFF" :loop="false">
       <van-swipe-item v-for="(item, index) in bannerList" :key="item.name" class="relative flex flex-col">
         <div v-if="index === bannerList.length - 1" class="skip-btn absolute right-10 top-10 rounded-2xl px-2 text-xs" @click="goHome">
           跳过
@@ -37,14 +37,24 @@ function goHome() {
           </div>
         </div>
 
-        <div class="p-b-ios mt-12 flex-1 overflow-hidden px-6">
+        <div class="pb-ios mt-6 flex-1 overflow-hidden px-6">
           <van-image
             draggable="false"
             class="m-auto h-full w-full"
             fit="cover"
             :src="item.img"
             lazy-load
-          />
+          >
+            <template #loading>
+              <div class="flex flex-col items-center">
+                <van-loading type="spinner" size="20" />
+                <p class="mt-1 text-3">
+                  加载中...
+                </p>
+              </div>
+            </template>
+          </van-image>
+
           <!-- <img class="m-auto h-full w-full object-cover" :src="item.img" alt="" draggable="false"> -->
         </div>
       </van-swipe-item>

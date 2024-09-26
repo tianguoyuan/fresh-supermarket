@@ -62,3 +62,17 @@ export function phoneMask(v: string) {
   const last = v.slice(-4)
   return `${pre}****${last}`
 }
+
+/** load图片 */
+export function loadImage(img: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const domImg = new Image()
+    domImg.src = img
+    domImg.onload = function () {
+      resolve()
+    }
+    domImg.onerror = function () {
+      reject(new Error('图片加载失败'))
+    }
+  })
+}

@@ -17,12 +17,11 @@ const bannerList = result.list.map(item => item.img)
 
 <template>
   <div class="p-3">
-    <Banner :banner-list="bannerList" />
+    <!-- fix图片超出banner -->
+    <div class="w-full overflow-hidden">
+      <Banner :banner-list="bannerList" />
+    </div>
 
     <ListTag />
   </div>
 </template>
-
-<style scoped>
-
-</style>
