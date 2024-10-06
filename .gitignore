@@ -7,9 +7,4 @@ dist-ssr
 node_modules
 .idea/
 *.log
-<<<<<<< HEAD
-=======
-src/types/components.d.ts
-src/types/auto-imports.d.ts
->>>>>>> 19bbff4f1c90febd9a47137aa7b134093c7a3672
 stats.html
