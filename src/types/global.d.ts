@@ -22,6 +22,13 @@ declare interface ViteEnv {
   VITE_PUBLIC_PATH: string
   /** 接口前缀 */
   VITE_API_URL: string
-  /** 开启mock */
-  VITE_MOCK_DEV_SERVER: boolean
+  /** 网站标题 */
+  VITE_GLOB_APP_TITLE: string
+}
+
+declare interface Window {
+  /** 高德地图sdk */
+  _AMapSecurityConfig: {
+    securityJsCode: string
+  }
 }

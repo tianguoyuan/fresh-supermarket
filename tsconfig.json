@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "ESNext",
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
@@ -14,7 +14,8 @@
       "vite/client",
       "unplugin-vue-macros/macros-global",
       "unplugin-vue-router/client",
-      "vite-plugin-vue-layouts/client"
+      "vite-plugin-vue-layouts/client",
+      "@intlify/unplugin-vue-i18n/messages"
     ],
     "allowJs": true,
     "strict": true,

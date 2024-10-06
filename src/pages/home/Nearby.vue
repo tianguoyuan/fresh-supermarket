@@ -1,10 +1,15 @@
 <script setup lang="ts">
-const { params } = useRoute('/user/[id]')
+function init() {
+}
+
+defineExpose({
+  init,
+})
 </script>
 
 <template>
   <div>
-    {{ params.id }}
+    <NotOnline />
   </div>
 </template>
 

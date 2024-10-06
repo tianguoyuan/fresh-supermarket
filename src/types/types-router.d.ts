@@ -20,9 +20,16 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
-    '/redirect/[path]': RouteRecordInfo<'/redirect/[path]', '/redirect/:path', { path: ParamValue<true> }, { path: ParamValue<false> }>,
-    '/user/[id]': RouteRecordInfo<'/user/[id]', '/user/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/add/': RouteRecordInfo<'/add/', '/add', Record<never, never>, Record<never, never>>,
+    '/community/': RouteRecordInfo<'/community/', '/community', Record<never, never>, Record<never, never>>,
+    '/home/': RouteRecordInfo<'/home/', '/home', Record<never, never>, Record<never, never>>,
+    '/home/locationCity/': RouteRecordInfo<'/home/locationCity/', '/home/locationCity', Record<never, never>, Record<never, never>>,
+    '/home/search/': RouteRecordInfo<'/home/search/', '/home/search', Record<never, never>, Record<never, never>>,
+    '/home/search/[msg]': RouteRecordInfo<'/home/search/[msg]', '/home/search/:msg', { msg: ParamValue<true> }, { msg: ParamValue<false> }>,
+    '/home/userLike/': RouteRecordInfo<'/home/userLike/', '/home/userLike', Record<never, never>, Record<never, never>>,
+    '/message/': RouteRecordInfo<'/message/', '/message', Record<never, never>, Record<never, never>>,
+    '/personal/': RouteRecordInfo<'/personal/', '/personal', Record<never, never>, Record<never, never>>,
+    '/redirect': RouteRecordInfo<'/redirect', '/redirect', Record<never, never>, Record<never, never>>,
     '/user/login': RouteRecordInfo<'/user/login', '/user/login', Record<never, never>, Record<never, never>>,
-    '/user/register': RouteRecordInfo<'/user/register', '/user/register', Record<never, never>, Record<never, never>>,
   }
 }

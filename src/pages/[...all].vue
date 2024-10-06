@@ -1,3 +1,6 @@
+<script lang="ts" setup name="/[...all]">
+</script>
+
 <template>
   <div>
     Not Found
@@ -7,4 +10,5 @@
 <route lang="yaml">
 meta:
   layout: 404
+  title: 404
 </route>
