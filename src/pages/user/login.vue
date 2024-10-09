@@ -62,7 +62,7 @@ async function submit() {
   <div class="flex flex-1 flex-col bg-white">
     <van-nav-bar placeholder fixed>
       <template #left>
-        <RouterLink to="/home" :replace="true">
+        <RouterLink to="/" :replace="true">
           <van-icon name="wap-home-o" color="#0B1526" />
         </RouterLink>
       </template>

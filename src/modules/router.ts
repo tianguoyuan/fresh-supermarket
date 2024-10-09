@@ -4,7 +4,6 @@ import type { App } from 'vue'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { getScreenBannerStorage } from '~/utils/storage'
 
 NProgress.configure({
   easing: 'ease', // 动画方式
@@ -27,16 +26,8 @@ export function setupRouter(app: App) {
 router.beforeEach((to, from, next) => {
   NProgress.start()
   // 记录上一页页面地址， 防止返回上一页无法返回
-  const appStore = useAppStore()
-  appStore.changePrePath(from.fullPath === '/' ? '/home' : from.fullPath)
-
   // 配置标题
   useTitle(`${to.meta.title}-${import.meta.env.VITE_GLOB_APP_TITLE}`)
-  const hasScreenBanner = getScreenBannerStorage()
-  if (to.path === '/' && hasScreenBanner) {
-    next('/home')
-    return
-  }
   next()
 })
 
