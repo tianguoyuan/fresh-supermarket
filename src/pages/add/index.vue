@@ -4,6 +4,9 @@ import { addCommunity, addLocation, addTag } from '~/assets/images'
 
 const pageFlag = ref<'add' | 'selectPhoto'>('add')
 
+const title = ref('')
+const desc = ref('')
+
 function handleClickHelp() {
   showToast('发布帖子')
 }
@@ -40,14 +43,15 @@ function submit() {
       </van-nav-bar>
       <div class="p-4">
         <div>
-          <van-field type="text" placeholder="填写标题" class="articleTitle" />
+          <van-field v-model="title" type="text" placeholder="填写标题" class="articleTitle" />
         </div>
         <div class="mt-6">
           <van-field
+            v-model="desc"
             rows="3"
             autosize
-            type="textarea"
-            placeholder="添加正文" class="text-4 placeholder-text-4 placeholder-[#B1B4C3]"
+            type="textarea" placeholder="添加正文"
+            class="text-4 placeholder-text-4 placeholder-[#B1B4C3]"
           />
         </div>
 
