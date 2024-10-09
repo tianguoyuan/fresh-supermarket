@@ -72,9 +72,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         dts: './src/types/types-router.d.ts',
         exclude: [
           'src/pages/**/components/**',
-          'src/pages/home/Follow.vue', // 首页-关注
-          'src/pages/home/Recommended.vue', // 首页-推荐
-          'src/pages/home/Nearby.vue', // 首页-附近
         ],
       }),
 

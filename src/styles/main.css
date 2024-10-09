@@ -15,6 +15,7 @@ body {
 }
 
 img {
+  /* 禁止图片拖动 */
   -webkit-user-drag: none;
 }
 
@@ -42,7 +43,14 @@ html.dark {
   font-size: var(--van-toast-icon-size) !important;
 }
 
+/* 安全距离底部边界的距离 */
 .pb-ios {
   padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS < 11.2 */
   padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
+}
+
+/* 安全区域距离顶部边界的距离 */
+.pt-ios {
+  padding-bottom: constant(safe-area-inset-top); /* 兼容 iOS < 11.2 */
+  padding-bottom: env(safe-area-inset-top); /* 兼容 iOS >= 11.2 */
 }

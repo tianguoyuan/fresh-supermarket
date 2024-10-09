@@ -38,7 +38,7 @@ function toPath(url: string) {
 
 const cacheViews = computed(() => router.getRoutes().filter(route => !route.meta.noCache && route.name).map(v => v.name as string))
 // eslint-disable-next-line no-console
-console.log('routeName', cacheViews.value)
+console.log('routeName', cacheViews.value, router.getRoutes())
 </script>
 
 <template>

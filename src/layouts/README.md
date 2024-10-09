@@ -8,7 +8,10 @@ With [`unplugin-vue-router`](https://github.com/posva/unplugin-vue-router) and [
 
 ```vue
 <route lang="yaml">
-meta:
-  layout: home
+  meta:
+    layout: default
+    showTabBar: false
+    title: pageTitle
+    noCache: false
 </route>
 ```

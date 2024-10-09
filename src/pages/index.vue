@@ -2,27 +2,16 @@
 </script>
 
 <template>
-  <div id="dashboard" class="flex">
-    dashboard
+  <div id="dashboard">
+    <div>dashboard</div>
+    <img src="../assets/images/common/emptyData.png" alt="">
+    <TheFooter />
   </div>
 </template>
 
-<style scoped>
-#dashboard {
-  height: 100vh;
-}
-
-/* Avoid Chrome to see Safari hack */
-@supports (-webkit-touch-callout: none) {
-  #dashboard {
-    /* The hack for Safari */
-    height: -webkit-fill-available;
-  }
-}
-</style>
+<style scoped lang="scss"></style>
 
 <route lang="yaml">
   meta:
-    layout: default
     title: dashboard
 </route>
