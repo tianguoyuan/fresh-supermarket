@@ -1,3 +1,4 @@
+import presetRemToPx from '@unocss/preset-rem-to-px'
 import {
   defineConfig,
   // presetAttributify,
@@ -5,7 +6,6 @@ import {
   presetUno,
   presetWebFonts,
 } from 'unocss'
-import presetRemToPx from '@unocss/preset-rem-to-px'
 
 export default defineConfig({
   shortcuts: [

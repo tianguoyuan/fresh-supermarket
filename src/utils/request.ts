@@ -1,5 +1,5 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, type Canceler, type Method } from 'axios'
 import type { ToastWrapperInstance } from 'vant'
+import axios, { type AxiosInstance, type AxiosRequestConfig, type Canceler, type Method } from 'axios'
 import { showDialog, showLoadingToast, showToast } from 'vant'
 import { ResultEnum as REQUEST } from '~/enums/ResultEnum'
 import { router } from '~/modules/router'

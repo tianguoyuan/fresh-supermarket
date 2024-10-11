@@ -1,7 +1,7 @@
 <script setup lang="ts" name="/user/login">
 import type { FormInstance } from 'vant'
-import { qq, weixin } from '~/assets/images'
 import { userGetPhoneCode, userLogin } from '~/api/user'
+import { qq, weixin } from '~/assets/images'
 import { parseRedirectPath, randomNum } from '~/utils'
 
 const { query } = useRoute()

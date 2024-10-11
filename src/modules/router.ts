@@ -1,8 +1,8 @@
-import { createRouter, createWebHashHistory } from 'vue-router/auto'
-import { setupLayouts } from 'virtual:generated-layouts'
 import type { App } from 'vue'
-
 import NProgress from 'nprogress'
+import { setupLayouts } from 'virtual:generated-layouts'
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
+import { routes as generatedRoutes } from 'vue-router/auto-routes'
 import 'nprogress/nprogress.css'
 
 NProgress.configure({
@@ -14,9 +14,12 @@ NProgress.configure({
   parent: '#app',
 })
 
+const routes = setupLayouts(generatedRoutes)
+
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  extendRoutes: routes => setupLayouts(routes),
+  routes,
+  // extendRoutes: routes => setupLayouts(routes), //老版本写法
 })
 
 export function setupRouter(app: App) {
@@ -25,7 +28,6 @@ export function setupRouter(app: App) {
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  // 记录上一页页面地址， 防止返回上一页无法返回
   // 配置标题
   useTitle(`${to.meta.title}-${import.meta.env.VITE_GLOB_APP_TITLE}`)
   next()
