@@ -32,6 +32,7 @@
     "mpontus.tab-cycle",
     "naumovs.color-highlight",
     // "WakaTime.vscode-wakatime",//统计编码时长
-    "znck.grammarly"
+    "znck.grammarly",
+    "SeyyedKhandon.firacode"
   ]
 }
