@@ -6,6 +6,9 @@ export const useUserStore = defineStore(('user'), () => {
 
   // 登录接口信息
   const token = useLocalStorage('token', '')
+  // token缓存被删除跳转登录页面
+  const router = useRouter()
+  watch(token, v => !v && router.replace('/user/login'))
 
   // 用户信息
   const userId = useLocalStorage('userId', '')

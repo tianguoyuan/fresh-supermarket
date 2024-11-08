@@ -5,8 +5,8 @@ import { setupI18n, setupRouter, setupStore } from '~/modules'
 import App from './App.vue'
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
-import 'uno.css'
 
+import 'uno.css'
 // vant-ui
 import '~/modules/vant'
 

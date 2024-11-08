@@ -11,14 +11,14 @@ import VueMacros from 'unplugin-vue-macros/vite'
 
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueRouter from 'unplugin-vue-router/vite'
-import { type ConfigEnv, defineConfig, loadEnv, type UserConfig } from 'vite'
-import Layouts from 'vite-plugin-vue-layouts'
-// import VueDevTools from 'vite-plugin-vue-devtools'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
+import { type ConfigEnv, defineConfig, loadEnv, type UserConfig } from 'vite'
 import viteCompression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
 import { viteVConsole } from 'vite-plugin-vconsole'
+import VueDevTools from 'vite-plugin-vue-devtools'
+import Layouts from 'vite-plugin-vue-layouts'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -32,8 +32,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       open: viteEnv.VITE_OPEN,
       proxy: {
         [viteEnv.VITE_API_URL]: {
-          target: 'http://127.0.0.1:4523/m1/5142882-4806818-default',
-          // target: 'https://apifoxmock.com/m1/5142882-0-default',
+          target: 'http://127.0.0.1:4523/m1/5432087-5106972-default',
+          // target: 'https://apifoxmock.com/m1/5432087-5106972-default',
           changeOrigin: true,
           rewrite: path => path.replace(new RegExp(`${viteEnv.VITE_API_URL}`), ''),
         },
@@ -114,7 +114,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
 
       // https://github.com/webfansplz/vite-plugin-vue-devtools
-      // VueDevTools(),
+      VueDevTools(),
 
       // name 可以写在 script 标签上
       vueSetupExtend({}),

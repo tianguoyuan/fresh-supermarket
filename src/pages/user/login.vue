@@ -31,7 +31,6 @@ async function getCode() {
       if (timer.value) {
         clearInterval(timer.value)
       }
-
       timeCounter.value = 0
     }
   }, 1000)
@@ -63,7 +62,7 @@ async function submit() {
     <van-nav-bar placeholder fixed>
       <template #left>
         <RouterLink to="/" :replace="true">
-          <van-icon name="wap-home-o" color="#0B1526" />
+          <van-icon name="wap-home-o" color="#0B1526" :size="18" />
         </RouterLink>
       </template>
     </van-nav-bar>
@@ -92,10 +91,11 @@ async function submit() {
           登录
         </div>
       </div>
-      <div class="mt5 text-center color-[#666262]">
+
+      <RouterLink to="/user/register" class="mt5 block text-center color-[#666262]">
         <span>新用户注册</span>
         <van-icon name="arrow" />
-      </div>
+      </RouterLink>
     </div>
 
     <!-- 其它登录 -->

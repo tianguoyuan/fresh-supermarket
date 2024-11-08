@@ -26,11 +26,36 @@ export function setupRouter(app: App) {
   app.use(router)
 }
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   NProgress.start()
   // 配置标题
   useTitle(`${to.meta.title}-${import.meta.env.VITE_GLOB_APP_TITLE}`)
-  next()
+
+  const userStore = useUserStore()
+  const whiteList = ['/', '/user/login', '/user/register']
+
+  if (userStore.token) {
+    if (whiteList.includes(to.path)) {
+      next('/home')
+    }
+    else {
+      if (userStore.isLogin) {
+        next()
+      }
+      else {
+        await userStore.changeToken(userStore.token)
+        next({ replace: true })
+      }
+    }
+  }
+  else {
+    if (whiteList.includes(to.path)) {
+      return next()
+    }
+    else {
+      next(`/user/login?redirectPath=${encodeURIComponent(to.fullPath)}`)
+    }
+  }
 })
 
 router.afterEach(() => {
