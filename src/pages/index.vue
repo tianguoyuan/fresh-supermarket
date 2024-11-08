@@ -3,9 +3,9 @@
 
 <template>
   <div id="dashboard">
-    <div>dashboard</div>
-    <img src="../assets/images/common/emptyData.png" alt="">
-    <TheFooter />
+    <div class="px-8 text-7">
+      欢迎来到生鲜！
+    </div>
   </div>
 </template>
 

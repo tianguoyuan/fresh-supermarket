@@ -4,7 +4,6 @@ import {
   // presetAttributify,
   presetIcons,
   presetUno,
-  presetWebFonts,
 } from 'unocss'
 
 export default defineConfig({
@@ -26,13 +25,13 @@ export default defineConfig({
       scale: 1.2,
       warn: true,
     }),
-    presetWebFonts({
-      fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
-      },
-    }),
+    // presetWebFonts({
+    //   fonts: {
+    //     sans: 'DM Sans',
+    //     serif: 'DM Serif Display',
+    //     mono: 'DM Mono',
+    //   },
+    // }),
     presetRemToPx() as unknown as any,
   ],
 })

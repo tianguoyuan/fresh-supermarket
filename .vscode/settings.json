@@ -7,7 +7,7 @@
   "editor.renderWhitespace": "boundary",
   "window.autoDetectColorScheme": true,
   "workbench.colorTheme": "GitHub Dark",
-  "workbench.editor.tabActionLocation": "left",
+  "workbench.editor.tabActionLocation": "right",
   "workbench.fontAliasing": "antialiased",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,

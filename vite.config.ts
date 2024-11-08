@@ -145,6 +145,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     test: {
       environment: 'jsdom',
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     // 构建配置
     build: {
       chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告
