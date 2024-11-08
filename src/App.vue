@@ -3,9 +3,17 @@ const { isDark } = useAppDark()
 </script>
 
 <template>
-  <Suspense>
-    <VanConfigProvider :theme="isDark ? 'dark' : 'light'">
-      <RouterView />
-    </VanConfigProvider>
-  </Suspense>
+  <div class="text-[14px]">
+    <Suspense>
+      <VanConfigProvider :theme="isDark ? 'dark' : 'light'">
+        <RouterView />
+      </VanConfigProvider>
+    </Suspense>
+  </div>
 </template>
+
+<style lang="scss">
+body {
+  font-family: PingFangSC-Regular, PingFangSC-Regular;
+}
+</style>
