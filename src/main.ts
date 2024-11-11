@@ -1,14 +1,17 @@
 import { Lazyload } from 'vant'
 import { createApp } from 'vue'
-import { setupI18n, setupRouter, setupStore } from '~/modules'
 
+import { setupI18n, setupRouter, setupStore } from '~/modules'
 import App from './App.vue'
 import '@unocss/reset/tailwind.css'
-import './styles/main.css'
 
+import './styles/main.css'
 import 'uno.css'
+
 // vant-ui
 import '~/modules/vant'
+// 本地SVG图标
+import 'virtual:svg-icons-register'
 
 async function bootstrap() {
   const app = createApp(App)

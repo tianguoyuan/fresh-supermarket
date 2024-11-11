@@ -1,28 +1,34 @@
 <script setup lang="ts">
-const tabbarList = [
+import SvgIcon from '~/components/SvgIcon.vue'
+import { ColorEnums } from '~/enums/ColorEnum'
+
+interface ITabbarList {
+  url: string
+  title: string
+  icon?: string
+  vanIcon?: string
+}
+const tabbarList: ITabbarList[] = [
   {
     url: '/home',
     title: '首页',
-    icon: 'home-o',
+    icon: 'home',
   },
   {
-    url: '/community',
-    title: '社区',
-    icon: 'cluster-o',
+    url: '/kind',
+    title: '分类',
+    icon: 'kind',
+
   },
   {
-    url: '/add',
-    icon: 'add',
-  },
-  {
-    url: '/message',
-    title: '消息',
-    icon: 'chat-o',
+    url: '/shopping',
+    title: '购物车',
+    icon: 'shopping',
   },
   {
     url: '/personal',
-    title: '个人',
-    icon: 'manager-o',
+    title: '我的',
+    icon: 'personal',
   },
 ]
 
@@ -39,6 +45,9 @@ function toPath(url: string) {
 const cacheViews = computed(() => router.getRoutes().filter(route => !route.meta.noCache && route.name).map(v => v.name as string))
 // eslint-disable-next-line no-console
 console.log('routeName', cacheViews.value, router.getRoutes())
+
+const activeColor = ColorEnums.primary
+const inactiveColor = '#7d7e80'
 </script>
 
 <template>
@@ -64,13 +73,14 @@ console.log('routeName', cacheViews.value, router.getRoutes())
 
     <!-- 首页 底部选项卡 -->
     <div class="tabbar">
-      <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false">
-        <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" :icon="item.icon" class="transition-all" @click="toPath(item.url)">
+      <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false" :active-color="activeColor" :inactive-color="inactiveColor">
+        <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" class="transition-all" @click="toPath(item.url)">
           <template v-if="item.title">
             {{ item.title }}
           </template>
-          <template v-if="!item.title" #icon="props">
-            <VanIcon :name="item.icon" size="50" :color="props.active ? '#1989fa' : '#7d7e80'" />
+          <template #icon="props">
+            <SvgIcon v-if="item.icon" :icon-class="item.icon" :color="props.active ? activeColor : inactiveColor" size="20" />
+            <VanIcon v-if="item.vanIcon" :name="item.icon" size="50" :color="props.active ? activeColor : inactiveColor" />
           </template>
         </VanTabbarItem>
       </VanTabbar>

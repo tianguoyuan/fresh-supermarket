@@ -20,5 +20,6 @@ function logout() {
 
 <route lang="yaml">
   meta:
-    title: home
+    title: 首页
+    showTabBar: true
 </route>
