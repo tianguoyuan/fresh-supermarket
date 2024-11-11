@@ -5,7 +5,7 @@ const props = withDefaults(defineProps<{
   color: string
   size: string
 }>(), {
-  prefix: '',
+  prefix: 'icon',
   color: '',
   size: '20px',
 })
