@@ -1,5 +1,5 @@
 <script setup lang="ts" name="/user/login">
-import type { FormInstance } from 'vant'
+import type { FieldRule, FormInstance } from 'vant'
 import { userGetPhoneCode, userLogin } from '~/api/user'
 import { qq, weixin } from '~/assets/images'
 import { parseRedirectPath, randomNum } from '~/utils'
@@ -41,6 +41,10 @@ onUnmounted(() => {
   }
 })
 
+function rulesFn(msg: string = '请输入'): FieldRule[] {
+  return [{ required: true, message: msg, trigger: 'onSubmit' }]
+}
+
 const formRef = ref<null | FormInstance>(null)
 async function submit() {
   await formRef.value?.validate()
@@ -74,25 +78,25 @@ async function submit() {
         <van-form ref="formRef">
           <van-field
             v-model="phone" label="" placeholder="请输入手机号码" :border="false" clearable
-            :rules="[{ required: true, message: '请输入手机号码' }]"
+            :rules="rulesFn('请输入手机号码')"
           />
           <van-field
             v-model="code" label="" placeholder="请输入手机验证码" :border="false" clearable :maxlength="6"
-            :rules="[{ required: true, message: '请输入手机验证码' }]"
+            :rules="rulesFn('请输入手机验证码')"
           >
             <template #right-icon>
-              <span :class="[isClickGetCode ? 'color-[#0B1526]' : 'text-[#666262]']" @click="getCode">获取验证码 {{ timeCounter > 0 ? timeCounter : '' }}</span>
+              <span :class="[isClickGetCode ? 'color-[#0B1526]' : 'text-[#ccc8c8]']" @click="getCode">获取验证码 {{ timeCounter > 0 ? timeCounter : '' }}</span>
             </template>
           </van-field>
         </van-form>
       </div>
       <div class="mt-6">
-        <div class="h-10 rounded-full bg-[#40AE36] text-center text-4 color-white line-height-10" @click="submit">
+        <div class="h-10 rounded-full text-center text-4 color-white line-height-10 bg-primary" @click="submit">
           登录
         </div>
       </div>
 
-      <RouterLink to="/user/register" class="mt5 block text-center color-[#666262]">
+      <RouterLink to="/user/register" replace class="mt5 block text-center color-[#666262]">
         <span>新用户注册</span>
         <van-icon name="arrow" />
       </RouterLink>

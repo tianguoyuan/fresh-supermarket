@@ -17,6 +17,8 @@ export default defineConfig({
     ['mh-container', { 'min-height': 'calc(100vh - 46px - 50px)' }],
 
     ['color-gray', { color: ' #8D93A6' }],
+    ['bg-primary', { 'background-color': '#40AE36' }],
+    ['color-primary', { color: '#40AE36' }],
   ],
   presets: [
     presetUno(),

@@ -16,6 +16,16 @@ declare namespace API {
     token: string
   }
 
+  /** 用户-注册 */
+  interface UserRegister {
+    username: string
+    phone: string
+    code: string
+  }
+  interface UserRegisterRes {
+
+  }
+
   /** 用户-获取信息 */
   interface UserInfoRes {
     id: string

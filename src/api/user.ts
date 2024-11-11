@@ -10,6 +10,11 @@ export function userLogin(data: API.UserLogin): Promise<API.UserLoginRes> {
   return http.request({ url: '/user/login', method: 'POST', data })
 }
 
+/** 用户-登录 */
+export function userRegister(data: API.UserRegister): Promise<API.UserRegisterRes> {
+  return http.request({ url: '/user/login', method: 'POST', data })
+}
+
 /** 用户-获取信息 */
 export function userInfo(): Promise<API.UserInfoRes> {
   return http.request({ url: '/user/info', method: 'POST' })
