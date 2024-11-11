@@ -1,4 +1,4 @@
-import path from 'node:path'
+import path, { resolve } from 'node:path'
 import process from 'node:process'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VantResolver } from '@vant/auto-import-resolver'
@@ -6,9 +6,9 @@ import Vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+
 import Components from 'unplugin-vue-components/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
-
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueRouter from 'unplugin-vue-router/vite'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
@@ -16,6 +16,7 @@ import { type ConfigEnv, defineConfig, loadEnv, type UserConfig } from 'vite'
 import viteCompression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteVConsole } from 'vite-plugin-vconsole'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -96,7 +97,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           './src/stores',
         ],
         vueTemplate: true,
-        resolvers: [VantResolver()],
+        resolvers: [
+          VantResolver(), // 自动导入图标组件
+        ],
       }),
 
       // https://github.com/antfu/vite-plugin-components
@@ -138,6 +141,12 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // js加密
       obfuscatorPlugin({
         apply: 'build',
+      }),
+
+      // 使用 svg 图标
+      createSvgIconsPlugin({
+        iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
+        symbolId: 'icon-[dir]-[name]',
       }),
     ],
 
