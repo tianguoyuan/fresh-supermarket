@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore(('app'), () => {
-  const prePath = ref('/home')
+  const positionCity = ref('海淀区中关村大厦')
 
-  function changePrePath(val: string) {
-    prePath.value = val
+  function changePositionCity(val: string) {
+    positionCity.value = val
   }
   return {
-    prePath,
-    changePrePath,
+    positionCity,
+    changePositionCity,
   }
 })

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
-  prefix: string
+  prefix?: string
   iconClass: string
-  color: string
-  size: string
+  color?: string
+  size?: string
 }>(), {
   prefix: 'icon',
   color: '',

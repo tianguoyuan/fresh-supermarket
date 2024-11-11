@@ -18,7 +18,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteVConsole } from 'vite-plugin-vconsole'
-import VueDevTools from 'vite-plugin-vue-devtools'
+// import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
@@ -117,7 +117,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
 
       // https://github.com/webfansplz/vite-plugin-vue-devtools
-      VueDevTools(),
+      // VueDevTools(),
 
       // name 可以写在 script 标签上
       vueSetupExtend({}),

@@ -33,4 +33,19 @@ declare namespace API {
     phone: string
     img: string
   }
+
+  /** 搜索 - 默认关键词 */
+  interface SearchDefaultMsg {
+
+  }
+  interface SearchDefaultMsgRes {
+    searchDefault: string
+  }
+  /** 首页 - banner */
+  interface HomeBannerRes {
+    banner: {
+      id: string
+      cover: string
+    }[]
+  }
 }
