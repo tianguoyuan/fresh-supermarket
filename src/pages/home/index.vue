@@ -50,8 +50,6 @@ const bannerList = ref(banner)
           />
         </van-swipe-item>
       </van-swipe>
-
-      <input type="text">
     </div>
   </div>
 </template>
