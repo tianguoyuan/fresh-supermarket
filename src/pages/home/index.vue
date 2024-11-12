@@ -1,6 +1,6 @@
 <script setup lang="ts" name="/home/">
 import { storeToRefs } from 'pinia'
-import { findHomeBanner, findSearchDefaultMsg } from '~/api/home'
+import { findHomeBanner, findHomeFoodKindBanner, findSearchDefaultMsg } from '~/api/home'
 
 // 定位
 const appStore = useAppStore()
@@ -13,11 +13,16 @@ const searchPlaceholder = ref(searchDefault)
 // banner
 const { banner = [] } = await findHomeBanner()
 const bannerList = ref(banner)
+
+// 食品分类
+const { foodKindBanner = [] } = await findHomeFoodKindBanner()
+const foodKindList = ref(foodKindBanner)
 </script>
 
 <template>
   <div class="home">
-    <van-nav-bar placeholder fixed class="bg-primary" :clickable="false">
+    <van-nav-bar placeholder fixed :clickable="false">
+      <!-- 定位 -->
       <template #left>
         <SvgIcon icon-class="position" size="24" />
         <span class="px-1 color-white">{{ positionCity }}</span>
@@ -31,15 +36,16 @@ const bannerList = ref(banner)
     </van-nav-bar>
 
     <div class="px-3">
+      <!-- 搜索框 -->
       <RouterLink to="/home/search" class="block">
         <van-search
           readonly
           clearable
-          class="bg-red"
           :placeholder="searchPlaceholder"
         />
       </RouterLink>
 
+      <!-- banner -->
       <van-swipe class="mt-3 h-[120px]" :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="item in bannerList" :key="item.id">
           <van-image
@@ -50,16 +56,36 @@ const bannerList = ref(banner)
           />
         </van-swipe-item>
       </van-swipe>
+
+      <!-- 食品分类 -->
+      <div class="overflow-x-scroll">
+        <div class="mt-5 flex">
+          <div v-for="item in foodKindList" :key="item.id" class="w-22% shrink-0 flex-col overflow-hidden px-1">
+            <div class="flex justify-center">
+              <van-image
+                :src="item.cover"
+                height="54px"
+                width="54px"
+                lazy-load
+                class="m-auto overflow-hidden rounded-full"
+              />
+            </div>
+            <p class="mt-2 text-truncate text-center text-3 color-[#666]">
+              {{ item.name }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .home {
-  ::v-deep .van-nav-bar {
-    background-color: inherit !important;
+  :deep(.van-nav-bar) {
+    background-color: #40ae36 !important;
   }
-  ::v-deep .van-search {
+  :deep(.van-search) {
     margin-top: 12px;
     padding: 0;
     background: #edeff2;

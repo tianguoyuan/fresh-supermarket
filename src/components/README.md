@@ -7,3 +7,9 @@ Components in this dir will be auto-registered and on-demand, powered by [`unplu
 You can use icons from almost any icon sets by the power of [Iconify](https://iconify.design/).
 
 It will only bundle the icons you use. Check out [`unplugin-icons`](https://github.com/antfu/unplugin-icons) for more details.
+
+###
+
+- RecommendForYou - 为你推荐
+- SvgIcon - svg组件
+- Card - 列表组件

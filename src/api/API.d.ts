@@ -48,4 +48,23 @@ declare namespace API {
       cover: string
     }[]
   }
+
+  interface HomeFoodKindBannerRes {
+    foodKindBanner: {
+      id: string
+      cover: string
+      name: string
+    }[]
+  }
+  interface CommonRecommendListRes {
+    total: string
+    list: {
+      id: string
+      title: string
+      cover: string
+      isBargainPrice: boolean
+      isOneDay: boolean
+      price: string
+    }[]
+  }
 }

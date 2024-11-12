@@ -19,6 +19,7 @@ export default defineConfig({
     ['color-gray', { color: ' #8D93A6' }],
     ['bg-primary', { 'background-color': '#40AE36' }],
     ['color-primary', { color: '#40AE36' }],
+    ['border-color-primary', { 'border-color': '#40AE36' }],
   ],
   presets: [
     presetUno(),

@@ -98,7 +98,7 @@ async function submit() {
 </template>
 
 <style scoped lang="scss">
-::v-deep(.van-cell.van-field) {
+:deep(.van-cell.van-field) {
   padding-left: 0;
   padding-right: 0;
   border-bottom: 1px solid #ebedf0;
