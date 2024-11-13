@@ -9,12 +9,14 @@ const cardList = ref(list)
   <div class="mt-6">
     <div class="flex items-center justify-center">
       <SvgIcon icon-class="recommend-l" size="22" />
-      <span class="px-3 text-4">为你推荐</span>
+      <span
+        class="px-3 text-4"
+      >为你推荐</span>
       <SvgIcon icon-class="recommend-r" size="22" />
     </div>
 
     <div class="mt-3">
-      <Card :list="cardList" />
+      <Card :list="cardList" v-bind="$attrs" />
     </div>
   </div>
 </template>

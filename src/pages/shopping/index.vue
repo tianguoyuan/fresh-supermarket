@@ -2,14 +2,15 @@
 import { storeToRefs } from 'pinia'
 
 const shoppingStore = useShoppingStore()
-const { shoppingList } = storeToRefs(shoppingStore)
+const { shoppingList, priceSum } = storeToRefs(shoppingStore)
+const { addShoppingList } = shoppingStore
 </script>
 
 <template>
   <div>
     <van-nav-bar placeholder fixed :clickable="false" title="购物车">
-      <template v-if="shoppingList.length" #right>
-        <span class="color-[#666]">删除</span>
+      <template #right>
+        <span :class="shoppingList.length ? 'color-[#666]' : 'color-[#999]'">删除</span>
       </template>
     </van-nav-bar>
 
@@ -24,14 +25,36 @@ const { shoppingList } = storeToRefs(shoppingStore)
           去逛逛
         </div>
       </div>
-      <RecommendForYou />
+    </div>
+
+    <!-- 为你推荐 -->
+    <RecommendForYou @add="addShoppingList" />
+
+    <!-- 全选，结算 -->
+    <div
+      class="footer-tool sticky bottom-0 h-[50px] flex items-center justify-between border-t border-[#f7f8f9] bg-white px-3 py-2"
+    >
+      <div class="flex items-center">
+        <SvgIcon
+          :icon-class="shoppingList.length ? 'radio-checked' : 'radio'"
+          :color="shoppingList.length ? '#40ae36' : '#ccc'" size="18"
+        />
+        <span class="ml-1">全选</span>
+      </div>
+      <div>
+        <span class="text-3">合计: </span>
+        <span class="text-10px color-#F55726">￥</span>
+        <span class="text-4 color-#F55726">{{ priceSum }}</span>
+        <span
+          class="ml-3 rounded-full px-6 py-2 color-white"
+          :class="[shoppingList.length ? 'bg-primary' : 'bg-#999']"
+        >去结算</span>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped lang="css"></style>
 
 <route lang="yaml">
   meta:

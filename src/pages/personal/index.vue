@@ -93,7 +93,7 @@ const myServerList = [
       <!-- <div class="m-4 block py-3 text-center bg-primary btn" @click="outLogin">
         退出登录
       </div> -->
-      <RecommendForYou />
+      <RecommendForYou :hide-add="true" />
     </div>
   </div>
 </template>

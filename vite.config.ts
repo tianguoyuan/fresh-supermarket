@@ -30,7 +30,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     server: {
       host: '0.0.0.0',
       port: +viteEnv.VITE_PORT,
-      open: viteEnv.VITE_OPEN,
+      open: viteEnv.VITE_OPEN === 'true',
       proxy: {
         [viteEnv.VITE_API_URL]: {
           target: 'http://127.0.0.1:4523/m1/5432087-5106972-default',
@@ -168,11 +168,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       terserOptions: {
         compress: {
           keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
-          drop_console: true, // 生产环境去除 console
-          drop_debugger: true, // 生产环境去除 debugger
+          drop_console: viteEnv.VITE_DROP_CONSOLE === 'true', // 生产环境去除 console
+          drop_debugger: viteEnv.VITE_DROP_CONSOLE === 'true', // 生产环境去除 debugger
         },
         format: {
-          comments: true, // 删除注释
+          comments: viteEnv.VITE_DROP_CONSOLE === 'true', // 删除注释
         },
       },
       rollupOptions: {

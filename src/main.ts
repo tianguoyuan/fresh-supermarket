@@ -12,6 +12,7 @@ import 'uno.css'
 import '~/modules/vant'
 // 本地SVG图标
 import 'virtual:svg-icons-register'
+import 'animate.css'
 
 async function bootstrap() {
   const app = createApp(App)

@@ -11,13 +11,13 @@ declare interface ViteEnv {
   VITE_USER_NODE_ENV: 'local' | 'uat' | 'prod'
   VITE_GLOB_APP_TITLE: string
   VITE_PORT: number
-  VITE_OPEN: boolean
-  VITE_REPORT: boolean
+  VITE_OPEN: 'true' | 'false'
+  VITE_REPORT: 'true' | 'false'
   VITE_ROUTER_MODE: 'hash' | 'history'
   VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'gzip,brotli' | 'none'
-  VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean
-  VITE_DROP_CONSOLE: boolean
-  VITE_PWA: boolean
+  VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: 'true' | 'false'
+  VITE_DROP_CONSOLE: 'true' | 'false'
+  VITE_PWA: 'true' | 'false'
   /** 网站前缀 */
   VITE_PUBLIC_PATH: string
   /** 接口前缀 */

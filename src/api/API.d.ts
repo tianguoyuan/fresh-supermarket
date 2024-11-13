@@ -19,7 +19,7 @@ declare namespace API {
   /** 用户-注册 */
   interface UserRegister {
     username: string
-    phone: string
+    phone: stringCommonRecommendListItem
     code: string
   }
   interface UserRegisterRes {
@@ -56,15 +56,18 @@ declare namespace API {
       name: string
     }[]
   }
+  interface CommonRecommendListItem {
+    id: string
+    title: string
+    cover: string
+    isBargainPrice: boolean
+    isOneDay: boolean
+    price: string
+
+    num: number // 数量
+  }
   interface CommonRecommendListRes {
     total: string
-    list: {
-      id: string
-      title: string
-      cover: string
-      isBargainPrice: boolean
-      isOneDay: boolean
-      price: string
-    }[]
+    list: CommonRecommendListItem[]
   }
 }

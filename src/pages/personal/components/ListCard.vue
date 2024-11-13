@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="mx-4 rounded-3 bg-white p-4">
+  <div class="mx-3 rounded-3 bg-white p-4">
     <div class="flex justify-between">
       <div>{{ title }}</div>
       <div v-if="props.rightTitle">
