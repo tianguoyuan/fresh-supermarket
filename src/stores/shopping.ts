@@ -5,7 +5,8 @@ export const useShoppingStore = defineStore(('shopping'), () => {
   const shoppingList = ref<API.CommonRecommendListRes['list']>([])
 
   /** 所有选中的 */
-  const priceSum = computed(() => shoppingList.value.reduce((pre, cur) => add(pre, multiply(+cur.price, cur.num)), 0) || 0)
+  const checkedList = computed(() => shoppingList.value.filter(v => v.checked))
+  const priceSum = computed(() => checkedList.value.reduce((pre, cur) => add(pre, multiply(+cur.price, cur.num)), 0) || 0)
 
   function addShoppingList(val: API.CommonRecommendListItem) {
     const findItemIndex = shoppingList.value.findIndex(v => v.id === val.id)
@@ -30,6 +31,7 @@ export const useShoppingStore = defineStore(('shopping'), () => {
   return {
     shoppingList,
     priceSum,
+    checkedList,
 
     addShoppingList,
     subtractShoppingList,

@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 
 const shoppingStore = useShoppingStore()
-const { shoppingList, priceSum } = storeToRefs(shoppingStore)
+const { shoppingList, priceSum, checkedList } = storeToRefs(shoppingStore)
 const { addShoppingList } = shoppingStore
 </script>
 
@@ -10,7 +10,7 @@ const { addShoppingList } = shoppingStore
   <div>
     <van-nav-bar placeholder fixed :clickable="false" title="购物车">
       <template #right>
-        <span :class="shoppingList.length ? 'color-[#666]' : 'color-[#999]'">删除</span>
+        <span :class="checkedList.length ? 'color-[#666]' : 'color-[#999]'">删除</span>
       </template>
     </van-nav-bar>
 
@@ -36,8 +36,8 @@ const { addShoppingList } = shoppingStore
     >
       <div class="flex items-center">
         <SvgIcon
-          :icon-class="shoppingList.length ? 'radio-checked' : 'radio'"
-          :color="shoppingList.length ? '#40ae36' : '#ccc'" size="18"
+          :icon-class="checkedList.length ? 'radio-checked' : 'radio'"
+          :color="checkedList.length ? '#40ae36' : '#ccc'" size="18"
         />
         <span class="ml-1">全选</span>
       </div>
@@ -47,7 +47,7 @@ const { addShoppingList } = shoppingStore
         <span class="text-4 color-#F55726">{{ priceSum }}</span>
         <span
           class="ml-3 rounded-full px-6 py-2 color-white"
-          :class="[shoppingList.length ? 'bg-primary' : 'bg-#999']"
+          :class="[checkedList.length ? 'bg-primary' : 'bg-#999']"
         >去结算</span>
       </div>
     </div>

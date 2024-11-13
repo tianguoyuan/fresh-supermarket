@@ -63,7 +63,7 @@ declare namespace API {
     isBargainPrice: boolean
     isOneDay: boolean
     price: string
-
+    checked: boolean
     num: number // 数量
   }
   interface CommonRecommendListRes {
