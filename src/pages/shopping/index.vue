@@ -11,7 +11,7 @@ const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingSto
   <div>
     <van-nav-bar placeholder fixed :clickable="false" title="购物车">
       <template #right>
-        <span :class="checkedList.length ? 'color-[#666]' : 'color-[#999]'" @click="checkedList.length ? removeCheckedList() : undefined">删除</span>
+        <span :class="checkedList.length ? 'color-[#666]' : 'color-[#999]'" @click="checkedList.length ? removeCheckedList(true) : undefined">删除</span>
       </template>
     </van-nav-bar>
 

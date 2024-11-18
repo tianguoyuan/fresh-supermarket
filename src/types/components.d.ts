@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Card: typeof import('./../components/Card.vue')['default']
-    Components: typeof import('./../components/index.vue')['default']
     RecommendForYou: typeof import('./../components/RecommendForYou.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -26,6 +25,5 @@ declare module 'vue' {
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
-    you: typeof import('./../components/Recommend for you.vue')['default']
   }
 }
