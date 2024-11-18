@@ -1,21 +1,22 @@
 <script setup lang="ts" name="/shopping/">
 import { storeToRefs } from 'pinia'
+import ShoppingCard from './components/ShoppingCard.vue'
 
 const shoppingStore = useShoppingStore()
-const { shoppingList, priceSum, checkedList } = storeToRefs(shoppingStore)
-const { addShoppingList } = shoppingStore
+const { shoppingList, priceSum, checkedList, isAllChecked } = storeToRefs(shoppingStore)
+const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingStore
 </script>
 
 <template>
   <div>
     <van-nav-bar placeholder fixed :clickable="false" title="购物车">
       <template #right>
-        <span :class="checkedList.length ? 'color-[#666]' : 'color-[#999]'">删除</span>
+        <span :class="checkedList.length ? 'color-[#666]' : 'color-[#999]'" @click="checkedList.length ? removeCheckedList() : undefined">删除</span>
       </template>
     </van-nav-bar>
 
     <div class="p-3">
-      <div v-if="shoppingList.length" />
+      <ShoppingCard v-if="shoppingList.length" :list="shoppingList" />
       <div v-else class="flex flex-col items-center justify-center rounded-2 bg-white py-5">
         <p>购物车空空如也</p>
         <p class="mt-1 text-xs color-[#999]">
@@ -28,16 +29,16 @@ const { addShoppingList } = shoppingStore
     </div>
 
     <!-- 为你推荐 -->
-    <RecommendForYou @add="addShoppingList" />
+    <RecommendForYou @add="v => addShoppingList(v, true)" />
 
     <!-- 全选，结算 -->
     <div
       class="footer-tool sticky bottom-0 h-[50px] flex items-center justify-between border-t border-[#f7f8f9] bg-white px-3 py-2"
     >
-      <div class="flex items-center">
+      <div class="flex items-center" @click="changeAllCheckedList">
         <SvgIcon
-          :icon-class="checkedList.length ? 'radio-checked' : 'radio'"
-          :color="checkedList.length ? '#40ae36' : '#ccc'" size="18"
+          :icon-class="isAllChecked ? 'radio-checked' : 'radio'"
+          :color="isAllChecked ? '#40ae36' : '#ccc'" size="18"
         />
         <span class="ml-1">全选</span>
       </div>

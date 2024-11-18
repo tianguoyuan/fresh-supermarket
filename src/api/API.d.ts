@@ -62,6 +62,8 @@ declare namespace API {
     cover: string
     isBargainPrice: boolean
     isOneDay: boolean
+    oldPrice: string
+
     price: string
     checked: boolean
     num: number // 数量
