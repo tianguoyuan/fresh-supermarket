@@ -24,9 +24,9 @@ export const useShoppingStore = defineStore(('shopping'), () => {
   }
   async function removeCheckedList(tip?: boolean) {
     if (tip) {
-      showConfirmDialog({
+      await showConfirmDialog({
         title: '提示',
-        message: '是否删除选中列表？',
+        message: '是否删除选中商品？',
         theme: 'round-button',
       })
     }
