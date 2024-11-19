@@ -75,7 +75,7 @@ declare namespace API {
     num: number // 数量
   }
   interface CommonRecommendListRes {
-    total: string
+    total: number
     list: CommonRecommendListItem[]
   }
 
@@ -89,6 +89,14 @@ declare namespace API {
   interface FindHomeGreatDealListRes {
     title: string
     desc: string
+    list: CommonRecommendListItem[]
+  }
+
+  interface FindHomeList extends CommonBaseListParams {
+    tagId: string
+  }
+  interface FindHomeListRes {
+    total: number
     list: CommonRecommendListItem[]
   }
 }

@@ -24,3 +24,8 @@ export function findHomeTagList(): Promise<API.FindHomeTagListRes> {
 export function findHomeGreatDealList(params: API.CommonBaseListParams): Promise<API.FindHomeGreatDealListRes> {
   return http.request({ url: '/home/greatDealList', method: 'GET', params })
 }
+
+/** 首页-列表 */
+export function findHomeList(params: API.FindHomeList): Promise<API.FindHomeListRes> {
+  return http.request({ url: '/home/greatDealList', method: 'GET', params })
+}

@@ -1,6 +1,6 @@
 <script setup lang="ts" name="/home/">
 import { storeToRefs } from 'pinia'
-import { findHomeBanner, findHomeFoodKindBanner, findHomeGreatDealList, findSearchDefaultMsg } from '~/api/home'
+import { findHomeBanner, findHomeFoodKindBanner, findHomeGreatDealList, findHomeList, findHomeTagList, findSearchDefaultMsg } from '~/api/home'
 
 // 购物车store
 const shoppingStore = useShoppingStore()
@@ -24,6 +24,18 @@ const foodKindList = ref(foodKindBanner)
 
 // 超划算列表
 const greatDealData = await findHomeGreatDealList({ pageNum: 1, pageSize: 3, order: 'asc' })
+
+// 列表标签
+const { tagList } = await findHomeTagList()
+const tagIndex = ref<string>(tagList[0]?.id)
+const list = ref<API.FindHomeListRes['list']>([])
+
+watch(tagIndex, async (v) => {
+  const homeListResult = await findHomeList({ pageNum: 1, pageSize: 10, order: 'asc', tagId: v })
+  list.value = homeListResult.list
+}, {
+  immediate: true,
+})
 </script>
 
 <template>
@@ -67,7 +79,7 @@ const greatDealData = await findHomeGreatDealList({ pageNum: 1, pageSize: 3, ord
       <!-- 食品分类 -->
       <div class="overflow-x-scroll">
         <div class="mt-5 flex">
-          <div v-for="item in foodKindList" :key="item.id" class="w-22% shrink-0 flex-col overflow-hidden px-1">
+          <div v-for="item in foodKindList" :key="item.id" class="w-22% flex shrink-0 flex-col overflow-hidden px-1">
             <div class="flex justify-center">
               <van-image
                 :src="item.cover"
@@ -77,7 +89,7 @@ const greatDealData = await findHomeGreatDealList({ pageNum: 1, pageSize: 3, ord
                 class="m-auto overflow-hidden rounded-full"
               />
             </div>
-            <p class="mt-2 text-truncate text-center text-3 color-[#666]">
+            <p class="text-truncate pt-2 text-center text-3 color-[#666]">
               {{ item.name }}
             </p>
           </div>
@@ -98,6 +110,25 @@ const greatDealData = await findHomeGreatDealList({ pageNum: 1, pageSize: 3, ord
         <div class="grid grid-cols-3 mt-10px">
           <CardItem v-for="item in greatDealData.list.slice(0, 3)" :key="item.id" :item="item" single @add="addShoppingList(item, true)" />
         </div>
+      </div>
+
+      <!-- 列表标签 -->
+      <div class="mt-5 flex">
+        <div v-for="(item, index) in tagList" :key="item.id" class="relative flex-1 flex-shrink-0 items-center text-center" @click="tagIndex = item.id">
+          <div class="text-4 line-height-5" :class="[tagIndex === item.id ? 'color-#40AE36' : 'color-#333']">
+            {{ item.title }}
+          </div>
+          <div>
+            <span class="py-2px text-3 line-height-4" :class="[tagIndex === item.id ? 'rounded-full bg-primary px-6px color-white' : 'color-#999 ']">
+              {{ item.desc }}
+            </span>
+          </div>
+          <div v-if="index !== tagList.length - 1" class="absolute bottom-0 right-0 top-0 m-auto h-18px w-1px bg-#ececec" />
+        </div>
+      </div>
+      <!-- 列表 -->
+      <div class="mt-4">
+        <Card :list="list" />
       </div>
     </div>
   </div>

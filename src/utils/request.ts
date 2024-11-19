@@ -74,8 +74,11 @@ class Request {
     // eslint-disable-next-line no-console
     console.log('destroy', this.queueUrl)
     this.cancelTokenList = this.cancelTokenList.filter(cancel => url !== cancel.url)
-    if (!this.queueUrl)
-      this.hideLoading()
+    // 防止闪烁 loading
+    setTimeout(() => {
+      if (!this.queueUrl)
+        this.hideLoading()
+    }, 100)
   }
 
   private interceptors(options: InterceptorsState) {

@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { findCommonRecommendList } from '~/api/common'
 
-const { list = [] } = await findCommonRecommendList()
+const { list = [] } = await findCommonRecommendList({
+  pageNum: 1,
+  pageSize: 10,
+  order: 'asc',
+})
 const cardList = ref(list)
 </script>
 
