@@ -7,9 +7,9 @@ const props = defineProps<{
   hideAdd?: boolean
 }>()
 
-const emits = defineEmits<{
-  add: [v: API.CommonRecommendListItem]
-}>()
+// const emits = defineEmits<{
+//   add: [v: API.CommonRecommendListItem]
+// }>()
 </script>
 
 <template>
@@ -22,7 +22,8 @@ const emits = defineEmits<{
       animation-effect="animate__jackInTheBox"
     >
       <template #default="{ item }">
-        <RouterLink class="block rounded-2 bg-white p-3" :to="`/detail/${item.id}`">
+        <CardItem v-bind="$attrs" :item="item" />
+        <!-- <RouterLink class="block rounded-2 bg-white p-3" :to="`/detail/${item.id}`">
           <van-image :src="item.cover" class="h-auto w-full" lazy-load />
           <p class="line-clamp-2 mt-1 text-[14] line-height-[18px]">
             {{ item.title }}
@@ -41,7 +42,7 @@ const emits = defineEmits<{
               <SvgIcon icon-class="add-shopping" size="20" @click.stop.prevent="emits('add', item)" />
             </div>
           </div>
-        </RouterLink>
+        </RouterLink> -->
       </template>
     </Waterfall>
   </div>

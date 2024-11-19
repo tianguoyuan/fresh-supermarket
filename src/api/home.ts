@@ -14,3 +14,13 @@ export function findHomeBanner(): Promise<API.HomeBannerRes> {
 export function findHomeFoodKindBanner(): Promise<API.HomeFoodKindBannerRes> {
   return http.request({ url: '/home/foodKindBanner', method: 'GET' })
 }
+
+/** 首页-商品标签 */
+export function findHomeTagList(): Promise<API.FindHomeTagListRes> {
+  return http.request({ url: '/home/tagList', method: 'GET' })
+}
+
+/** 首页-超划算列表 */
+export function findHomeGreatDealList(params: API.CommonBaseListParams): Promise<API.FindHomeGreatDealListRes> {
+  return http.request({ url: '/home/greatDealList', method: 'GET', params })
+}

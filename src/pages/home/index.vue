@@ -1,6 +1,10 @@
 <script setup lang="ts" name="/home/">
 import { storeToRefs } from 'pinia'
-import { findHomeBanner, findHomeFoodKindBanner, findSearchDefaultMsg } from '~/api/home'
+import { findHomeBanner, findHomeFoodKindBanner, findHomeGreatDealList, findSearchDefaultMsg } from '~/api/home'
+
+// 购物车store
+const shoppingStore = useShoppingStore()
+const { addShoppingList } = shoppingStore
 
 // 定位
 const appStore = useAppStore()
@@ -17,6 +21,9 @@ const bannerList = ref(banner)
 // 食品分类
 const { foodKindBanner = [] } = await findHomeFoodKindBanner()
 const foodKindList = ref(foodKindBanner)
+
+// 超划算列表
+const greatDealData = await findHomeGreatDealList({ pageNum: 1, pageSize: 3, order: 'asc' })
 </script>
 
 <template>
@@ -74,6 +81,22 @@ const foodKindList = ref(foodKindBanner)
               {{ item.name }}
             </p>
           </div>
+        </div>
+      </div>
+
+      <!-- 超划算 -->
+      <div class="mt-3 rounded-2 bg-white p-3 pb-0">
+        <div class="flex justify-between">
+          <div class="flex items-end">
+            <span class="text-4">{{ greatDealData.title }}</span>
+            <span class="ml-1 rounded-2px bg-#EC9F09 px-2px py-2px text-9px color-white">{{ greatDealData.desc }}</span>
+          </div>
+          <div class="text-3 color-primary">
+            查看全部
+          </div>
+        </div>
+        <div class="grid grid-cols-3 mt-10px">
+          <CardItem v-for="item in greatDealData.list.slice(0, 3)" :key="item.id" :item="item" single @add="addShoppingList(item, true)" />
         </div>
       </div>
     </div>

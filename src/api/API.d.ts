@@ -1,4 +1,10 @@
 declare namespace API {
+  interface CommonBaseListParams {
+    pageNum: number
+    pageSize: number
+    order: 'asc' | 'desc'
+  }
+
   /** 用户-获取验证码 */
   interface UserGetPhoneCode {
     phone: string
@@ -70,6 +76,19 @@ declare namespace API {
   }
   interface CommonRecommendListRes {
     total: string
+    list: CommonRecommendListItem[]
+  }
+
+  interface FindHomeTagListRes {
+    tagList: {
+      id: string
+      title: string
+      desc: string
+    }[]
+  }
+  interface FindHomeGreatDealListRes {
+    title: string
+    desc: string
     list: CommonRecommendListItem[]
   }
 }
