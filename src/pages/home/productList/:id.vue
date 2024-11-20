@@ -19,5 +19,5 @@ const data = await findCommonRecommendListFindOne(id)
 
 <route lang="yaml">
   meta:
-    title: 商品详情
+    title: 商品列表
 </route>
