@@ -128,7 +128,7 @@ watch(tagIndex, async (v) => {
       </div>
       <!-- 列表 -->
       <div class="mt-4">
-        <Card :list="list" />
+        <Card :list="list" @add="v => addShoppingList(v, true)" />
       </div>
     </div>
   </div>
