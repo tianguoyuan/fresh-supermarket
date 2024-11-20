@@ -9,7 +9,7 @@ const data = await findCommonRecommendListFindOne(id)
 
 <template>
   <div>
-    {{ id }} -- {{ data.id }}
+    商品列表{{ id }} -- {{ data.id }}
   </div>
 </template>
 

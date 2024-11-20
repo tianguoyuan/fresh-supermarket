@@ -87,6 +87,7 @@ declare namespace API {
     }[]
   }
   interface FindHomeGreatDealListRes {
+    id: string
     title: string
     desc: string
     list: CommonRecommendListItem[]

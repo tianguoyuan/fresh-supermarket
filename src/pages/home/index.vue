@@ -127,15 +127,15 @@ async function listLoad(initFlag?: boolean) {
         </div>
 
         <!-- 超划算 -->
-        <div class="mt-3 rounded-2 bg-white p-3 pb-0">
-          <div class="flex justify-between">
+        <div class="mt-3 rounded-2 bg-white py-3 pb-0">
+          <div class="flex justify-between px-3">
             <div class="flex items-end">
               <span class="text-4">{{ greatDealData.title }}</span>
               <span class="ml-1 rounded-2px bg-#EC9F09 px-2px py-2px text-9px color-white">{{ greatDealData.desc }}</span>
             </div>
-            <div class="text-3 color-primary">
+            <RouterLink class="text-3 color-primary" :to="`/home/productList/${greatDealData.id}`">
               查看全部
-            </div>
+            </RouterLink>
           </div>
           <div class="grid grid-cols-3 mt-10px">
             <CardItem v-for="item in greatDealData.list.slice(0, 3)" :key="item.id" :item="item" single @add="addShoppingList(item, true)" />
