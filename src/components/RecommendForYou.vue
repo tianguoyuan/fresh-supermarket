@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { findCommonRecommendList } from '~/api/common'
 
-const { list = [] } = await findCommonRecommendList({
-  pageNum: 1,
-  pageSize: 10,
-  order: 'asc',
+const cardList = ref<API.CommonRecommendListRes['list']>([])
+
+async function init() {
+  const { list = [] } = await findCommonRecommendList({
+    pageNum: 1,
+    pageSize: 10,
+    order: 'asc',
+  })
+  cardList.value = list
+}
+
+init()
+
+defineExpose({
+  init,
 })
-const cardList = ref(list)
 </script>
 
 <template>
@@ -19,7 +29,7 @@ const cardList = ref(list)
       <SvgIcon icon-class="recommend-r" size="22" />
     </div>
 
-    <div class="mt-3">
+    <div class="m-3">
       <Card :list="cardList" v-bind="$attrs" />
     </div>
   </div>

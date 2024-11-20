@@ -27,5 +27,5 @@ export function findHomeGreatDealList(params: API.CommonBaseListParams): Promise
 
 /** 首页-列表 */
 export function findHomeList(params: API.FindHomeList): Promise<API.FindHomeListRes> {
-  return http.request({ url: '/home/greatDealList', method: 'GET', params })
+  return http.request({ url: '/home/list', method: 'GET', params })
 }

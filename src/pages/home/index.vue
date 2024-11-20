@@ -29,13 +29,41 @@ const greatDealData = await findHomeGreatDealList({ pageNum: 1, pageSize: 3, ord
 const { tagList } = await findHomeTagList()
 const tagIndex = ref<string>(tagList[0]?.id)
 const list = ref<API.FindHomeListRes['list']>([])
+const listLoading = ref(false)
+const listFinished = ref(false)
+const listMoreNumMax = ref(5)
+const refreshing = ref(false)
 
-watch(tagIndex, async (v) => {
-  const homeListResult = await findHomeList({ pageNum: 1, pageSize: 10, order: 'asc', tagId: v })
-  list.value = homeListResult.list
-}, {
-  immediate: true,
+const initPageParams: API.CommonBaseListParams = {
+  pageNum: 1,
+  pageSize: 10,
+  order: 'asc',
+}
+const pageParams = ref<API.CommonBaseListParams>({
+  ...initPageParams,
 })
+
+watch(tagIndex, () => listLoad(true))
+
+async function listLoad(initFlag?: boolean) {
+  if (initFlag) {
+    pageParams.value = { ...initPageParams }
+  }
+  else {
+    pageParams.value.pageNum += 1
+  }
+  if (pageParams.value.pageNum === listMoreNumMax.value) {
+    listFinished.value = true
+  }
+  listLoading.value = true
+  const homeListResult = await findHomeList({ ...pageParams.value, tagId: tagIndex.value })
+  list.value = initFlag ? homeListResult.list : list.value.concat(homeListResult.list)
+  await nextTick()
+  refreshing.value = false
+  setTimeout(() => {
+    listLoading.value = false
+  }, 3000) // 列表动画导致触底加载
+}
 </script>
 
 <template>
@@ -53,84 +81,94 @@ watch(tagIndex, async (v) => {
         <SvgIcon icon-class="message" size="24" />
       </template>
     </van-nav-bar>
-
-    <div class="px-3">
-      <!-- 搜索框 -->
-      <RouterLink to="/home/search" class="block">
-        <van-search
-          readonly
-          clearable
-          :placeholder="searchPlaceholder"
-        />
-      </RouterLink>
-
-      <!-- banner -->
-      <van-swipe class="mt-3 h-[120px]" :autoplay="3000" indicator-color="white">
-        <van-swipe-item v-for="item in bannerList" :key="item.id">
-          <van-image
-            :src="item.cover"
-            height="100%"
-            width="100%"
-            lazy-load
+    <van-pull-refresh v-model="refreshing" @refresh="listLoad(true)">
+      <div class="px-3">
+        <!-- 搜索框 -->
+        <RouterLink to="/home/search" class="block">
+          <van-search
+            readonly
+            clearable
+            :placeholder="searchPlaceholder"
           />
-        </van-swipe-item>
-      </van-swipe>
+        </RouterLink>
 
-      <!-- 食品分类 -->
-      <div class="overflow-x-scroll">
-        <div class="mt-5 flex">
-          <div v-for="item in foodKindList" :key="item.id" class="w-22% flex shrink-0 flex-col overflow-hidden px-1">
-            <div class="flex justify-center">
-              <van-image
-                :src="item.cover"
-                height="54px"
-                width="54px"
-                lazy-load
-                class="m-auto overflow-hidden rounded-full"
-              />
+        <!-- banner -->
+        <van-swipe class="mt-3 h-[120px]" :autoplay="3000" indicator-color="white">
+          <van-swipe-item v-for="item in bannerList" :key="item.id">
+            <van-image
+              :src="item.cover"
+              height="100%"
+              width="100%"
+              lazy-load
+            />
+          </van-swipe-item>
+        </van-swipe>
+
+        <!-- 食品分类 -->
+        <div class="overflow-x-scroll">
+          <div class="mt-5 flex">
+            <div v-for="item in foodKindList" :key="item.id" class="w-22% flex shrink-0 flex-col overflow-hidden px-1">
+              <div class="flex justify-center">
+                <van-image
+                  :src="item.cover"
+                  height="54px"
+                  width="54px"
+                  lazy-load
+                  class="m-auto overflow-hidden rounded-full"
+                />
+              </div>
+              <div class="pt-2 text-center text-3 color-[#666]">
+                <p class="line-clamp-1">
+                  {{ item.name }}
+                </p>
+              </div>
             </div>
-            <p class="text-truncate pt-2 text-center text-3 color-[#666]">
-              {{ item.name }}
-            </p>
           </div>
         </div>
-      </div>
 
-      <!-- 超划算 -->
-      <div class="mt-3 rounded-2 bg-white p-3 pb-0">
-        <div class="flex justify-between">
-          <div class="flex items-end">
-            <span class="text-4">{{ greatDealData.title }}</span>
-            <span class="ml-1 rounded-2px bg-#EC9F09 px-2px py-2px text-9px color-white">{{ greatDealData.desc }}</span>
+        <!-- 超划算 -->
+        <div class="mt-3 rounded-2 bg-white p-3 pb-0">
+          <div class="flex justify-between">
+            <div class="flex items-end">
+              <span class="text-4">{{ greatDealData.title }}</span>
+              <span class="ml-1 rounded-2px bg-#EC9F09 px-2px py-2px text-9px color-white">{{ greatDealData.desc }}</span>
+            </div>
+            <div class="text-3 color-primary">
+              查看全部
+            </div>
           </div>
-          <div class="text-3 color-primary">
-            查看全部
+          <div class="grid grid-cols-3 mt-10px">
+            <CardItem v-for="item in greatDealData.list.slice(0, 3)" :key="item.id" :item="item" single @add="addShoppingList(item, true)" />
           </div>
         </div>
-        <div class="grid grid-cols-3 mt-10px">
-          <CardItem v-for="item in greatDealData.list.slice(0, 3)" :key="item.id" :item="item" single @add="addShoppingList(item, true)" />
-        </div>
-      </div>
 
-      <!-- 列表标签 -->
-      <div class="mt-5 flex">
-        <div v-for="(item, index) in tagList" :key="item.id" class="relative flex-1 flex-shrink-0 items-center text-center" @click="tagIndex = item.id">
-          <div class="text-4 line-height-5" :class="[tagIndex === item.id ? 'color-#40AE36' : 'color-#333']">
-            {{ item.title }}
+        <!-- 列表标签 -->
+        <div class="mt-5 flex">
+          <div v-for="(item, index) in tagList" :key="item.id" class="relative flex-1 flex-shrink-0 items-center text-center" @click="tagIndex = item.id">
+            <div class="text-4 line-height-5" :class="[tagIndex === item.id ? 'color-#40AE36' : 'color-#333']">
+              {{ item.title }}
+            </div>
+            <div>
+              <span class="text-3 line-height-4 transition-all" :class="[tagIndex === item.id ? 'rounded-full bg-primary px-6px color-white' : 'color-#999 ']">
+                {{ item.desc }}
+              </span>
+            </div>
+            <div v-if="index !== tagList.length - 1" class="absolute bottom-0 right-0 top-0 m-auto h-18px w-1px bg-#ececec" />
           </div>
-          <div>
-            <span class="py-2px text-3 line-height-4" :class="[tagIndex === item.id ? 'rounded-full bg-primary px-6px color-white' : 'color-#999 ']">
-              {{ item.desc }}
-            </span>
-          </div>
-          <div v-if="index !== tagList.length - 1" class="absolute bottom-0 right-0 top-0 m-auto h-18px w-1px bg-#ececec" />
+        </div>
+        <!-- 列表 -->
+        <div class="mt-4">
+          <van-list
+            v-model:loading="listLoading"
+            finished-text="没有更多了"
+            :finished="listFinished"
+            @load="listLoad()"
+          >
+            <Card :list="list" @add="v => addShoppingList(v, true)" />
+          </van-list>
         </div>
       </div>
-      <!-- 列表 -->
-      <div class="mt-4">
-        <Card :list="list" @add="v => addShoppingList(v, true)" />
-      </div>
-    </div>
+    </van-pull-refresh>
   </div>
 </template>
 
