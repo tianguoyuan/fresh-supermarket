@@ -52,9 +52,7 @@ async function listLoad(initFlag?: boolean) {
   else {
     pageParams.value.pageNum += 1
   }
-  if (pageParams.value.pageNum === listMoreNumMax.value) {
-    listFinished.value = true
-  }
+  listFinished.value = pageParams.value.pageNum === listMoreNumMax.value
   listLoading.value = true
   const homeListResult = await findHomeList({ ...pageParams.value, tagId: tagIndex.value })
   list.value = initFlag ? homeListResult.list : list.value.concat(homeListResult.list)
