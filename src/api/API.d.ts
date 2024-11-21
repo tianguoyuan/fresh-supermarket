@@ -47,6 +47,14 @@ declare namespace API {
   interface SearchDefaultMsgRes {
     searchDefault: string
   }
+  interface SearchHotTagItem {
+    id: string
+    name: string
+  }
+  interface SearchHotTagRes {
+    total: number
+    list: SearchHotTagItem[]
+  }
   /** 首页 - banner */
   interface HomeBannerRes {
     banner: {
