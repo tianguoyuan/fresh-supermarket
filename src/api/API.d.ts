@@ -108,4 +108,11 @@ declare namespace API {
     total: number
     list: CommonRecommendListItem[]
   }
+
+  interface KindListRes {
+    module: {
+      moduleTitle: string
+      list: CommonRecommendListItem[]
+    }[]
+  }
 }

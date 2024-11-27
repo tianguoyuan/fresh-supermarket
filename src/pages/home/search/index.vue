@@ -36,6 +36,7 @@ function search(val?: string) {
           v-model="searchMsg"
           class="search-box h-[46px]"
           :placeholder="placeholderSearch"
+          @search="search"
         />
       </template>
 

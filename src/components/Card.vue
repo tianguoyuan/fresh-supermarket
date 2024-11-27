@@ -5,6 +5,7 @@ import 'vue-waterfall-plugin-next/dist/style.css'
 const props = defineProps<{
   list: API.CommonRecommendListRes['list']
   hideAdd?: boolean
+  hideAnimation?: boolean
 }>()
 
 // const emits = defineEmits<{
@@ -20,6 +21,7 @@ const props = defineProps<{
     :has-around-gutter="false"
     animation-effect="animate__jackInTheBox"
     background-color="transpant"
+    :animation-cancel="hideAnimation"
   >
     <template #default="{ item }">
       <CardItem v-bind="$attrs" :item="item" />

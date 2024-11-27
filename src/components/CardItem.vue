@@ -20,7 +20,7 @@ const emits = defineEmits<{
       <span v-if="props.item.isOneDay" class="ml-1 border px-[2px] text-[9px] color-primary border-color-primary">24H发货</span>
     </div>
     <div class="mt-[10px] flex items-center justify-between">
-      <div>
+      <div class="whitespace-nowrap">
         <span class="text-[10px] color-#F55726">￥</span>
         <span class="text-4 color-#F55726">{{ props.item.price }}</span>
         <span v-if="!props.single" class="ml-2px text-3 color-#999">/箱</span>
