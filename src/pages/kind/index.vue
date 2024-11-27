@@ -19,6 +19,12 @@ function onChangeListIndex(key: string) {
   const index = module.findIndex(v => v.moduleTitle === key)
   sidebarActive.value = index
 }
+
+// 恢复上次看到 选项卡位置
+onActivated(async () => {
+  await nextTick()
+  indexBarRef.value?.scrollTo(module[sidebarActive.value].moduleTitle)
+})
 </script>
 
 <template>

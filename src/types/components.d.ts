@@ -15,7 +15,6 @@ declare module 'vue' {
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
     TheFooter: typeof import('./../components/TheFooter.vue')['default']
     VanBackTop: typeof import('vant/es')['BackTop']
-    VanCell: typeof import('vant/es')['Cell']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
