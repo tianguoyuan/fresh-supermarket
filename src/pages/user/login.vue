@@ -1,7 +1,6 @@
 <script setup lang="ts" name="/user/login">
 import type { FieldRule, FormInstance } from 'vant'
 import { userGetPhoneCode, userLogin } from '~/api/user'
-import { qq, weixin } from '~/assets/images'
 import { parseRedirectPath, randomNum } from '~/utils'
 
 const { query } = useRoute()
@@ -108,8 +107,8 @@ async function submit() {
         其他登录方式
       </p>
       <div class="mt-5 flex justify-evenly px-5">
-        <img :src="weixin" alt="" class="w-13">
-        <img :src="qq" alt="" class="w-13">
+        <SvgIcon icon-class="wechat" size="53" color="#00c785" />
+        <SvgIcon icon-class="qq" size="53" color="#23a0f0" />
       </div>
     </div>
   </div>

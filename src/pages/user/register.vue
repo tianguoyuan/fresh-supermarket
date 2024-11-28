@@ -64,25 +64,27 @@ async function submit() {
       <div class="mt-10 text-6">
         手机号码登录
       </div>
-      <div class="mt-10">
-        <van-form ref="formRef">
-          <van-field
-            v-model="username" label="" placeholder="请输入用户名" :border="false" clearable
-            :rules="rulesFn('请输入用户名')"
-          />
-          <van-field
-            v-model="phone" label="" placeholder="请输入手机号码" :border="false" clearable
-            :rules="rulesFn('请输入手机号码')"
-          />
-          <van-field
-            v-model="code" label="" placeholder="请输入手机验证码" :border="false" clearable :maxlength="6"
-            :rules="rulesFn('请输入手机验证码')"
-          >
-            <template #right-icon>
-              <span :class="[isClickGetCode ? 'color-[#0B1526]' : 'text-[#ccc8c8]']" @click="getCode">获取验证码 {{ timeCounter > 0 ? timeCounter : '' }}</span>
-            </template>
-          </van-field>
-        </van-form>
+      <div class="mt-10 overflow-hidden rounded-3">
+        <div class="bg-white px-3">
+          <van-form ref="formRef">
+            <van-field
+              v-model="username" label="" placeholder="请输入用户名" :border="false" clearable
+              :rules="rulesFn('请输入用户名')"
+            />
+            <van-field
+              v-model="phone" label="" placeholder="请输入手机号码" :border="false" clearable
+              :rules="rulesFn('请输入手机号码')"
+            />
+            <van-field
+              v-model="code" label="" placeholder="请输入手机验证码" :border="false" clearable :maxlength="6"
+              :rules="rulesFn('请输入手机验证码')"
+            >
+              <template #right-icon>
+                <span :class="[isClickGetCode ? 'color-[#0B1526]' : 'text-[#ccc8c8]']" @click="getCode">获取验证码 {{ timeCounter > 0 ? timeCounter : '' }}</span>
+              </template>
+            </van-field>
+          </van-form>
+        </div>
         <div class="mt-6">
           <div class="h-10 rounded-full text-center text-4 color-white line-height-10 bg-primary" @click="submit">
             注册
@@ -99,9 +101,13 @@ async function submit() {
 
 <style scoped lang="scss">
 :deep(.van-cell.van-field) {
-  padding-left: 0;
-  padding-right: 0;
+  //padding-left: 0;
+  //padding-right: 0;
   border-bottom: 1px solid #ebedf0;
+
+  &:last-child {
+    border-bottom: 0px;
+  }
 }
 </style>
 
