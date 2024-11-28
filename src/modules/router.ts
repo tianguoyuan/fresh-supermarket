@@ -19,7 +19,6 @@ const routes = setupLayouts(generatedRoutes)
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
-  // extendRoutes: routes => setupLayouts(routes), //老版本写法
 })
 
 export function setupRouter(app: App) {

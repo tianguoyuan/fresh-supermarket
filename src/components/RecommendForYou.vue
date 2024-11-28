@@ -30,7 +30,7 @@ defineExpose({
     </div>
 
     <div class="m-3">
-      <Card :list="cardList" v-bind="$attrs" />
+      <CardWaterfall :list="cardList" v-bind="$attrs" />
     </div>
   </div>
 </template>

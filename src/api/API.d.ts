@@ -3,6 +3,9 @@ declare namespace API {
     pageNum: number
     pageSize: number
     order: 'asc' | 'desc'
+    title?: string
+    priceOrder?: 'asc' | 'desc' | ''
+    saleOrder?: 'asc' | 'desc' | ''
   }
 
   /** 用户-获取验证码 */
@@ -77,6 +80,7 @@ declare namespace API {
     isBargainPrice: boolean
     isOneDay: boolean
     oldPrice: string
+    desc: string
 
     price: string
     checked: boolean

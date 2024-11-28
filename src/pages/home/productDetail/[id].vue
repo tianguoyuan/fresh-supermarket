@@ -1,4 +1,4 @@
-<script setup lang="ts" name="/detail/:id">
+<script setup lang="ts" name="/home/productDetail/[id]">
 import { findCommonRecommendListFindOne } from '~/api/common'
 
 const route = useRoute()

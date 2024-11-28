@@ -1,4 +1,4 @@
-<script setup lang="ts" name="/search/">
+<script setup lang="ts" name="/home/search/">
 import { findSearchDefaultMsg } from '~/api/home'
 import HistorySearch from './components/HistorySearch.vue'
 import HotSearch from './components/HotSearch.vue'
@@ -11,7 +11,7 @@ const searchMsg = ref('')
 
 const result = (await findSearchDefaultMsg())
 const placeholderSearch = ref(result.searchDefault)
-function search(val?: string) {
+function search(val: string = searchMsg.value) {
   let copySearchMsg = ''
   if (val) {
     copySearchMsg = val

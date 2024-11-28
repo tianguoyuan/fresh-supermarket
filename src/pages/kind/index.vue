@@ -2,28 +2,38 @@
 import type { IndexBarInstance } from 'vant'
 import { kindList } from '~/api/kind'
 
+const refreshing = ref(false)
 const shoppingStore = useShoppingStore()
 const { addShoppingList } = shoppingStore
 
-const { module } = await kindList()
-const keys = module.map(v => v.moduleTitle)
-
-const sidebarList = ref(keys)
+const module = ref<API.KindListRes['module']>([])
+const sidebarList = ref<string[]>([])
 const sidebarActive = ref(0)
+
+init()
+async function init() {
+  const { module: moduleResult } = await kindList()
+  const keys = moduleResult.map(v => v.moduleTitle)
+  sidebarList.value = keys
+  module.value = moduleResult
+  refreshing.value = false
+}
 
 const indexBarRef = ref<null | IndexBarInstance>(null)
 function onChangeSidebarActive() {
-  indexBarRef.value?.scrollTo(module[sidebarActive.value].moduleTitle)
+  indexBarRef.value?.scrollTo(module.value[sidebarActive.value]?.moduleTitle)
 }
 function onChangeListIndex(key: string) {
-  const index = module.findIndex(v => v.moduleTitle === key)
+  const index = module.value.findIndex(v => v.moduleTitle === key)
   sidebarActive.value = index
 }
 
 // 恢复上次看到 选项卡位置
 onActivated(async () => {
   await nextTick()
-  indexBarRef.value?.scrollTo(module[sidebarActive.value].moduleTitle)
+  if (module.value[sidebarActive.value]) {
+    indexBarRef.value?.scrollTo(module.value[sidebarActive.value].moduleTitle)
+  }
 })
 </script>
 
@@ -38,14 +48,16 @@ onActivated(async () => {
         </van-sidebar>
       </div>
       <div id="kindListRightContainer" class="flex-1 overflow-auto p-3">
-        <van-index-bar ref="indexBarRef" :index-list="keys" :sticky="false" @change="onChangeListIndex">
-          <template v-for="item in module" :key="item.moduleTitle">
-            <van-index-anchor :index="item.moduleTitle">
-              {{ item.moduleTitle }}
-            </van-index-anchor>
-            <Card :list="item.list" hide-animation @add="v => addShoppingList(v, true)" />
-          </template>
-        </van-index-bar>
+        <van-pull-refresh v-model="refreshing" class="flex flex-1 flex-col flex-wrap" @refresh="init()">
+          <van-index-bar ref="indexBarRef" :index-list="sidebarList" :sticky="false" @change="onChangeListIndex">
+            <template v-for="item in module" :key="item.moduleTitle">
+              <van-index-anchor :index="item.moduleTitle">
+                <span class="text-3 color-#999">{{ item.moduleTitle }}</span>
+              </van-index-anchor>
+              <CardList :list="item.list" @add="v => addShoppingList(v, true)" />
+            </template>
+          </van-index-bar>
+        </van-pull-refresh>
       </div>
     </div>
 

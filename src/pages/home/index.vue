@@ -105,7 +105,7 @@ async function listLoad(initFlag?: boolean) {
         <!-- 食品分类 -->
         <div class="overflow-x-scroll">
           <div class="mt-5 flex">
-            <div v-for="item in foodKindList" :key="item.id" class="w-22% flex shrink-0 flex-col overflow-hidden px-1">
+            <RouterLink v-for="item in foodKindList" :key="item.id" class="w-22% flex shrink-0 flex-col overflow-hidden px-1" :to="`/home/search/${item.name}?back=${encodeURIComponent('/home')}`">
               <div class="flex justify-center">
                 <van-image
                   :src="item.cover"
@@ -120,7 +120,7 @@ async function listLoad(initFlag?: boolean) {
                   {{ item.name }}
                 </p>
               </div>
-            </div>
+            </RouterLink>
           </div>
         </div>
 
@@ -131,7 +131,7 @@ async function listLoad(initFlag?: boolean) {
               <span class="text-4">{{ greatDealData.title }}</span>
               <span class="ml-1 rounded-2px bg-#EC9F09 px-2px py-2px text-9px color-white">{{ greatDealData.desc }}</span>
             </div>
-            <RouterLink class="text-3 color-primary" :to="`/home/productList/${greatDealData.id}`">
+            <RouterLink class="text-3 color-primary" :to="`/home/search/${greatDealData.title}?back=${encodeURIComponent('/home')}`">
               查看全部
             </RouterLink>
           </div>
@@ -162,7 +162,7 @@ async function listLoad(initFlag?: boolean) {
             :finished="listFinished"
             @load="listLoad()"
           >
-            <Card :list="list" @add="v => addShoppingList(v, true)" />
+            <CardWaterfall :list="list" @add="v => addShoppingList(v, true)" />
           </van-list>
         </div>
       </div>

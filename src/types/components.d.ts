@@ -7,8 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Card: typeof import('./../components/Card.vue')['default']
     CardItem: typeof import('./../components/CardItem.vue')['default']
+    CardList: typeof import('./../components/CardList.vue')['default']
+    CardListItem: typeof import('./../components/CardListItem.vue')['default']
+    CardWaterfall: typeof import('./../components/CardWaterfall.vue')['default']
     RecommendForYou: typeof import('./../components/RecommendForYou.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -28,6 +30,7 @@ declare module 'vue' {
     VanSearch: typeof import('vant/es')['Search']
     VanSidebar: typeof import('vant/es')['Sidebar']
     VanSidebarItem: typeof import('vant/es')['SidebarItem']
+    VanSticky: typeof import('vant/es')['Sticky']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanTabbar: typeof import('vant/es')['Tabbar']

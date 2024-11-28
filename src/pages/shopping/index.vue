@@ -2,6 +2,8 @@
 import { storeToRefs } from 'pinia'
 import ShoppingCard from './components/ShoppingCard.vue'
 
+const route = useRoute()
+
 const shoppingStore = useShoppingStore()
 const { shoppingList, priceSum, checkedList, isAllChecked } = storeToRefs(shoppingStore)
 const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingStore
@@ -10,6 +12,11 @@ const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingSto
 <template>
   <div>
     <van-nav-bar placeholder fixed :clickable="false" title="购物车">
+      <template v-if="route.query.back" #left>
+        <RouterLink :to="decodeURIComponent(route.query.back as string)">
+          <van-icon name="arrow-left" color="#0B1526" />
+        </RouterLink>
+      </template>
       <template #right>
         <span :class="checkedList.length ? 'color-[#666]' : 'color-[#999]'" @click="checkedList.length ? removeCheckedList(true) : undefined">删除</span>
       </template>

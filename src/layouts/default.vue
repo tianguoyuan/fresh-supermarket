@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import SvgIcon from '~/components/SvgIcon.vue'
 import { ColorEnums } from '~/enums/ColorEnum'
 
@@ -35,6 +36,12 @@ const tabbarList: ITabbarList[] = [
 const route = useRoute()
 const router = useRouter()
 
+// 页面全部回到顶部
+// watch(() => route.path, async () => {
+//   await nextTick()
+//   document.querySelector('#layoutDefaultContainer')?.scrollTo(0, 0)
+// })
+
 const activeIndex = computed(() => {
   return tabbarList.findIndex(v => v.url === route.path) || 0
 })
@@ -48,6 +55,9 @@ console.log('routeName', cacheViews.value, router.getRoutes())
 
 const activeColor = ColorEnums.primary
 const inactiveColor = '#7d7e80'
+
+const shoppingStore = useShoppingStore()
+const { shoppingList } = storeToRefs(shoppingStore)
 </script>
 
 <template>
@@ -74,13 +84,15 @@ const inactiveColor = '#7d7e80'
     <!-- 首页 底部选项卡 -->
     <div class="tabbar">
       <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false" :active-color="activeColor" :inactive-color="inactiveColor" border>
-        <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" class="transition-all" @click="toPath(item.url)">
+        <VanTabbarItem v-for="(item) in tabbarList" :key="item.url" class="relative transition-all" @click="toPath(item.url)">
           <template v-if="item.title">
             {{ item.title }}
           </template>
           <template #icon="props">
             <SvgIcon v-if="item.icon" :icon-class="item.icon" :color="props.active ? activeColor : inactiveColor" size="20" />
             <VanIcon v-if="item.vanIcon" :name="item.icon" size="50" :color="props.active ? activeColor : inactiveColor" />
+
+            <div v-if="item.url === '/shopping' && shoppingList.length" class="absolute right--2.5 top-0 h-2 w-2 rounded-full bg-red" />
           </template>
         </VanTabbarItem>
       </VanTabbar>
