@@ -37,10 +37,10 @@ const route = useRoute()
 const router = useRouter()
 
 // 页面全部回到顶部
-// watch(() => route.path, async () => {
-//   await nextTick()
-//   document.querySelector('#layoutDefaultContainer')?.scrollTo(0, 0)
-// })
+watch(() => route.path, async () => {
+  await nextTick()
+  document.querySelector('#layoutDefaultContainer')?.scrollTo(0, 0)
+})
 
 const activeIndex = computed(() => {
   return tabbarList.findIndex(v => v.url === route.path) || 0

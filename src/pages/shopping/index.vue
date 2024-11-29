@@ -29,9 +29,9 @@ const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingSto
         <p class="mt-1 text-xs color-[#999]">
           赶紧慰劳一下自己吧
         </p>
-        <div class="mt-3 border rounded-full px-6 py-2 color-primary border-color-primary">
+        <RouterLink to="/home" class="mt-3 border rounded-full px-6 py-2 color-primary border-color-primary">
           去逛逛
-        </div>
+        </RouterLink>
       </div>
     </div>
 
