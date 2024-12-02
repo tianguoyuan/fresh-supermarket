@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import { findHomeBanner, findHomeFoodKindBanner, findHomeGreatDealList, findHomeList, findHomeTagList, findSearchDefaultMsg } from '~/api/home'
 import { openSweep } from '~/utils'
 
+const route = useRoute()
 // 购物车store
 const shoppingStore = useShoppingStore()
 const { addShoppingList } = shoppingStore
@@ -97,12 +98,14 @@ async function listLoad(initFlag?: boolean) {
         <!-- banner -->
         <van-swipe class="mt-3 h-[120px]" :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="item in bannerList" :key="item.id">
-            <van-image
-              :src="item.cover"
-              height="100%"
-              width="100%"
-              lazy-load
-            />
+            <RouterLink :to="`/home/productDetail/${item.id}?back=${route.fullPath}`">
+              <van-image
+                :src="item.cover"
+                height="100%"
+                width="100%"
+                lazy-load
+              />
+            </RouterLink>
           </van-swipe-item>
         </van-swipe>
 
