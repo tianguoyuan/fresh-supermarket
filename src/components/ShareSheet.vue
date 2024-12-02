@@ -2,6 +2,7 @@
 import { useQRCode } from '@vueuse/integrations/useQRCode'
 import { showDialog, showToast } from 'vant'
 import { qqHref } from '~/enums/HrefEnum'
+import { copyText } from '~/utils'
 
 const props = withDefaults(defineProps<{
   color?: string
@@ -25,15 +26,12 @@ const options = [
     { name: '二维码', icon: 'qrcode' },
   ],
 ]
-const source = ref('Hello')
-const { copy } = useClipboard({ source })
 const qrcode = useQRCode(window.location.href)
 
 function onSelect({ icon }: { icon: string }) {
   const key = icon
   if (key === 'link') {
-    source.value = window.location.href
-    copy(source.value)
+    copyText(window.location.href)
     showToast({ message: '复制成功', type: 'success' })
   }
   else if (key === 'qrcode') {

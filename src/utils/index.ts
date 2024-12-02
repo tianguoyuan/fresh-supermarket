@@ -77,15 +77,28 @@ export function loadImage(img: string): Promise<void> {
   })
 }
 
+// 是否 PC浏览器
 export function isPC() {
   const userAgent = navigator.userAgent
   const isMobile = /Mobi|Android/i.test(userAgent) // 检查是否为移动设备
   return !isMobile // 如果不是移动设备，则认为是 PC
 }
 
+// 打开扫一扫
 export function openSweep() {
   const domInput = document.createElement('input')
   domInput.type = 'file'
-
   domInput.click()
+}
+
+// 复制文字
+export function copyText(content: string) {
+  const dom = document.createElement('input')
+  dom.value = content
+  dom.style.height = '0px'
+  dom.readOnly = true
+  document.body.appendChild(dom)
+  dom.select()
+  document.execCommand('copy')
+  document.body.removeChild(dom)
 }
