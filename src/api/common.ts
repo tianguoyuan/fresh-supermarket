@@ -6,6 +6,6 @@ export function findCommonRecommendList(params: API.CommonBaseListParams): Promi
 }
 
 /** 商品详情 */
-export function findCommonRecommendListFindOne(id: string): Promise<API.CommonRecommendListItem> {
+export function findCommonRecommendListFindOne(id: string): Promise<API.FindCommonRecommendListFindOneRes> {
   return http.request({ url: `/common/${id}/recommendListFindOne`, method: 'GET' })
 }

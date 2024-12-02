@@ -76,3 +76,16 @@ export function loadImage(img: string): Promise<void> {
     }
   })
 }
+
+export function isPC() {
+  const userAgent = navigator.userAgent
+  const isMobile = /Mobi|Android/i.test(userAgent) // 检查是否为移动设备
+  return !isMobile // 如果不是移动设备，则认为是 PC
+}
+
+export function openSweep() {
+  const domInput = document.createElement('input')
+  domInput.type = 'file'
+
+  domInput.click()
+}

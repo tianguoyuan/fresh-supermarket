@@ -39,7 +39,11 @@ onActivated(async () => {
 
 <template>
   <div class="flex flex-1 flex-col flex-wrap">
-    <van-nav-bar placeholder fixed title="分类" />
+    <van-nav-bar placeholder fixed title="分类">
+      <template #right>
+        <ShareSheet />
+      </template>
+    </van-nav-bar>
 
     <div class="flex flex-1 flex-shrink-0 flex-basis-none overflow-hidden">
       <div class="overflow-auto">

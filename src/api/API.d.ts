@@ -91,6 +91,11 @@ declare namespace API {
     list: CommonRecommendListItem[]
   }
 
+  interface FindCommonRecommendListFindOneRes extends CommonRecommendListItem {
+    coverList: string[]
+    tagList: string[]
+  }
+
   interface FindHomeTagListRes {
     tagList: {
       id: string

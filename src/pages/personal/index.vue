@@ -1,6 +1,7 @@
 <script setup lang="ts" name="/personal/">
 // import { showDialog } from 'vant'
 import { myServer1, myServer2, myServer3, myServer4, myServer5, order1, order2, order3, order4, order5 } from '~/assets/images'
+import { qqHref } from '~/enums/HrefEnum'
 import { phoneMask } from '~/utils'
 // import { clearAllStorage } from '~/utils/storage'
 import ListCard from './components/ListCard.vue'
@@ -67,7 +68,9 @@ const myServerList = [
 
         <div class="text-5">
           <van-icon name="setting-o" class="mr-2 color-white" />
-          <van-icon name="phone-o" class="color-white" />
+          <a :href="qqHref">
+            <van-icon name="phone-o" class="color-white" />
+          </a>
         </div>
       </div>
       <div class="mt-4 flex pb-26 color-white">

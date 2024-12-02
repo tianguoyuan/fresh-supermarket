@@ -1,6 +1,7 @@
 <script setup lang="ts" name="/home/">
 import { storeToRefs } from 'pinia'
 import { findHomeBanner, findHomeFoodKindBanner, findHomeGreatDealList, findHomeList, findHomeTagList, findSearchDefaultMsg } from '~/api/home'
+import { openSweep } from '~/utils'
 
 // 购物车store
 const shoppingStore = useShoppingStore()
@@ -69,14 +70,17 @@ async function listLoad(initFlag?: boolean) {
     <van-nav-bar placeholder fixed :clickable="false">
       <!-- 定位 -->
       <template #left>
-        <SvgIcon icon-class="position" size="24" />
-        <span class="px-1 color-white">{{ positionCity }}</span>
-        <SvgIcon icon-class="lowerTriangle" size="8" />
+        <RouterLink to="/home/location" class="flex items-center">
+          <SvgIcon icon-class="position" size="24" />
+          <span class="px-1 color-white">{{ positionCity }}</span>
+          <SvgIcon icon-class="lowerTriangle" size="8" />
+        </RouterLink>
       </template>
 
       <template #right>
-        <SvgIcon icon-class="sweep" size="24" class="mr-2" />
-        <SvgIcon icon-class="message" size="24" />
+        <SvgIcon icon-class="sweep" size="24" class="mr-2" @click="openSweep" />
+        <!-- <SvgIcon icon-class="message" size="24" /> -->
+        <ShareSheet color="#fff" />
       </template>
     </van-nav-bar>
     <van-pull-refresh v-model="refreshing" @refresh="listLoad(true)">
