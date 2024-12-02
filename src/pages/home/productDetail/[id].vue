@@ -14,7 +14,7 @@ function back() {
     router.replace(decodeURIComponent(route.query.back as string))
   }
   else {
-    router.back()
+    router.replace('/home')
   }
 }
 

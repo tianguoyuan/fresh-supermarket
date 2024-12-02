@@ -6,10 +6,11 @@ const props = defineProps<{
 const emits = defineEmits<{
   add: [v: API.CommonRecommendListItem]
 }>()
+const route = useRoute()
 </script>
 
 <template>
-  <RouterLink class="mt-3 block flex rounded-2 bg-white p-3 first:mt-0" :to="`/home/productDetail/${props.item.id}`">
+  <RouterLink class="mt-3 block flex rounded-2 bg-white p-3 first:mt-0" :to="`/home/productDetail/${props.item.id}?back=${route.fullPath}`">
     <div>
       <VanImage lazy-load :src="item.cover" class="h-110px w-110px" />
     </div>

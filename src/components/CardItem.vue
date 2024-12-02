@@ -7,10 +7,12 @@ const props = defineProps<{
 const emits = defineEmits<{
   add: [v: API.CommonRecommendListItem]
 }>()
+
+const route = useRoute()
 </script>
 
 <template>
-  <RouterLink class="block rounded-2 bg-white p-3" :to="`/home/productDetail/${props.item.id}`">
+  <RouterLink class="block rounded-2 bg-white p-3" :to="`/home/productDetail/${props.item.id}?back=${route.fullPath}`">
     <van-image :src="props.item.cover" class="h-auto w-full" lazy-load />
     <p class="mt-1 text-[14] line-height-[18px]" :class="[props.single ? 'color-#666 text-3 line-clamp-1' : 'line-clamp-2']">
       {{ props.item.title }}
