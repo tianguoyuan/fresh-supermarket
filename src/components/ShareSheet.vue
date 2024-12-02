@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useQRCode } from '@vueuse/integrations/useQRCode'
 import { showDialog, showToast } from 'vant'
-import { qqHref } from '~/enums/HrefEnum'
-import { copyText } from '~/utils'
+import { copyText, openQQHref } from '~/utils'
 
 const props = withDefaults(defineProps<{
   color?: string
@@ -38,9 +37,7 @@ function onSelect({ icon }: { icon: string }) {
     showDialog({ message: `<img src='${qrcode.value}'' />`, allowHtml: true })
   }
   else {
-    const domA = document.createElement('a')
-    domA.href = qqHref
-    domA.click()
+    openQQHref()
   }
 }
 </script>

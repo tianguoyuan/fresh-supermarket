@@ -1,7 +1,7 @@
 <script setup lang="ts" name="/home/productDetail/[id]">
 import { storeToRefs } from 'pinia'
 import { findCommonRecommendListFindOne } from '~/api/common'
-import { qqHref } from '~/enums/HrefEnum'
+import { openQQHref } from '~/utils'
 
 const route = useRoute()
 const shoppingStore = useShoppingStore()
@@ -149,13 +149,13 @@ const isCollect = ref(false)
             <SvgIcon :icon-class="isCollect ? 'collect-full' : 'collect'" />
             <span class="mt-1">收藏</span>
           </div>
-          <a
-            :href="qqHref"
+          <div
             class="ml-3 flex flex-col items-center"
+            @click="openQQHref"
           >
             <SvgIcon icon-class="customerService" />
             <span class="mt-1">客服</span>
-          </a>
+          </div>
         </div>
         <div class="m-3 flex flex-1 items-center justify-center rounded-full py-3 color-white bg-primary" @click="data && addShoppingList(data, true)">
           加入购物车

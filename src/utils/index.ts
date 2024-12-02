@@ -1,3 +1,6 @@
+import { showToast } from 'vant'
+import { qqHref } from '~/enums/HrefEnum'
+
 // 解析重定向redirectPath
 export function parseRedirectPath(path: string) {
   const isEncode = (v: string) => v.includes(encodeURIComponent('?'))
@@ -101,4 +104,20 @@ export function copyText(content: string) {
   dom.select()
   document.execCommand('copy')
   document.body.removeChild(dom)
+}
+
+// 是否微信浏览器
+export function isWeChatBrowser() {
+  const userAgent = navigator.userAgent
+  return /MicroMessenger/i.test(userAgent) // 检查用户代理中是否包含 "MicroMessenger"
+}
+
+// 打开客服
+export function openQQHref() {
+  if (isWeChatBrowser())
+    return showToast({ icon: 'none', message: '不支持微信内打开' })
+
+  const domA = document.createElement('a')
+  domA.href = qqHref
+  domA.click()
 }
