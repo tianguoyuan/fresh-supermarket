@@ -15,3 +15,13 @@ export function multiply(x: number, y: number) {
 export function divide(x: number, y: number) {
   return Number(math.format(math.divide(math.bignumber(x), math.bignumber(y))))
 }
+
+/** 补0 - str=1 - 01 */
+export function padStart(str: string, length = 2, placeholder = '0') {
+  return str.padStart(length, placeholder)
+}
+
+/** 补0 - str=1 - 10 */
+export function padEnd(str: string, length = 2, placeholder = '0') {
+  return str.padEnd(length, placeholder)
+}
