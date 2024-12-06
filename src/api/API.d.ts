@@ -124,4 +124,14 @@ declare namespace API {
       list: CommonRecommendListItem[]
     }[]
   }
+
+  interface PersonalIntegral {
+    userId: string
+  }
+  interface PersonalIntegralRes {
+    integralList: {
+      value: number
+      label: string
+    }[]
+  }
 }

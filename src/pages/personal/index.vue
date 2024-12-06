@@ -1,4 +1,6 @@
 <script setup lang="ts" name="/personal/">
+import { CountTo } from 'vue3-count-to'
+import { personalIntegral } from '~/api/personal'
 // import { showDialog } from 'vant'
 import { myServer1, myServer2, myServer3, myServer4, myServer5, order1, order2, order3, order4, order5 } from '~/assets/images'
 import { openQQHref, phoneMask } from '~/utils'
@@ -7,14 +9,6 @@ import ListCard from './components/ListCard.vue'
 
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
-
-// 优惠券列表
-const priceList = [
-  { num: 51, name: '余额(元)' },
-  { num: 51, name: '优惠券' },
-  { num: 51, name: '电子券' },
-  { num: 51, name: '积分' },
-]
 
 // 订单功能
 const orderList = [
@@ -33,6 +27,15 @@ const myServerList = [
   { img: myServer4, name: '服务中心' },
   { img: myServer5, name: '在线客服' },
 ]
+
+// 积分列表
+const priceList = ref<API.PersonalIntegralRes['integralList']>([])
+
+init()
+async function init() {
+  const { integralList = [] } = await personalIntegral({ userId: userInfo.value.id })
+  priceList.value = integralList
+}
 
 // function outLogin() {
 //   showDialog({
@@ -70,13 +73,15 @@ const myServerList = [
           <van-icon name="phone-o" class="color-white" @click="openQQHref()" />
         </div>
       </div>
-      <div class="mt-4 flex pb-26 color-white">
+
+      <!-- 我的积分 -->
+      <div class="mt-1 flex pb-26 color-white">
         <div v-for="(item, index) in priceList" :key="index" class="flex-1 text-center">
-          <p class="text-[18px] line-height-5">
-            {{ item.num }}
+          <p class="text-[18px] line-height-6">
+            <CountTo :start-val="0" :end-val="item.value" :duration="3000" />
           </p>
-          <p class="text-3">
-            {{ item.name }}
+          <p class="text-3 line-height-17px">
+            {{ item.label }}
           </p>
         </div>
       </div>
