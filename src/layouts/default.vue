@@ -38,8 +38,12 @@ const router = useRouter()
 
 // 页面全部回到顶部
 watch(() => route.path, async () => {
+  document.querySelector('#layoutDefaultContainer')?.scrollTo(10, 0)
+
   await nextTick()
-  document.querySelector('#layoutDefaultContainer')?.scrollTo(0, 0)
+  setTimeout(() => {
+    document.querySelector('#layoutDefaultContainer')?.scrollTo(0, 0)
+  }, 300)
 })
 
 const activeIndex = computed(() => {

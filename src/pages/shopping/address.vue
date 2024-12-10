@@ -137,6 +137,7 @@ function areaConfirm({ selectedOptions }: any) {
               readonly
               label="地区"
               placeholder="请选择所在地区"
+              :rules="[{ required: true, message: '请选择所在地区' }]"
               @click="showProvince = true"
             />
 
