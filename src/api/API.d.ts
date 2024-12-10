@@ -134,4 +134,26 @@ declare namespace API {
       label: string
     }[]
   }
+
+  interface ShoppingAddress {
+    userId: string
+  }
+  interface ShoppingAddressResItem {
+    id: string
+    username: string
+    phone: string
+    checked: boolean
+
+    province: string
+    city: string
+    county: string
+    suffix: string
+  }
+  interface ShoppingAddressRes {
+    addressList: ShoppingAddressResItem[]
+  }
+
+  interface ShoppingFindDefaultAddressRes {
+    defaultAddress: ShoppingAddressResItem
+  }
 }

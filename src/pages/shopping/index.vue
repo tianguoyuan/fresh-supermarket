@@ -53,10 +53,13 @@ const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingSto
         <span class="text-3">合计: </span>
         <span class="text-10px color-#F55726">￥</span>
         <span class="text-4 color-#F55726">{{ priceSum }}</span>
-        <span
+        <RouterLink
+          to="/shopping/settleAccount"
           class="ml-3 rounded-full px-6 py-2 color-white"
           :class="[checkedList.length ? 'bg-primary' : 'bg-#999']"
-        >去结算</span>
+        >
+          去结算
+        </RouterLink>
       </div>
     </div>
   </div>

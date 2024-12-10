@@ -31,6 +31,10 @@ html.dark {
   background: #121212;
 }
 
+.van-popup {
+  width: auto !important;
+}
+
 /* vant4的 Toast 和 Popup 样式冲突,会导致 Toast 变成白底 */
 .van-popup.van-toast {
   background: var(--van-toast-background) !important;
