@@ -1,5 +1,4 @@
 <script setup lang="ts" name="/">
-import { dashboardCover } from '~/assets/images'
 </script>
 
 <template>
@@ -15,7 +14,9 @@ import { dashboardCover } from '~/assets/images'
         现在开始
       </RouterLink>
     </div>
-    <img :src="dashboardCover" class="mt-20 w-full">
+    <div class="mt-20 block h-260px w-full overflow-hidden">
+      <SvgIcon icon-class="dashboardCover" size="100vw" />
+    </div>
   </div>
 </template>
 

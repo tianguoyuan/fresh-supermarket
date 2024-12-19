@@ -2,9 +2,6 @@
 export { default as emptyData } from './common/emptyData.png'
 export { default as noLogin } from './common/noLogin.png'
 
-// dashboard
-export { default as dashboardCover } from './dashboard/cover.png'
-
 // personal
 export { default as myServer1 } from './personal/myServer1.png'
 export { default as myServer2 } from './personal/myServer2.png'
