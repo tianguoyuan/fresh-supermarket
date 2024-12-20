@@ -24,5 +24,5 @@
 
 <route lang="yaml">
   meta:
-    title: dashboard
+    title: 欢迎来到
 </route>
