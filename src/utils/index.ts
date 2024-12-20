@@ -83,7 +83,8 @@ export function loadImage(img: string): Promise<void> {
 // 是否 PC浏览器
 export function isPC() {
   const userAgent = navigator.userAgent
-  const isMobile = /Mobi|Android/i.test(userAgent) // 检查是否为移动设备
+  const reg = /Mobi|Android/i
+  const isMobile = reg.test(userAgent) // 检查是否为移动设备
   return !isMobile // 如果不是移动设备，则认为是 PC
 }
 
