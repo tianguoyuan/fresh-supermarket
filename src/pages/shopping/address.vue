@@ -37,7 +37,9 @@ function checkedClick(v: API.ShoppingAddressResItem) {
   v.checked = !v.checked
 }
 function handleClick() {
-  router.replace('/shopping/settleAccount')
+  if (route.query.noHandleClick !== '1') {
+    router.replace('/shopping/settleAccount')
+  }
 }
 
 const anchors = ConfigEnum.floatingPanelAnchors

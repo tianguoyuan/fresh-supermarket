@@ -32,7 +32,7 @@ const myServerList = [
     iconClass: 'myServer1',
     name: '收货地址',
     func: () => {
-      router.push(`/shopping/address?back=${encodeURIComponent(route.fullPath)}`)
+      router.push(`/shopping/address?back=${encodeURIComponent(route.fullPath)}&noHandleClick=1`)
     },
   },
   { iconClass: 'myServer2', name: '足迹' },

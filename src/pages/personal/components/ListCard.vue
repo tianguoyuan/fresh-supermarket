@@ -1,13 +1,15 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   listData: {
-    img: string
+    img?: string
+    iconClass?: string
+    func?: () => void
     name: string
     active?: boolean
   }[]
   title: string
   rightTitle?: string
-  iconHeight: number
+  iconHeight?: number
 }>(), {
   iconHeight: 20,
 })
@@ -33,7 +35,7 @@ const emits = defineEmits<{
           <img class="h-full" :src="item.img" alt="">
         </div>
         <div v-else-if="item.iconClass">
-          <SvgIcon :icon-class="item.iconClass" :size="iconHeight" />
+          <SvgIcon :icon-class="item.iconClass" :size="`${iconHeight}`" />
         </div>
         <div class="line-clamp-1 mt-2 color-[#666]">
           {{ item.name }}
