@@ -1,4 +1,5 @@
 <script setup lang="ts" name="/home/">
+import { areaList } from '@vant/area-data'
 import { storeToRefs } from 'pinia'
 import { findHomeBanner, findHomeFoodKindBanner, findHomeGreatDealList, findHomeList, findHomeTagList, findSearchDefaultMsg } from '~/api/home'
 import { openSweep } from '~/utils'
@@ -11,6 +12,7 @@ const { addShoppingList } = shoppingStore
 // 定位
 const appStore = useAppStore()
 const { positionCity } = storeToRefs(appStore)
+const { changePositionCity } = appStore
 
 // 搜索
 const { searchDefault = '请输入搜索关键词' } = await findSearchDefaultMsg()
@@ -64,6 +66,15 @@ async function listLoad(initFlag?: boolean) {
     listLoading.value = false
   }, 3000) // 列表动画导致触底加载
 }
+
+// 展示选择地址
+const showProvince = ref(false)
+const addressCode = ref('')
+function areaConfirm({ selectedOptions }: any) {
+  showProvince.value = false
+  const cityText = (selectedOptions[0]?.text || '') + (selectedOptions[1]?.text || '') + (selectedOptions[2]?.text || '')
+  changePositionCity(cityText)
+}
 </script>
 
 <template>
@@ -71,11 +82,12 @@ async function listLoad(initFlag?: boolean) {
     <van-nav-bar placeholder fixed :clickable="false">
       <!-- 定位 -->
       <template #left>
-        <RouterLink to="/home/location" class="flex items-center">
+        <!-- <RouterLink to="/home/location" class="flex items-center"> -->
+        <div class="flex items-center" @click="showProvince = true">
           <SvgIcon icon-class="position" size="24" />
           <span class="px-1 color-white">{{ positionCity }}</span>
           <SvgIcon icon-class="lowerTriangle" size="8" />
-        </RouterLink>
+        </div>
       </template>
 
       <template #right>
@@ -174,6 +186,16 @@ async function listLoad(initFlag?: boolean) {
         </div>
       </div>
     </van-pull-refresh>
+
+    <!-- 省市区选择 -->
+    <van-popup v-model:show="showProvince" round position="bottom">
+      <van-area
+        v-model="addressCode"
+        title="省" :area-list="areaList"
+        @cancel="showProvince = false"
+        @confirm="areaConfirm"
+      />
+    </van-popup>
   </div>
 </template>
 
