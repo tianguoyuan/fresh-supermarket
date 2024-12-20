@@ -143,7 +143,7 @@ const isCollect = ref(false)
       </div>
 
       <div class="h-16" />
-      <div class="fixed bottom-0 left-0 right-0 flex items-center bg-white pl-3">
+      <div class="pb-ios fixed bottom-0 left-0 right-0 flex items-center bg-white pl-3">
         <div class="flex text-3">
           <div class="flex flex-col items-center" @click="isCollect = !isCollect">
             <SvgIcon :icon-class="isCollect ? 'collect-full' : 'collect'" />
