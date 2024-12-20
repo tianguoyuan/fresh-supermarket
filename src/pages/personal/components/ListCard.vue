@@ -29,8 +29,11 @@ const emits = defineEmits<{
 
     <div class="mt-5 flex">
       <div v-for="(item, index) in props.listData" :key="item.name" class="relative flex flex-1 flex-col items-center justify-center" @click="emits('onHandleClick', index)">
-        <div :style="{ height: `${iconHeight}px` }">
+        <div v-if="item.img" :style="{ height: `${iconHeight}px` }">
           <img class="h-full" :src="item.img" alt="">
+        </div>
+        <div v-else-if="item.iconClass">
+          <SvgIcon :icon-class="item.iconClass" :size="iconHeight" />
         </div>
         <div class="line-clamp-1 mt-2 color-[#666]">
           {{ item.name }}

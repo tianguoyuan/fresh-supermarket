@@ -2,11 +2,8 @@
 import { type ActionSheetAction, showToast } from 'vant'
 import { CountTo } from 'vue3-count-to'
 import { personalIntegral } from '~/api/personal'
-// import { showDialog } from 'vant'
-import { myServer1, myServer2, myServer3, myServer4, myServer5, order1, order2, order3, order4, order5 } from '~/assets/images'
 import { openQQHref, phoneMask } from '~/utils'
 import { clearAllStorage } from '~/utils/storage'
-// import { clearAllStorage } from '~/utils/storage'
 import ListCard from './components/ListCard.vue'
 
 const route = useRoute()
@@ -16,11 +13,11 @@ const userInfo = computed(() => userStore.userInfo)
 
 // 订单功能
 const orderList = [
-  { img: order1, name: '待付款', active: true },
-  { img: order2, name: '待发货' },
-  { img: order3, name: '待收货' },
-  { img: order4, name: '待评价' },
-  { img: order5, name: '退款/售后' },
+  { iconClass: 'order1', name: '待付款', active: true },
+  { iconClass: 'order2', name: '待发货' },
+  { iconClass: 'order3', name: '待收货' },
+  { iconClass: 'order4', name: '待评价' },
+  { iconClass: 'order5', name: '退款/售后' },
 ]
 function onOrderListRightClick() {
   router.push('/personal/myOrder')
@@ -31,18 +28,28 @@ function onOrderListClick(i: number) {
 
 // 我的服务
 const myServerList = [
-  { img: myServer1, name: '收货地址', path: `/shopping/address?back=${encodeURIComponent(route.fullPath)}` },
-  { img: myServer2, name: '足迹' },
-  { img: myServer3, name: '我的收藏' },
-  { img: myServer4, name: '服务中心' },
-  { img: myServer5, name: '在线客服' },
+  {
+    iconClass: 'myServer1',
+    name: '收货地址',
+    func: () => {
+      router.push(`/shopping/address?back=${encodeURIComponent(route.fullPath)}`)
+    },
+  },
+  { iconClass: 'myServer2', name: '足迹' },
+  { iconClass: 'myServer3', name: '我的收藏' },
+  { iconClass: 'myServer4', name: '服务中心' },
+  {
+    iconClass: 'myServer5',
+    name: '在线客服',
+    func: openQQHref,
+  },
 ]
 function onServerListClick(i: number) {
   const item = myServerList[i]
   if (!item)
     return
-  if (item.path) {
-    router.push(item.path)
+  if (item.func) {
+    item.func()
   }
   else {
     showToast({ message: '正在开发中...' })
@@ -121,15 +128,19 @@ function onSelectSetting(action: ActionSheetAction = {}) {
     <!-- 我的订单 -->
     <div class="mt--21">
       <ListCard
-        :list-data="orderList" right-title="全部订单" title="我的订单" :icon-height="20"
-        @on-right-click="onOrderListRightClick"
-        @on-handle-click="onOrderListClick"
+        :list-data="orderList" right-title="全部订单" title="我的订单"
+        @on-right-click="onOrderListRightClick" @on-handle-click="onOrderListClick"
       />
 
       <div class="h-3" />
 
-      <ListCard :list-data="myServerList" title="我的服务" :icon-height="25" />
-      <RecommendForYou :hide-add="true" @on-handle-click="onServerListClick" />
+      <ListCard
+        :list-data="myServerList"
+        title="我的服务"
+        :icon-height="26"
+        @on-handle-click="onServerListClick"
+      />
+      <RecommendForYou :hide-add="true" />
     </div>
 
     <van-action-sheet

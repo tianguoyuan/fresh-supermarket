@@ -177,7 +177,7 @@ function submit() {
 
         <div class="mt-11 flex justify-between">
           <span class="color-#999">订单编号</span>
-          <span>8283894949838</span>
+          <span>{{ orderId }}</span>
         </div>
         <div class="mt-7 flex justify-between">
           <span class="color-#999">付款方式</span>
