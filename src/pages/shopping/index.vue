@@ -56,7 +56,7 @@ const { addShoppingList, removeCheckedList, changeAllCheckedList } = shoppingSto
         <RouterLink
           to="/shopping/settleAccount"
           class="ml-3 rounded-full px-6 py-2 color-white"
-          :class="[checkedList.length ? 'bg-primary' : 'bg-#999']"
+          :class="[checkedList.length ? 'bg-primary' : 'bg-#999 pointer-events-none']"
         >
           去结算
         </RouterLink>

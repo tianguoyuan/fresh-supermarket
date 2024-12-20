@@ -15,7 +15,7 @@
       </RouterLink>
     </div>
     <div class="mt-20 block h-260px w-full overflow-hidden">
-      <SvgIcon icon-class="dashboardCover" size="100vw" />
+      <SvgIcon icon-class="dashboardCover" width="100%" height="375px" />
     </div>
   </div>
 </template>

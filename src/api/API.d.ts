@@ -156,4 +156,8 @@ declare namespace API {
   interface ShoppingFindDefaultAddressRes {
     defaultAddress: ShoppingAddressResItem
   }
+
+  interface ShoppingGetCouponRes {
+    couponList: number[]
+  }
 }

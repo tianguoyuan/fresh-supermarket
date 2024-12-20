@@ -34,7 +34,7 @@ function onSelect({ icon }: { icon: string }) {
     showToast({ message: '复制成功', type: 'success' })
   }
   else if (key === 'qrcode') {
-    showDialog({ message: `<img src='${qrcode.value}'' />`, allowHtml: true })
+    showDialog({ message: `<img class="m-auto" src='${qrcode.value}'' />`, allowHtml: true, theme: 'round-button' })
   }
   else {
     openQQHref()

@@ -3,6 +3,10 @@ import type { FormInstance } from 'vant'
 import { areaList } from '@vant/area-data'
 import { showDialog } from 'vant'
 import { shoppingAddress } from '~/api/shopping'
+import { ConfigEnum } from '~/enums/ConfigEnum'
+import { router } from '~/modules/router'
+
+const route = useRoute()
 
 const userStore = useUserStore()
 const addressList = ref<API.ShoppingAddressRes['addressList']>([])
@@ -29,10 +33,15 @@ function removeClick(v: API.ShoppingAddressResItem) {
   })
 }
 function checkedClick(v: API.ShoppingAddressResItem) {
+  addressList.value.forEach(item => item.checked = false)
   v.checked = !v.checked
 }
+function handleClick() {
+  router.replace('/shopping/settleAccount')
+}
 
-const height = ref(Math.round(0.85 * window.innerHeight))
+const anchors = ConfigEnum.floatingPanelAnchors
+const height = ref(anchors[2])
 const showEditDialog = ref(false)
 const initEditAddressItem = {
   id: '',
@@ -95,7 +104,7 @@ function areaConfirm({ selectedOptions }: any) {
   <div>
     <van-nav-bar placeholder fixed :clickable="false" title="地址管理">
       <template #left>
-        <RouterLink to="/shopping/settleAccount">
+        <RouterLink :to="route.query.back ? decodeURIComponent(route.query.back as string) : '/shopping/settleAccount'" replace>
           <van-icon name="arrow-left" color="#0B1526" />
         </RouterLink>
       </template>
@@ -122,12 +131,13 @@ function areaConfirm({ selectedOptions }: any) {
         :show-flag="isEdit ? 'editAndRemove' : 'edit'" @remove-click="removeClick"
         @checked-click="checkedClick"
         @right-click="rightClick"
+        @handle-click="handleClick"
       />
       <div class="h-10" />
     </div>
 
     <!-- 新增 修改弹窗 -->
-    <van-floating-panel v-show="showEditDialog" v-model:height="height" :anchors="[height]">
+    <van-floating-panel v-show="showEditDialog" v-model:height="height" :anchors="anchors">
       <van-overlay :show="showEditDialog" teleport="body" />
       <div>
         <van-form ref="formRef" @submit="onSubmit">

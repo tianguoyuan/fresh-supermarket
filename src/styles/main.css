@@ -31,7 +31,8 @@ html.dark {
   background: #121212;
 }
 
-.van-popup {
+/* 弹窗宽度 */
+.van-dialog {
   width: auto !important;
 }
 

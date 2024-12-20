@@ -121,3 +121,13 @@ export function openQQHref() {
   domA.href = qqHref
   domA.click()
 }
+
+export function generateRandomIntegerString(length: number): string {
+  let result = ''
+  for (let i = 0; i < length; i++) {
+    // 生成 0 到 9 的随机整数
+    const randomDigit = Math.floor(Math.random() * 10)
+    result += randomDigit.toString() // 将随机数字转换为字符串并添加到结果中
+  }
+  return result
+}

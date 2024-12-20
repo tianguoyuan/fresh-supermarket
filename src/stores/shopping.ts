@@ -8,6 +8,7 @@ export const useShoppingStore = defineStore(('shopping'), () => {
   /** 所有选中的 */
   const checkedList = computed(() => shoppingList.value.filter(v => v.checked))
   const priceSum = computed(() => checkedList.value.reduce((pre, cur) => add(pre, multiply(+cur.price, cur.num)), 0) || 0)
+  const checkedListNum = computed(() => checkedList.value.reduce((pre, cur) => add(pre, +cur.num), 0) || 0)
 
   const isAllChecked = computed(() => shoppingList.value.length && shoppingList.value.every(v => v.checked))
   function changeAllCheckedList() {
@@ -65,6 +66,7 @@ export const useShoppingStore = defineStore(('shopping'), () => {
     shoppingList,
     priceSum,
     checkedList,
+    checkedListNum,
 
     addShoppingList,
     subtractShoppingList,

@@ -20,6 +20,8 @@ export default defineConfig({
     ['bg-primary', { 'background-color': '#40AE36' }],
     ['color-primary', { color: '#40AE36' }],
     ['border-color-primary', { 'border-color': '#40AE36' }],
+
+    ['content-box', { 'box-sizing': 'content-box' }],
   ],
   presets: [
     presetUno(),

@@ -11,20 +11,24 @@ const props = withDefaults(defineProps<{
 }>(), {
   iconHeight: 20,
 })
+const emits = defineEmits<{
+  onRightClick: []
+  onHandleClick: [i: number]
+}>()
 </script>
 
 <template>
   <div class="mx-3 rounded-3 bg-white p-4">
     <div class="flex justify-between">
       <div>{{ title }}</div>
-      <div v-if="props.rightTitle">
+      <div v-if="props.rightTitle" @click="emits('onRightClick')">
         <span>{{ props.rightTitle }}</span>
         <van-icon name="arrow" />
       </div>
     </div>
 
     <div class="mt-5 flex">
-      <div v-for="(item) in props.listData" :key="item.name" class="relative flex flex-1 flex-col items-center justify-center">
+      <div v-for="(item, index) in props.listData" :key="item.name" class="relative flex flex-1 flex-col items-center justify-center" @click="emits('onHandleClick', index)">
         <div :style="{ height: `${iconHeight}px` }">
           <img class="h-full" :src="item.img" alt="">
         </div>

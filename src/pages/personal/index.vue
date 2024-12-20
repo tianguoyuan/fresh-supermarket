@@ -1,12 +1,16 @@
 <script setup lang="ts" name="/personal/">
+import { type ActionSheetAction, showToast } from 'vant'
 import { CountTo } from 'vue3-count-to'
 import { personalIntegral } from '~/api/personal'
 // import { showDialog } from 'vant'
 import { myServer1, myServer2, myServer3, myServer4, myServer5, order1, order2, order3, order4, order5 } from '~/assets/images'
 import { openQQHref, phoneMask } from '~/utils'
+import { clearAllStorage } from '~/utils/storage'
 // import { clearAllStorage } from '~/utils/storage'
 import ListCard from './components/ListCard.vue'
 
+const route = useRoute()
+const router = useRouter()
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
 
@@ -18,15 +22,32 @@ const orderList = [
   { img: order4, name: '待评价' },
   { img: order5, name: '退款/售后' },
 ]
+function onOrderListRightClick() {
+  router.push('/personal/myOrder')
+}
+function onOrderListClick(i: number) {
+  router.push(`/personal/myOrder?activeIndex=${i}`)
+}
 
 // 我的服务
 const myServerList = [
-  { img: myServer1, name: '收货地址' },
+  { img: myServer1, name: '收货地址', path: `/shopping/address?back=${encodeURIComponent(route.fullPath)}` },
   { img: myServer2, name: '足迹' },
   { img: myServer3, name: '我的收藏' },
   { img: myServer4, name: '服务中心' },
   { img: myServer5, name: '在线客服' },
 ]
+function onServerListClick(i: number) {
+  const item = myServerList[i]
+  if (!item)
+    return
+  if (item.path) {
+    router.push(item.path)
+  }
+  else {
+    showToast({ message: '正在开发中...' })
+  }
+}
 
 // 积分列表
 const priceList = ref<API.PersonalIntegralRes['integralList']>([])
@@ -37,16 +58,26 @@ async function init() {
   priceList.value = integralList
 }
 
-// function outLogin() {
-//   showDialog({
-//     message: '是否要退出登录？',
-//     showCancelButton: true,
-//     width: '100%',
-//   }).then(() => {
-//     userStore.userLoginOut()
-//     clearAllStorage()
-//   })
-// }
+// 设置
+const settingShow = ref(false)
+const settingActions: ActionSheetAction[] = [{ name: '退出登录' }]
+function openSetting() {
+  settingShow.value = true
+}
+function onSelectSetting(action: ActionSheetAction = {}) {
+  if (action.name === '退出登录') {
+    showDialog({
+      message: '是否要退出登录？',
+      showCancelButton: true,
+      width: '100%',
+      theme: 'round-button',
+    }).then(() => {
+      settingShow.value = false
+      userStore.userLoginOut()
+      clearAllStorage()
+    })
+  }
+}
 </script>
 
 <template>
@@ -69,7 +100,7 @@ async function init() {
         </div>
 
         <div class="text-5">
-          <van-icon name="setting-o" class="mr-2 color-white" />
+          <van-icon name="setting-o" class="mr-2 color-white" @click="openSetting" />
           <van-icon name="phone-o" class="color-white" @click="openQQHref()" />
         </div>
       </div>
@@ -89,23 +120,26 @@ async function init() {
 
     <!-- 我的订单 -->
     <div class="mt--21">
-      <ListCard :list-data="orderList" right-title="全部订单" title="我的订单" :icon-height="20" />
+      <ListCard
+        :list-data="orderList" right-title="全部订单" title="我的订单" :icon-height="20"
+        @on-right-click="onOrderListRightClick"
+        @on-handle-click="onOrderListClick"
+      />
 
       <div class="h-3" />
 
       <ListCard :list-data="myServerList" title="我的服务" :icon-height="25" />
-
-      <!-- <div class="m-4 block py-3 text-center bg-primary btn" @click="outLogin">
-        退出登录
-      </div> -->
-      <RecommendForYou :hide-add="true" />
+      <RecommendForYou :hide-add="true" @on-handle-click="onServerListClick" />
     </div>
+
+    <van-action-sheet
+      v-model:show="settingShow" :actions="settingActions" cancel-text="取消"
+      @cancel="settingShow = false" @select="onSelectSetting"
+    />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 
 <route lang="yaml">
   meta:

@@ -29,7 +29,7 @@ const emits = defineEmits<{
         </div>
       </div>
       <div
-        v-if="['edit', 'info', 'editAndRemove'].includes(props.showFlag)" @click="emits('rightClick', props.item)"
+        v-if="['edit', 'info', 'editAndRemove'].includes(props.showFlag)" @click.stop="emits('rightClick', props.item)"
       >
         <SvgIcon v-if="props.showFlag === 'edit' || props.showFlag === 'editAndRemove'" icon-class="edit" size="14" />
 
