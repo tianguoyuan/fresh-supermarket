@@ -83,8 +83,9 @@ export function loadImage(img: string): Promise<void> {
 // 是否 PC浏览器
 export function isPC() {
   const userAgent = navigator.userAgent
-  const reg = /Mobi|Android/i
-  const isMobile = reg.test(userAgent) // 检查是否为移动设备
+  // eslint-disable-next-line prefer-regex-literals
+  const regex = new RegExp('Mobi|Android|iPhone|iPad|iPod', 'i')
+  const isMobile = regex.test(userAgent) // 检查是否为移动设备
   return !isMobile // 如果不是移动设备，则认为是 PC
 }
 
@@ -110,7 +111,9 @@ export function copyText(content: string) {
 // 是否微信浏览器
 export function isWeChatBrowser() {
   const userAgent = navigator.userAgent
-  return /MicroMessenger/i.test(userAgent) // 检查用户代理中是否包含 "MicroMessenger"
+  // eslint-disable-next-line prefer-regex-literals
+  const regex = new RegExp('MicroMessenger', 'i')
+  return regex.test(userAgent) // 检查用户代理中是否包含 "MicroMessenger"
 }
 
 // 打开客服

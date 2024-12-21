@@ -2,11 +2,12 @@ import path, { resolve } from 'node:path'
 import process from 'node:process'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VantResolver } from '@vant/auto-import-resolver'
+import legacy from '@vitejs/plugin-legacy'
 import Vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
-import AutoImport from 'unplugin-auto-import/vite'
 
+import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
@@ -148,6 +149,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
+      // 兼容老浏览器
+      legacy({
+        targets: ['defaults', 'not IE 11'],
+      }),
     ],
 
     // https://github.com/vitest-dev/vitest
@@ -159,6 +164,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         scss: {
           api: 'modern-compiler',
         },
+      },
+    },
+    esbuild: {
+      supported: {
+        bigint: true,
       },
     },
     // 构建配置
