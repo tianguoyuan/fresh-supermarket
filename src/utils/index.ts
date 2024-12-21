@@ -122,7 +122,7 @@ export function openQQHref() {
     return showToast({ icon: 'none', message: '不支持微信内打开' })
 
   const domA = document.createElement('a')
-  domA.href = qqHref
+  domA.href = qqHref()
   domA.click()
 }
 
