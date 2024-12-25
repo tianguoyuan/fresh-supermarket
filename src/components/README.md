@@ -10,9 +10,11 @@ It will only bundle the icons you use. Check out [`unplugin-icons`](https://gith
 
 ###
 
-- RecommendForYou - 为你推荐
-- SvgIcon - svg组件
-- CardWaterfall - 列表卡片瀑布流
+- AddressItem - 地址
 - CardItem - 列表卡片单个
-- CardListItem - 列表单个
 - CardList - 列表
+- CardListItem - 列表单个
+- CardWaterfall - 列表卡片瀑布流
+- RecommendForYou - 为你推荐
+- ShareSheet - 分享弹窗
+- SvgIcon - svg组件
