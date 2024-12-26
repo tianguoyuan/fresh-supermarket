@@ -32,3 +32,17 @@ declare interface Window {
     securityJsCode: string
   }
 }
+
+/* __APP_INFO__ */
+declare const __APP_INFO__: {
+  pkg: {
+    name: string
+    version: string
+    dependencies: Record<string, string>
+    devDependencies: Record<string, string>
+    engines: {
+      node: string
+    }
+  }
+  lastBuildTime: string
+}

@@ -4,9 +4,10 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VantResolver } from '@vant/auto-import-resolver'
 import legacy from '@vitejs/plugin-legacy'
 import Vue from '@vitejs/plugin-vue'
+import dayjs from 'dayjs'
 import { visualizer } from 'rollup-plugin-visualizer'
-import UnoCSS from 'unocss/vite'
 
+import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
@@ -21,6 +22,13 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteVConsole } from 'vite-plugin-vconsole'
 // import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
+import pkg from './package.json'
+
+const { dependencies, devDependencies, name, version, engines } = pkg
+const __APP_INFO__ = {
+  pkg: { dependencies, devDependencies, name, version, engines },
+  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+}
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
@@ -45,6 +53,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       alias: {
         '~/': `${path.resolve(__dirname, 'src')}/`,
       },
+    },
+    define: {
+      __APP_INFO__: JSON.stringify(__APP_INFO__),
     },
     plugins: [
       viteVConsole({

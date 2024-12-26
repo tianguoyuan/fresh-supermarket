@@ -1,5 +1,7 @@
 {
+  "name": "fresh-supermarket",
   "type": "module",
+  "version": "1.11.0",
   "private": true,
   "packageManager": "pnpm@9.12.1",
   "engines": {
