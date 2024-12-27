@@ -38,7 +38,11 @@ export function getPosition(): Promise<{ latitude: string, longitude: string }> 
 /** 随机字符串 */
 export function randomCoding(n = 4) {
   // 创建26个字母数组
-  const arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  const arr = []
+  for (let i = 0; i < 26; i++) {
+    arr.push(String.fromCharCode(97 + i)) // 97是'a'的charCode
+  }
+
   let str = ''
   for (let i = 0; i < n; i++) {
     str += arr[Math.floor(Math.random() * arr.length)]
