@@ -53,7 +53,7 @@ async function submit() {
     code: code.value,
   }
   const { token } = await userLogin(params)
-  await userStore.changeToken(token)
+  await userStore.changeTokenAndGetUserInfo(token)
 
   const redirectPath = query.redirectPath ? parseRedirectPath(query.redirectPath as string) : ''
   router.replace(redirectPath || '/')

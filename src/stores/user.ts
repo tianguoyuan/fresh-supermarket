@@ -2,8 +2,6 @@ import { defineStore } from 'pinia'
 import { userInfo as getUserInfo } from '~/api/user'
 
 export const useUserStore = defineStore(('user'), () => {
-  const address = useLocalStorage('address', '北京')
-
   // 登录接口信息
   const token = useLocalStorage('token', '')
   // token缓存被删除跳转登录页面
@@ -32,7 +30,7 @@ export const useUserStore = defineStore(('user'), () => {
     return isGetLogin && isGetUserInfo
   })
 
-  async function changeToken(val: string) {
+  async function changeTokenAndGetUserInfo(val: string) {
     token.value = val
     // 获取用户信息
     const data = await getUserInfo()
@@ -40,9 +38,6 @@ export const useUserStore = defineStore(('user'), () => {
     userImg.value = data.img
     userName.value = data.name
     userPhone.value = data.phone
-  }
-  function changeAddress(val: string) {
-    address.value = val
   }
 
   function userLoginOut() {
@@ -54,9 +49,7 @@ export const useUserStore = defineStore(('user'), () => {
   }
   return {
     token,
-    changeToken,
-    address,
-    changeAddress,
+    changeTokenAndGetUserInfo,
 
     isLogin,
     userInfo,

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import SvgIcon from '~/components/SvgIcon.vue'
 import { ColorEnums } from '~/enums/ColorEnum'
 
@@ -59,9 +58,6 @@ console.log('routeName', cacheViews.value, router.getRoutes())
 
 const activeColor = ColorEnums.primary
 const inactiveColor = '#7d7e80'
-
-const shoppingStore = useShoppingStore()
-const { shoppingList } = storeToRefs(shoppingStore)
 </script>
 
 <template>
@@ -84,7 +80,6 @@ const { shoppingList } = storeToRefs(shoppingStore)
         </Transition>
       </RouterView>
     </div>
-
     <!-- 首页 底部选项卡 -->
     <div class="tabbar">
       <VanTabbar v-if="route.meta.showTabBar" :model-value="activeIndex" safe-area-inset-bottom placeholder :fixed="false" :active-color="activeColor" :inactive-color="inactiveColor" border>
@@ -96,7 +91,7 @@ const { shoppingList } = storeToRefs(shoppingStore)
             <SvgIcon v-if="item.icon" :icon-class="item.icon" :color="props.active ? activeColor : inactiveColor" size="20" />
             <VanIcon v-if="item.vanIcon" :name="item.icon" size="50" :color="props.active ? activeColor : inactiveColor" />
 
-            <div v-if="item.url === '/shopping' && shoppingList.length" class="absolute right--2.5 top-0 h-2 w-2 rounded-full bg-red" />
+            <div v-if="item.url === '/shopping'" class="absolute right--2.5 top-0 h-2 w-2 rounded-full bg-red" />
           </template>
         </VanTabbarItem>
       </VanTabbar>

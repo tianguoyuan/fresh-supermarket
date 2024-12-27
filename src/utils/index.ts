@@ -1,6 +1,3 @@
-import { showToast } from 'vant'
-import { qqHref } from '~/enums/HrefEnum'
-
 // 解析重定向redirectPath
 export function parseRedirectPath(path: string) {
   const isEncode = (v: string) => v.includes(encodeURIComponent('?'))
@@ -89,13 +86,6 @@ export function isPC() {
   return !isMobile // 如果不是移动设备，则认为是 PC
 }
 
-// 打开扫一扫
-export function openSweep() {
-  const domInput = document.createElement('input')
-  domInput.type = 'file'
-  domInput.click()
-}
-
 // 复制文字
 export function copyText(content: string) {
   const dom = document.createElement('input')
@@ -114,24 +104,4 @@ export function isWeChatBrowser() {
   // eslint-disable-next-line prefer-regex-literals
   const regex = new RegExp('MicroMessenger', 'i')
   return regex.test(userAgent) // 检查用户代理中是否包含 "MicroMessenger"
-}
-
-// 打开客服
-export function openQQHref() {
-  if (isWeChatBrowser())
-    return showToast({ icon: 'none', message: '不支持微信内打开' })
-
-  const domA = document.createElement('a')
-  domA.href = qqHref()
-  domA.click()
-}
-
-export function generateRandomIntegerString(length: number): string {
-  let result = ''
-  for (let i = 0; i < length; i++) {
-    // 生成 0 到 9 的随机整数
-    const randomDigit = Math.floor(Math.random() * 10)
-    result += randomDigit.toString() // 将随机数字转换为字符串并添加到结果中
-  }
-  return result
 }

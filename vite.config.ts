@@ -43,7 +43,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       proxy: {
         [viteEnv.VITE_API_URL]: {
           target: 'http://127.0.0.1:4523/m1/5432087-5106972-default',
-          // target: 'https://apifoxmock.com/m1/5432087-5106972-default',
           changeOrigin: true,
           rewrite: path => path.replace(new RegExp(`${viteEnv.VITE_API_URL}`), ''),
         },
