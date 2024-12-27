@@ -19,7 +19,8 @@
     "test": "vitest",
     "up": "taze major -I",
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "npx simple-git-hooks"
+    "postinstall": "npx simple-git-hooks",
+    "svgo": "svgo -f ./src/assets/icons -o ./src/assets/icons"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -72,6 +73,7 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.79.5",
     "simple-git-hooks": "^2.11.1",
+    "svgo": "^3.3.2",
     "taze": "^0.17.2",
     "typescript": "^5.5.4",
     "unocss": "^0.63.4",
@@ -96,6 +98,13 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.svg": [
+      "svgo",
+      "git add"
+    ]
   }
 }
