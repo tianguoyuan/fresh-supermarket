@@ -8,8 +8,10 @@ html {
   touch-action: manipulation;
   color: #0b1526;
 }
+
 body {
   background-color: #f8f9fa;
+  font-family: PingFangSC-Regular, PingFangSC-Regular;
 }
 .van-icon {
   font-size: 18px;
