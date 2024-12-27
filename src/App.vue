@@ -11,9 +11,3 @@ const { isDark } = useAppDark()
     </Suspense>
   </div>
 </template>
-
-<style lang="scss">
-body {
-  font-family: PingFangSC-Regular, PingFangSC-Regular;
-}
-</style>
