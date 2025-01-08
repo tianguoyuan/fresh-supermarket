@@ -6,6 +6,6 @@ export default antfu(
     formatters: true,
   },
   {
-    ignores: ['.env*', '*.svg', 'pnpm-lock.yaml'],
+    ignores: ['.env*', '*.svg', 'pnpm-lock.yaml', 'netlify.toml'],
   },
 )
