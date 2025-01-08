@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import NProgress from 'nprogress'
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createRouter, createWebHashHistory } from 'vue-router/auto'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router/auto'
 import { routes as generatedRoutes } from 'vue-router/auto-routes'
 import 'nprogress/nprogress.css'
 
@@ -16,8 +16,9 @@ NProgress.configure({
 
 const routes = setupLayouts(generatedRoutes)
 
+const createRouteMode = import.meta.env.VITE_ROUTER_MODE === 'hash' ? createWebHashHistory : createWebHistory
 export const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createRouteMode(import.meta.env.BASE_URL),
   routes,
 })
 
