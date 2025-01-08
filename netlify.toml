@@ -17,9 +17,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
-  # 仅重定向非静态资源的路径
-  conditions = { Country = "US" }
 
 [[headers]]
   # 示例：为所有的 .html 文件设置缓存控制
