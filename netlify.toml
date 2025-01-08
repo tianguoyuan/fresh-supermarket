@@ -7,11 +7,10 @@
 
 [[redirects]]
   # 示例：将 /old-page 路由重定向到 /new-page
-  from = "/api-fresh-supermarket"
-  to = "https://apifoxmock.com/m1/5432087-0-default"
-  status = 301
+  from = "/api-fresh-supermarket/*"
+  to = "https://apifoxmock.com/m1/5432087-0-default/:splat"
+  status = 200
   force = true
-
 
 #[[redirects]]
 #  # 重定向所有路径到 index.html 防止history刷新404
