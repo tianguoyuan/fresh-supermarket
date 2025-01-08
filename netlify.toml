@@ -1,1 +1,27 @@
-/api-fresh-supermarket       https://apifox.com/apidoc/shared-07708541-bd35-4914-9803-48ef257af742
+
+[build]
+  # 构建命令，例如使用 Next.js 或者其它静态站点生成器
+  command = "npm run build:prod"
+  # 发布目录，表示构建后的文件将被发布到此目录
+  publish = "dist"
+
+[[redirects]]
+  # 示例：将 /old-page 路由重定向到 /new-page
+  from = "/api-fresh-supermarket"
+  to = "https://apifox.com/apidoc/shared-07708541-bd35-4914-9803-48ef257af742"
+  status = 301
+  force = true
+
+
+[[redirects]]
+  # 重定向所有路径到 index.html 防止history刷新404
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[headers]]
+  # 示例：为所有的 .html 文件设置缓存控制
+  for = "/**.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
