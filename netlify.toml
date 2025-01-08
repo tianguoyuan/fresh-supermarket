@@ -8,7 +8,7 @@
 [[redirects]]
   # 示例：将 /old-page 路由重定向到 /new-page
   from = "/api-fresh-supermarket"
-  to = "https://apifox.com/apidoc/shared-07708541-bd35-4914-9803-48ef257af742"
+  to = "https://apifoxmock.com/m1/5432087-0-default"
   status = 301
   force = true
 
