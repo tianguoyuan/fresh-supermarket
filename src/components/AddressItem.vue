@@ -37,11 +37,11 @@ const emits = defineEmits<{
       </div>
     </div>
     <div v-if="['remove', 'editAndRemove'].includes(props.showFlag)" class="mt-2 flex justify-between text-3">
-      <div class="flex items-center" @click="emits('checkedClick', props.item)">
+      <div class="flex items-center" @click.stop="emits('checkedClick', props.item)">
         <SvgIcon :icon-class="item.checked ? 'radio-checked' : 'radio'" size="14" />
         <span class="pl-1">默认地址</span>
       </div>
-      <div class="color-#ee0a24" @click="emits('removeClick', props.item)">
+      <div class="color-#ee0a24" @click.stop="emits('removeClick', props.item)">
         删除
       </div>
     </div>
